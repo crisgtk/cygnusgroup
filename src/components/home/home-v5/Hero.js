@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Thumbs } from "swiper";
+import { Thumbs, Autoplay } from "swiper";
 import "swiper/swiper-bundle.css";
 import Image from "next/image";
 import Link from "next/link";
@@ -46,12 +46,12 @@ const Hero = () => {
           slidesPerView={1}
           speed={1400} // Set the slide transition speed in milliseconds
           autoplay={{ delay: 3000, disableOnInteraction: false }}
-          modules={[Thumbs]}
+          modules={[Thumbs, Autoplay]}
           thumbs={{
             swiper:
               thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null,
           }}
-          style={{ height: "850px" }}>
+          style={{ height: "750px" }}>
           {sliderItems.map((item, index) => (
             <SwiperSlide key={index}>
               <div className="item">

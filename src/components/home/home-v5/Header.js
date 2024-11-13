@@ -28,9 +28,9 @@ const Header = () => {
   return (
     <>
       <header
-        className={`header-nav nav-homepage-style main-menu  ${
-          navbar ? "sticky slideInDown animated" : ""
-        }`}>
+        className={
+          "header-nav nav-homepage-style main-menu sticky slideInDown animated"
+        }>
         <nav className="posr">
           <div className="container posr menu_bdrt1">
             <div className="row align-items-center justify-content-between">
@@ -39,16 +39,16 @@ const Header = () => {
                   <div className="logos mr40">
                     <Link className="header-logo logo1" href="/home-v5">
                       <Image
-                        width={200}
-                        height={44}
+                        width={500}
+                        height={94}
                         src="/images/logo/logo2.png"
                         alt="Header Logo"
                       />
                     </Link>
                     <Link className="header-logo logo2" href="/">
                       <Image
-                        width={200}
-                        height={44}
+                        width={500}
+                        height={94}
                         src="/images/logo/logo2.png"
                         alt="Header Logo"
                       />
