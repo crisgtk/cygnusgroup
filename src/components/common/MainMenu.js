@@ -2,9 +2,10 @@ import {
   homeItems,
   blogItems,
   listingItems,
-  propertyItems,
+  //propertyItems,
   pageItems,
 } from "@/data/navItems";
+import { getMenu } from '@/server/menu';
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -14,6 +15,26 @@ const MainMenu = () => {
   const [topMenu, setTopMenu] = useState("");
   const [submenu, setSubmenu] = useState("");
   const [activeLink, setActiveLink] = useState("");
+  const [propertyItems, setpropertyItems] = useState([]);
+
+  console.log("Menu:::");
+
+
+
+  async function cargarMenu() {
+    try {
+        const menuData = await getMenu();
+        console.log('Datos del menú:::', menuData);
+        setpropertyItems(menuData);
+        // Aquí puedes hacer algo con los datos del menú
+    } catch (error) {
+        console.error('Error al cargar el menú:::', error);
+    }
+}
+
+  useEffect(() => {
+  cargarMenu();
+  }, []);
 
   useEffect(() => {
     homeItems.forEach((elm) => {
