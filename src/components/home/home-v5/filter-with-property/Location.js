@@ -1,13 +1,17 @@
 "use client";
 import Select from "react-select";
+import React, { useEffect, useState } from "react";
+import { getLocationTransform } from "@/transform/propertiesTransform";
 
 const Location = () => {
-  const inqueryType = [
-    { value: "New York", label: "Concepción" },
-    { value: "Los Angeles", label: "Chillan" },
-    { value: "London", label: "Florida" },
-    { value: "Paris", label: "Ñuble" },
-  ];
+  const [inqueryType, setInqueryType] = useState([]);
+
+  // const inqueryType = [
+  //   { value: "New York", label: "Concepción" },
+  //   { value: "Los Angeles", label: "Chillan" },
+  //   { value: "London", label: "Florida" },
+  //   { value: "Paris", label: "Ñuble" },
+  // ];
 
   const customStyles = {
     option: (styles, { isFocused, isSelected, isHovered }) => {
@@ -23,6 +27,19 @@ const Location = () => {
       };
     },
   };
+
+  useEffect(() => {
+    const loadLocation = async () => {
+      try {
+        const getLocation = await getLocationTransform();
+        setInqueryType(getLocation);
+      } catch (error) {
+        console.error("Error al cargar las regiones:", error);
+      }
+    };
+
+    loadLocation();
+  }, []);
   return (
     <>
       <Select

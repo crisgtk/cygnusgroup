@@ -10,7 +10,6 @@ import Pagination from "../../Pagination";
 import PaginationTwo from "../../PaginationTwo";
 
 export default function ProperteyFiltering() {
-  console.log("listing:::", listings);
   const [filteredData, setFilteredData] = useState([]);
 
   const [currentSortingOption, setCurrentSortingOption] = useState("Newest");
@@ -130,7 +129,6 @@ export default function ProperteyFiltering() {
 
   useEffect(() => {
     const refItems = listings.filter((elm) => {
-      console.log("element:::", elm);
       if (listingStatus == "All") {
         return true;
       } else if (listingStatus == "Buy") {
@@ -201,7 +199,6 @@ export default function ProperteyFiltering() {
     const commonItems = refItems.filter((item) =>
       filteredArrays.every((array) => array.includes(item))
     );
-    console.log("commonItems:::", commonItems);
     setFilteredData(commonItems);
   }, [
     listingStatus,

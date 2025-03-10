@@ -17,14 +17,9 @@ const MainMenu = () => {
   const [activeLink, setActiveLink] = useState("");
   const [propertyItems, setpropertyItems] = useState([]);
 
-  console.log("Menu:::");
-
-
-
   async function cargarMenu() {
     try {
         const menuData = await getMenu();
-        console.log('Datos del menú:::', menuData);
         setpropertyItems(menuData);
         // Aquí puedes hacer algo con los datos del menú
     } catch (error) {

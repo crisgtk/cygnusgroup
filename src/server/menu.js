@@ -6,7 +6,6 @@ const API_BASE_URL = process.env.REACT_APP_API_URL || 'https://localhost:5001';
 // Función para obtener datos desde tu API .NET
 async function getMenu() {
     try {
-        console.log("API_BASE_URL:::", API_BASE_URL);
         const response = await axios.get(`${API_BASE_URL}/menu/getMenu`);
         
         // Verificar si la respuesta es exitosa (status = 0)

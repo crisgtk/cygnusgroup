@@ -1,41 +1,56 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Thumbs, Autoplay } from "swiper";
 import "swiper/swiper-bundle.css";
 import Image from "next/image";
 import Link from "next/link";
+import { getSliderItemsTransform } from "@/transform/propertiesTransform";
 
 const Hero = () => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
+  const [sliderItems, setSliderItems] = useState([]);
 
-  const sliderItems = [
-    {
-      image: "/images/proyect/cerezos.png",
-      price: "$25.900.000",
-      title: "Colliguay-Región del Ñuble",
-      description: "20 minutos de Chillán, 40 minutos de Concepcion",
-    },
-    {
-      image: "/images/proyect/los_nogales.png",
-      price: "$28.900.000",
-      title: "Quillón-Región del Ñuble",
-      description: "30 minutos de Chillán, 40 minutos de Concepcion",
-    },
-    {
-      image: "/images/proyect/florida.png",
-      price: "$27.900.000",
-      title: "Florida-Región del Bio Bio",
-      description:
-        "2 minutos del Hospital de Florida, 40 minutos de Concepcion",
-    },
-    {
-      image: "/images/proyect/cerezos_quinchimali.png",
-      price: "$19.900.000",
-      title: "20 minutos de Chillán",
-      description: "40 minutos de Concepcion",
-    },
-  ];
+  // const sliderItems = [
+  //   {
+  //     image: "/images/proyect/cerezos.png",
+  //     price: "$25.900.000",
+  //     title: "Colliguay-Región del Ñuble",
+  //     description: "20 minutos de Chillán, 40 minutos de Concepcion",
+  //   },
+  //   {
+  //     image: "/images/proyect/los_nogales.png",
+  //     price: "$28.900.000",
+  //     title: "Quillón-Región del Ñuble",
+  //     description: "30 minutos de Chillán, 40 minutos de Concepcion",
+  //   },
+  //   {
+  //     image: "/images/proyect/florida.png",
+  //     price: "$27.900.000",
+  //     title: "Florida-Región del Bio Bio",
+  //     description:
+  //       "2 minutos del Hospital de Florida, 40 minutos de Concepcion",
+  //   },
+  //   {
+  //     image: "/images/proyect/cerezos_quinchimali.png",
+  //     price: "$19.900.000",
+  //     title: "20 minutos de Chillán",
+  //     description: "40 minutos de Concepcion",
+  //   },
+  // ];
+
+  useEffect(() => {
+    const loadSliderItems = async () => {
+      try {
+        const items = await getSliderItemsTransform();
+        setSliderItems(items);
+      } catch (error) {
+        console.error("Error al cargar los items:", error);
+      }
+    };
+
+    loadSliderItems();
+  }, []);
 
   return (
     <>
