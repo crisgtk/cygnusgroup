@@ -1,12 +1,31 @@
 "use client";
-import listings from "@/data/listings";
+//import listings from "@/data/listings";
+import { getListings } from "@/transform/propertiesTransform";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import { Navigation, Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.min.css";
 
 const FeaturedListings = () => {
+  const [listings, setListings] = useState([]);
+
+
+  useEffect(() => {
+    const loadListings = async () => {
+      try {
+        const items = await getListings();
+        setListings(items);
+      } catch (error) {
+        console.error("Error al cargar los items:", error);
+      }
+    };
+
+    loadListings();
+  }, []);
+
+
   return (
     <>
       <Swiper
