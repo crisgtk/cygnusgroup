@@ -33,7 +33,7 @@ const LoginSignupModal = () => {
                   aria-selected="true">
                   Correo
                 </button>
-                <button
+                {/* <button
                   className="nav-link fw600"
                   id="nav-profile-tab"
                   data-bs-toggle="tab"
@@ -43,7 +43,7 @@ const LoginSignupModal = () => {
                   aria-controls="nav-profile"
                   aria-selected="false">
                   Nueva Cuenta
-                </button>
+                </button> */}
               </div>
             </nav>
             {/* End nav tab items */}

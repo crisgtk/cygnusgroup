@@ -49,28 +49,6 @@ const SignIn = () => {
         <hr />
         <span className="hr_top_text">O</span>
       </div>
-
-      <div className="d-grid mb10">
-        <button className="ud-btn btn-white" type="button">
-          <i className="fab fa-google" /> Continuar Google
-        </button>
-      </div>
-      <div className="d-grid mb10">
-        <button className="ud-btn btn-fb" type="button">
-          <i className="fab fa-facebook-f" /> COntinuar Facebook
-        </button>
-      </div>
-      <div className="d-grid mb20">
-        <button className="ud-btn btn-apple" type="button">
-          <i className="fab fa-apple" /> Continuar Apple
-        </button>
-      </div>
-      <p className="dark-color text-center mb0 mt10">
-        No estas registrado?{" "}
-        <Link className="dark-color fw600" href="/register">
-          Crea una cuenta.
-        </Link>
-      </p>
     </form>
   );
 };
