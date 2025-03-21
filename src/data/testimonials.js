@@ -3,40 +3,40 @@ module.exports = [
     id: 1,
     title: "Great Work",
     quote:
-      "Es increible lo rápida que fue la gestión de mi propiedad, cumplieron correctamente con todas las fechas comprometidas, ¡Feliz con mi nuevo hogar!.",
+      "Vendí mi propiedad y también compré una parcela en la región del Biobío. El proceso fue muy fácil, me brindaron toda la asesoría y ahora disfruto de un espacio tranquilo para mi familia. Gracias a Cygnus Group Propiedades por todo su apoyo.",
     stars: 5,
     image: "/images/testimonials/testimonial-1.png",
-    name: "Leslie Alexander",
+    name: "J.P",
     company: "Contadora",
   },
   {
     id: 2,
     title: "Great Work",
     quote:
-      "Iba por media hecarea y termine comprando 2, la asesoría de los ejecutivos fue clave para tomar la mejor decisión.",
+      "Compré mi casa en concepción y el proceso fue muy profesional. Todo fue muy claro y me acompañaron en cada paso. Estoy muy satisfecho con mi compra, todo gracias a Cygnus Group Propiedades.",
     stars: 5,
     image: "/images/testimonials/testimonial-2.png",
-    name: "Jorge Garcia",
+    name: "R.A",
     company: "Ingeniero Comercial",
   },
   {
     id: 3,
     title: "Great Work",
     quote:
-      "El sueño de mi vida, la casa en el campo, fue posible gracias a la maravillosa gestión de CygnusGroup.",
+      "Compré una parcela en Ñuble y la experiencia fue excelente. El equipo de Cygnus Group Propiedades me ofreció varias opciones que se ajustaron perfectamente a lo que buscaba. Estoy muy contento con mi compra.",
     stars: 5,
     image: "/images/testimonials/testimonial-3.png",
-    name: "Crisian Burgos",
+    name: "M.S",
     company: "Ingeniero de Software",
   },
   {
     id: 4,
     title: "Great Work",
     quote:
-      "Buscaba un patrimonio que no se devaluara en el tiempo y lo encontre en esta gran empresa con personas geniales. Gracias.",
+      "Adquirí un departamento a través de Cygnus Group Propiedades y el proceso fue rápido y sin problemas. Me ayudaron en todo momento y me brindaron la información necesaria. Ahora disfruto de un lugar cómodo y bien ubicado.",
     stars: 5,
     image: "/images/testimonials/testimonial-4.png",
-    name: "Joselyn Gonzalez",
+    name: "A.F.",
     company: "Seo de Marketing",
   },
 ];

@@ -12,24 +12,19 @@ import "swiper/swiper-bundle.min.css";
 const PropertiesByCities = () => {
   const [cities, setCities] = useState([]);
 
+  useEffect(() => {
+    const loadCities = async () => {
+      try {
+        const items = await getCities();
+        console.log("items", items);
+        setCities(items);
+      } catch (error) {
+        console.error("Error al cargar los items:", error);
+      }
+    };
 
-    useEffect(() => {
-      const loadCities = async () => {
-        try {
-          const items = await getCities();
-          console.log("items", items);
-          setCities(items);
-        } catch (error) {
-          console.error("Error al cargar los items:", error);
-        }
-      };
-  
-      loadCities();
-    }, []);
-
-
-    console.log("cities:::", cities);
-    console.log("cities2:::", cities2);
+    loadCities();
+  }, []);
 
   return (
     <>
@@ -60,7 +55,7 @@ const PropertiesByCities = () => {
             slidesPerView: 5,
           },
         }}>
-        {cities.slice(23, 29).map((city) => (
+        {cities.slice(0).map((city) => (
           <SwiperSlide key={city.id}>
             <Link href="/map-v4" className="item">
               <div className="apartment-style1 mb30">
