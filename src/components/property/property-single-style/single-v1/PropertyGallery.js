@@ -2,7 +2,10 @@
 import { Gallery, Item } from "react-photoswipe-gallery";
 import "photoswipe/dist/photoswipe.css";
 import Image from "next/image";
-import listings from "@/data/listings";
+//import listings from "@/data/listings";
+import { use, useEffect, useState } from "react";
+import { getListings } from "@/transform/propertiesTransform";
+import { getGalleryTransform } from "@/transform/galeryTransform";
 
 const images = [
   {
@@ -24,7 +27,35 @@ const images = [
 ];
 
 const PropertyGallery = ({ id }) => {
+
+  const [listings, setListings] = useState([]);
+  const [gallery, setGallery] = useState([]);
+
+  useEffect(() => {
+    const loadListings = async () => {
+      try {
+        const [items, galleryData] = await Promise.all([
+          getListings(),
+          getGalleryTransform("1")
+        ]);
+
+        setListings(items);
+        setGallery(galleryData);
+
+      } catch (error) {
+        console.error("Error al cargar los items:", error);
+      }
+    };
+
+    loadListings();
+  }, [id]);
+
   const data = listings.filter((elm) => elm.id == id)[0] || listings[0];
+
+  if (!data || gallery.length === 0) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <>
       <Gallery>
@@ -38,7 +69,7 @@ const PropertyGallery = ({ id }) => {
                 height={510}>
                 {({ ref, open }) => (
                   <Image
-                    src={"/images/proyect/cerezos_quinchimali.png"}
+                    src={data.image}
                     width={591}
                     height={558}
                     ref={ref}
@@ -56,7 +87,7 @@ const PropertyGallery = ({ id }) => {
 
         <div className="col-sm-6">
           <div className="row">
-            {images.map((image, index) => (
+            {gallery.map((image, index) => (
               <div className="col-6 ps-sm-0" key={index}>
                 <div className="sp-img-content">
                   <div

@@ -1,10 +1,32 @@
 "use client";
 
-import listings from "@/data/listings";
-import React from "react";
+//import listings from "@/data/listings";
+import { getListings } from "@/transform/propertiesTransform";
+import { useEffect, useState } from "react";
 
 const PropertyHeader = ({ id }) => {
+
+  const [listings, setListings] = useState([]);
+
+  useEffect(() => {
+    const loadListings = async () => {
+      try {
+        const items = await getListings();
+        setListings(items);
+      } catch (error) {
+        console.error("Error al cargar los items:", error);
+      }
+    };
+
+    loadListings();
+  }, []);
+
   const data = listings.filter((elm) => elm.id == id)[0] || listings[0];
+
+  if (!data) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <>
       <div className="col-lg-8">
@@ -24,9 +46,7 @@ const PropertyHeader = ({ id }) => {
               className="ff-heading bdrr1 fz15 pr10 ml10 ml0-sm bdrrn-sm"
               href="#">
               <i className="far fa-clock pe-2" />
-              {Number(new Date().getFullYear()) -
-                Number(data.yearBuilding)}{" "}
-              meses
+              {Number(new Date().getFullYear()) - Number(data.yearBuilding)} años
             </a>
             <a className="ff-heading ml10 ml0-sm fz15" href="#">
               <i className="flaticon-fullscreen pe-2 align-text-top" />
