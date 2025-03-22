@@ -55,6 +55,8 @@ export async function getListings() {
     lat: property.Latitude,
     long: property.Longitude,
     features: property.features ? property.features.split(', ') : [],
+    propertyName: property.propertyName,
+    Garaje: property.Garaje,
   }));
 }
 

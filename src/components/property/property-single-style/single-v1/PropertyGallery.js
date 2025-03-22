@@ -3,52 +3,28 @@ import { Gallery, Item } from "react-photoswipe-gallery";
 import "photoswipe/dist/photoswipe.css";
 import Image from "next/image";
 //import listings from "@/data/listings";
-import { use, useEffect, useState } from "react";
-import { getListings } from "@/transform/propertiesTransform";
-import { getGalleryTransform } from "@/transform/galeryTransform";
+import { use } from "react";
 
-const images = [
-  {
-    src: "/images/region/quinchimali8.jpeg",
-    alt: "2.jpg",
-  },
-  {
-    src: "/images/region/quinchimali7.jpeg",
-    alt: "3.jpg",
-  },
-  {
-    src: "/images/region/quinchimali5.jpeg",
-    alt: "4.jpg",
-  },
-  {
-    src: "/images/region/quinchimali4.jpeg",
-    alt: "5.jpg",
-  },
-];
+// const images = [
+//   {
+//     src: "/images/region/quinchimali8.jpeg",
+//     alt: "2.jpg",
+//   },
+//   {
+//     src: "/images/region/quinchimali7.jpeg",
+//     alt: "3.jpg",
+//   },
+//   {
+//     src: "/images/region/quinchimali5.jpeg",
+//     alt: "4.jpg",
+//   },
+//   {
+//     src: "/images/region/quinchimali4.jpeg",
+//     alt: "5.jpg",
+//   },
+// ];
 
-const PropertyGallery = ({ id }) => {
-
-  const [listings, setListings] = useState([]);
-  const [gallery, setGallery] = useState([]);
-
-  useEffect(() => {
-    const loadListings = async () => {
-      try {
-        const [items, galleryData] = await Promise.all([
-          getListings(),
-          getGalleryTransform("1")
-        ]);
-
-        setListings(items);
-        setGallery(galleryData);
-
-      } catch (error) {
-        console.error("Error al cargar los items:", error);
-      }
-    };
-
-    loadListings();
-  }, [id]);
+const PropertyGallery = ({ id, listings, gallery }) => {
 
   const data = listings.filter((elm) => elm.id == id)[0] || listings[0];
 
@@ -63,8 +39,8 @@ const PropertyGallery = ({ id }) => {
           <div className="sp-img-content mb15-md">
             <div className="popup-img preview-img-1 sp-img">
               <Item
-                original={"/images/proyect/cerezos_quinchimali.png"}
-                thumbnail={"/images/proyect/cerezos_quinchimali.png"}
+                original={data.image}
+                thumbnail={data.image}
                 width={610}
                 height={510}>
                 {({ ref, open }) => (

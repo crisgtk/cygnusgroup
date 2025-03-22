@@ -1,4 +1,4 @@
-// "use client";
+"use client";
 import DefaultHeader from "@/components/common/DefaultHeader";
 import Footer from "@/components/common/default-footer";
 import MobileMenu from "@/components/common/mobile-menu";
@@ -22,15 +22,42 @@ import AllReviews from "@/components/property/property-single-style/common/revie
 import ContactWithAgent from "@/components/property/property-single-style/sidebar/ContactWithAgent";
 import ScheduleTour from "@/components/property/property-single-style/sidebar/ScheduleTour";
 import PropertyGallery from "@/components/property/property-single-style/single-v1/PropertyGallery";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import MortgageCalculator from "@/components/property/property-single-style/common/MortgageCalculator";
 import WalkScore from "@/components/property/property-single-style/common/WalkScore";
+import { getListings } from "@/transform/propertiesTransform";
+import { getGalleryTransform } from "@/transform/galeryTransform";
 
-export const metadata = {
-  title: "Cygnus",
-};
+// export const metadata = {
+//   title: "Cygnus",
+// };
 
 const SingleV1 = ({ params }) => {
+
+  const [listings, setListings] = useState([]);
+  const [gallery, setGallery] = useState([]);
+
+  useEffect(() => {
+    const loadListings = async () => {
+      try {
+        const [items, galleryData] = await Promise.all([
+          getListings(),
+          getGalleryTransform(params.id)
+        ]);
+
+        setListings(items);
+        setGallery(galleryData);
+
+      } catch (error) {
+        console.error("Error al cargar los items:", error);
+      }
+    };
+
+    loadListings();
+  }, []);
+
+
+
   return (
     <>
       {/* Main Header Nav */}
@@ -45,12 +72,12 @@ const SingleV1 = ({ params }) => {
       <section className="pt60 pb90 bgc-f7">
         <div className="container">
           <div className="row">
-            <PropertyHeader id={params.id} />
+            <PropertyHeader id={params.id} listings= {listings} />
           </div>
           {/* End .row */}
 
           <div className="row mb30 mt30">
-            <PropertyGallery id={params.id} />
+            <PropertyGallery id={params.id} listings= {listings} gallery={gallery} />
           </div>
           {/* End .row */}
 
@@ -59,7 +86,7 @@ const SingleV1 = ({ params }) => {
               <div className="ps-widget bgc-white bdrs12 default-box-shadow2 p30 mb30 overflow-hidden position-relative">
                 <h4 className="title fz17 mb30">Cuenta con</h4>
                 <div className="row">
-                  <OverView />
+                  <OverView listings={listings}/>
                 </div>
               </div>
               {/* End .ps-widget */}

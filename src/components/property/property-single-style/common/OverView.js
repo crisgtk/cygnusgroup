@@ -1,8 +1,15 @@
-import listings from "@/data/listings";
+"use client";
+
 import React from "react";
 
-const OverView = ({ id }) => {
+const OverView = ({ id, listings }) => {
+
   const data = listings.filter((elm) => elm.id == id)[0] || listings[0];
+
+  if (!data) {
+    return <div>Loading...</div>;
+  }
+  
   const overviewData = [
     {
       icon: "flaticon-bed",
@@ -22,7 +29,7 @@ const OverView = ({ id }) => {
     {
       icon: "flaticon-garage",
       label: "Garage",
-      value: "2",
+      value: data.Garaje,
       xs: true,
     },
     {
@@ -34,7 +41,7 @@ const OverView = ({ id }) => {
     {
       icon: "flaticon-home-1",
       label: "tipo de propiedad",
-      value: data.propertyType,
+      value: data.propertyName,
     },
   ];
 
