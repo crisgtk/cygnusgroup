@@ -108,7 +108,7 @@ const SingleV1 = ({ params }) => {
               <div className="ps-widget bgc-white bdrs12 default-box-shadow2 p30 mb30 overflow-hidden position-relative">
                 <h4 className="title fz17 mb30 mt30">Ubicación</h4>
                 <div className="row">
-                  <PropertyAddress />
+                  <PropertyAddress id={params.id} listings={listings}/>
                 </div>
               </div>
               {/* End .ps-widget */}

@@ -43,6 +43,7 @@ export async function getListings() {
     title: property.Title,
     city: property.City,
     location: property.location,
+    address: property.address,
     bed: property.Bed || "0",
     bath: property.Bath || "0",
     sqft: property.sqft,
