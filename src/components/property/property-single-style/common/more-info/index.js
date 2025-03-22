@@ -2,7 +2,16 @@
 import Select from "react-select";
 import SingleAgentInfo from "./SingleAgentInfo";
 
-const InfoWithForm = () => {
+const InfoWithForm = ({ id, listings }) => {
+
+
+  const data = listings.filter((elm) => elm.id == id)[0] || listings[0];
+
+  if (!data) {
+    return <div>Loading...</div>;
+  }
+
+
   const inqueryType = [
     { value: "Engineer", label: "Ingeniero" },
     { value: "Doctor", label: "Doctor" },
@@ -28,7 +37,7 @@ const InfoWithForm = () => {
 
   return (
     <>
-      <SingleAgentInfo />
+      <SingleAgentInfo data={data} />
 
       <div className="row">
         <div className="col-md-12">

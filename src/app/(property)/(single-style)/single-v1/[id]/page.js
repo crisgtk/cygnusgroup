@@ -182,7 +182,7 @@ const SingleV1 = ({ params }) => {
 
               <div className="ps-widget bgc-white bdrs12 default-box-shadow2 p30 mb30 overflow-hidden position-relative">
                 <h4 className="title fz17 mb30">Obtenen mas información</h4>
-                <InfoWithForm />
+                <InfoWithForm id={params.id} listings={listings}/>
               </div>
               {/* End .ps-widget */}
             </div>

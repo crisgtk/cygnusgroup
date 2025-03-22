@@ -61,6 +61,12 @@ export async function getListings() {
     parrafo1: property.parrafo1,
     parrafo2: property.parrafo2,
     youtubeLink: property.youtubeLink,
+    executiveId: property.ExecutiveId,
+    executiveName: property.ExecutiveName,
+    executivePhone: property.ExecutivePhone,
+    executiveEmail: property.ExecutiveEmail,
+    executiveCategory: property.ExecutiveCategory,
+    executiveImage: property.ExecutiveImage
   }));
 }
 
