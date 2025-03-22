@@ -108,7 +108,7 @@ const ScheduleTour = ({ id, listings }) => {
                 </div>
 
 
-                <input type="hidden" name="executiveEmail" value={data.executiveEmail} />
+                <input type="hidden" name="executive_email" value={data.executiveEmail} />
                 <input type="hidden" name="propiedad" value={data.title} />
                 <div className="col-md-12">
                   <div className="d-grid">

@@ -1,5 +1,7 @@
 "use client";
+import React from "react";
 import Select from "react-select";
+import emailjs from "emailjs-com";
 import SingleAgentInfo from "./SingleAgentInfo";
 
 const InfoWithForm = ({ id, listings }) => {
@@ -11,11 +13,10 @@ const InfoWithForm = ({ id, listings }) => {
     return <div>Loading...</div>;
   }
 
-
   const inqueryType = [
     { value: "Engineer", label: "Ingeniero" },
     { value: "Doctor", label: "Doctor" },
-    { value: "Employee", label: "Emnpleado" },
+    { value: "Employee", label: "Empleado" },
     { value: "Businessman", label: "Empresario" },
     { value: "Other", label: "Otro" },
   ];
@@ -35,13 +36,24 @@ const InfoWithForm = ({ id, listings }) => {
     },
   };
 
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs.sendForm('service_q9bn4ak', 'template_yvck0o8', e.target, '9x-mtp4qFdy0LyxlH')
+      .then((result) => {
+          console.log(result.text);
+      }, (error) => {
+          console.log(error.text);
+      });
+  };
+
   return (
     <>
       <SingleAgentInfo data={data} />
 
       <div className="row">
         <div className="col-md-12">
-          <form className="form-style1 row">
+          <form className="form-style1 row" onSubmit={sendEmail}>
             <div className="col-md-6">
               <div className="mb20">
                 <label className="heading-color ff-heading fw600 mb10">
@@ -51,6 +63,8 @@ const InfoWithForm = ({ id, listings }) => {
                   type="text"
                   className="form-control"
                   placeholder="Ingresa nombre"
+                  name="name"
+                  required
                 />
               </div>
             </div>
@@ -65,6 +79,8 @@ const InfoWithForm = ({ id, listings }) => {
                   type="text"
                   className="form-control"
                   placeholder="Ingresa teléfono"
+                  name="phone"
+                  required
                 />
               </div>
             </div>
@@ -79,6 +95,8 @@ const InfoWithForm = ({ id, listings }) => {
                   type="email"
                   className="form-control"
                   placeholder="a@a.cl"
+                  name="email"
+                  required
                 />
               </div>
             </div>
@@ -92,7 +110,7 @@ const InfoWithForm = ({ id, listings }) => {
                 <div className="form-style2 input-group">
                   <Select
                     defaultValue={[inqueryType[0]]}
-                    name="colors"
+                    name="inquery_type"
                     options={inqueryType}
                     styles={customStyles}
                     className="custom-react_select"
@@ -114,7 +132,8 @@ const InfoWithForm = ({ id, listings }) => {
                   cols={30}
                   rows={4}
                   placeholder="Hola, yo estoy interesado en esta propiedad..."
-                  defaultValue={""}
+                  name="message"
+                  required
                 />
               </div>
             </div>
@@ -128,9 +147,10 @@ const InfoWithForm = ({ id, listings }) => {
               </label> */}
             </div>
             {/* End .col */}
-
+            <input type="hidden" name="executive_email" value={data.executiveEmail} />
+            <input type="hidden" name="propiedad" value={data.title} />
             <div className="btn-area mt20">
-              <button className="ud-btn btn-white2">
+              <button type="submit" className="ud-btn btn-white2">
                 Enviar Información <i className="fal fa-arrow-right-long" />
               </button>
             </div>
