@@ -57,6 +57,8 @@ export async function getListings() {
     features: property.features ? property.features.split(', ') : [],
     propertyName: property.propertyName,
     Garaje: property.Garaje,
+    parrafo1: property.parrafo1,
+    parrafo2: property.parrafo2,
   }));
 }
 

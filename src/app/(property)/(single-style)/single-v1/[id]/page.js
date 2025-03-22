@@ -93,7 +93,7 @@ const SingleV1 = ({ params }) => {
 
               <div className="ps-widget bgc-white bdrs12 default-box-shadow2 p30 mb30 overflow-hidden position-relative">
                 <h4 className="title fz17 mb30">Descripción de la propiedad</h4>
-                <ProperytyDescriptions />
+                <ProperytyDescriptions id={params.id} listings= {listings}/>
                 {/* End property description */}
 
                 <h4 className="title fz17 mb30 mt50">
