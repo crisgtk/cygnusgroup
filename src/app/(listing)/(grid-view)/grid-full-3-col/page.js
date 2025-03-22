@@ -1,17 +1,38 @@
+"use client"
+
 import DefaultHeader from "@/components/common/DefaultHeader";
 
 import Footer from "@/components/common/default-footer";
 import MobileMenu from "@/components/common/mobile-menu";
 
 import ProperteyFiltering from "@/components/listing/grid-view/grid-full-3-col/ProperteyFiltering";
+import { getListings } from "@/transform/propertiesTransform";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-export const metadata = {
-  title: "Gird Full 3 Column || Homez - Real Estate NextJS Template",
-};
+// export const metadata = {
+//   title: "Gird Full 3 Column || Homez - Real Estate NextJS Template",
+// };
 
 const GridFull3Col = () => {
+
+  const [listings, setListings] = useState([]);
+
+    useEffect(() => {
+      const loadListings = async () => {
+        try {
+          const items = await getListings();
+          setListings(items);
+        } catch (error) {
+          console.error("Error al cargar los items:", error);
+        }
+      };
+  
+      loadListings();
+    }, []);
+
+  
+
   return (
     <>
       {/* Main Header Nav */}
@@ -49,7 +70,7 @@ const GridFull3Col = () => {
       {/* End Breadcumb Sections */}
 
       {/* Property Filtering */}
-      <ProperteyFiltering />
+      <ProperteyFiltering listings={listings}/>
       {/* Property Filtering */}
 
       {/* Start Our Footer */}

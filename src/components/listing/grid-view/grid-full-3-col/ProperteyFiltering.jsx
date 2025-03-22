@@ -1,6 +1,6 @@
 "use client";
 
-import listings from "@/data/listings";
+import listings2 from "@/data/listings";
 import React, { useState, useEffect } from "react";
 import ListingSidebar from "../../sidebar";
 import AdvanceFilterModal from "@/components/common/advance-filter-two";
@@ -9,7 +9,7 @@ import FeaturedListings from "./FeatuerdListings";
 import Pagination from "../../Pagination";
 import PaginationTwo from "../../PaginationTwo";
 
-export default function ProperteyFiltering() {
+export default function ProperteyFiltering({listings}) {
   const [filteredData, setFilteredData] = useState([]);
 
   const [currentSortingOption, setCurrentSortingOption] = useState("Newest");
@@ -41,6 +41,12 @@ export default function ProperteyFiltering() {
   const [squirefeet, setSquirefeet] = useState([]);
   const [yearBuild, setyearBuild] = useState([]);
   const [categories, setCategories] = useState([]);
+
+  const dataListings = listings;
+
+  if (!dataListings) {
+    return <div>Loading...</div>;
+  }
 
   const resetFilter = () => {
     setListingStatus("All");
@@ -128,14 +134,16 @@ export default function ProperteyFiltering() {
   };
 
   useEffect(() => {
-    const refItems = listings.filter((elm) => {
+    const refItems = dataListings.filter((elm) => {
+    
       if (listingStatus == "All") {
+       
         return true;
       } else if (listingStatus == "Buy") {
-        console.log("Buy::", elm);
+  
         return !elm.forRent;
       } else if (listingStatus == "Rent") {
-        console.log("rent::", elm);
+       
         return elm.forRent;
       }
     });
@@ -210,6 +218,7 @@ export default function ProperteyFiltering() {
     squirefeet,
     yearBuild,
     categories,
+    dataListings,
   ]);
 
   useEffect(() => {
