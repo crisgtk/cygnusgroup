@@ -193,7 +193,7 @@ const SingleV1 = ({ params }) => {
                 <div className="default-box-shadow1 bdrs12 bdr1 p30 mb30-md bgc-white position-relative">
                   <h4 className="form-title mb5">Programe una visita</h4>
                   <p className="text">Elige tu dia preferido</p>
-                  <ScheduleTour />
+                  <ScheduleTour id={params.id} listings={listings}/>
                 </div>
                 {/* End .Schedule a tour */}
 
