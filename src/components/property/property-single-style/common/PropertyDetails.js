@@ -1,49 +1,57 @@
 import React from "react";
 
-const PropertyDetails = () => {
+const PropertyDetails = ({ id, listings }) => {
+
+  const data = listings.filter((elm) => elm.id == id)[0] || listings[0];
+
+  if (!data) {
+    return <div>Loading...</div>;
+  }
+
+
   const columns = [
     [
       {
         label: "ID Interno",
-        value: "RT48",
+        value: data.id,
       },
       {
         label: "Precio",
-        value: "$19.900.000",
+        value: data.price,
       },
       {
         label: "Tamaño",
-        value: "1200 mts/2",
+        value:  data.sqft + "mts/2",
       },
       {
         label: "Piezas",
-        value: "3",
+        value: data.bath,
       },
       {
         label: "Baños",
-        value: "2",
+        value: data.bed,
       },
     ],
     [
       {
         label: "Garage",
-        value: "2",
+        value: data.Garaje,
       },
       {
         label: "Tamaño Garaje",
-        value: "200 mts/2",
+        value: "N/A",
       },
       {
         label: "Año construcción",
-        value: "2022",
+        value: data.yearBuilding,
       },
       {
         label: "Tipo",
-        value: "Departamento",
+        value: data.propertyName,
       },
       {
         label: "Estado propiedad",
-        value: "Disponible",
+        value: data.forRent ? "Arriendo" : "Venta",
       },
     ],
   ];
