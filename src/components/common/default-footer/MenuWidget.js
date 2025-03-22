@@ -6,15 +6,15 @@ const MenuWidget = () => {
       title: "Horario de Atención",
       links: [
         { label: "Lunes-Viernes 09:00-13:00/14:00-18:00", href: "#" },
-        { label: "Concepción", href: "#" },
-        {
-          label: "Torre mall del centro, 1809 piso 18, Oficina #1807",
-          href: "#",
-        },
-        {
-          label: "Chillán, Av Libertad 845 Edificio Don Alfonso Oficina #303",
-          href: "#",
-        },
+        // { label: "Concepción", href: "#" },
+        // {
+        //   label: "Torre mall del centro, 1809 piso 18, Oficina #1807",
+        //   href: "#",
+        // },
+        // {
+        //   label: "Chillán, Av Libertad 845 Edificio Don Alfonso Oficina #303",
+        //   href: "#",
+        // },
       ],
     },
     {
