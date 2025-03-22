@@ -146,25 +146,25 @@ const SingleV1 = ({ params }) => {
               <div className="ps-widget bgc-white bdrs12 default-box-shadow2 p30 mb30 ">
                 <h4 className="title fz17 mb30">Video</h4>
                 <div className="row">
-                  <PropertyVideo />
+                  <PropertyVideo id={params.id} listings={listings}/>
                 </div>
               </div>
               {/* End .ps-widget */}
 
-              <div className="ps-widget bgc-white bdrs12 default-box-shadow2 p30 mb30 overflow-hidden position-relative">
+              {/* <div className="ps-widget bgc-white bdrs12 default-box-shadow2 p30 mb30 overflow-hidden position-relative">
                 <h4 className="title fz17 mb30">360° Virtual Tour</h4>
                 <div className="row">
                   <VirtualTour360 />
                 </div>
-              </div>
+              </div> */}
               {/* End .ps-widget */}
 
-              <div className="ps-widget bgc-white bdrs12 default-box-shadow2 p30 mb30 overflow-hidden position-relative">
+              {/* <div className="ps-widget bgc-white bdrs12 default-box-shadow2 p30 mb30 overflow-hidden position-relative">
                 <h4 className="title fz17 mb30">Que hay cerca?</h4>
                 <div className="row">
                   <PropertyNearby />
                 </div>
-              </div>
+              </div> */}
               {/* End .ps-widget */}
 
               {/* <div className="ps-widget bgc-white bdrs12 default-box-shadow2 p30 mb30 overflow-hidden position-relative">
@@ -249,7 +249,7 @@ const SingleV1 = ({ params }) => {
           <div className="row">
             <div className="col-lg-12">
               <div className="property-city-slider">
-                <NearbySimilarProperty />
+                <NearbySimilarProperty listings={listings} />
               </div>
             </div>
           </div>

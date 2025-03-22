@@ -1,12 +1,27 @@
 "use client";
-import listings from "@/data/listings";
+//import listings from "@/data/listings";
 import Image from "next/image";
 import Link from "next/link";
 import { Navigation, Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.min.css";
 
-const NearbySimilarProperty = () => {
+const NearbySimilarProperty = ({listings}) => {
+
+  const data = listings;
+
+  if (!data) {
+    return <div>Loading...</div>;
+  }
+
+  console.log("data:::", data);
+
+
+  if (!listings) {
+    return <div>Loading...</div>;
+  }
+
+
   return (
     <>
       <Swiper
@@ -52,7 +67,7 @@ const NearbySimilarProperty = () => {
                     {listing.forRent && (
                       <div className="list-tag rounded-0 fz12">
                         <span className="flaticon-electricity" />
-                        FEATURED
+                        En Arriendo
                       </div>
                     )}
                   </div>
@@ -78,7 +93,7 @@ const NearbySimilarProperty = () => {
                   </div>
                   <hr className="mt-2 mb-2" />
                   <div className="list-meta2 d-flex justify-content-between align-items-center">
-                    <span className="for-what">For Rent</span>
+                    <span className="for-what">{data.forRent ? "Arriendo" : "Venta"}</span>
                     <div className="icons d-flex align-items-center">
                       <a href="#">
                         <span className="flaticon-fullscreen" />

@@ -2,15 +2,21 @@
 import React, { useState } from "react";
 import ModalVideo from "react-modal-video";
 
-const PropertyVideo = () => {
+const PropertyVideo = ({ id, listings }) => {
   const [isOpen, setOpen] = useState(false);
+
+  const data = listings.filter((elm) => elm.id == id)[0] || listings[0];
+
+  if (!data) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <>
       <ModalVideo
         channel="youtube"
         isOpen={isOpen}
-        videoId="oqNZOOWF8qM"
+        videoId={data.youtubeLink}
         onClose={() => setOpen(false)}
       />
 

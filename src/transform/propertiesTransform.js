@@ -60,6 +60,7 @@ export async function getListings() {
     Garaje: property.Garaje,
     parrafo1: property.parrafo1,
     parrafo2: property.parrafo2,
+    youtubeLink: property.youtubeLink,
   }));
 }
 
