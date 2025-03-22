@@ -1,5 +1,7 @@
 import React from "react";
 import emailjs from "emailjs-com";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 
 
@@ -9,9 +11,11 @@ const sendEmail = (e) => {
 
   emailjs.sendForm('service_q9bn4ak', 'template_1nx4h4s', e.target, '9x-mtp4qFdy0LyxlH')
     .then((result) => {
+      toast.success("Correo enviado correctamente")
         console.log(result.text);
     }, (error) => {
         console.log(error.text);
+        toast.error("Error al enviar el correo")
     });
 };
 
@@ -39,6 +43,7 @@ const ScheduleTour = ({ id, listings }) => {
 
   return (
     <div className="ps-navtab">
+      <ToastContainer />
       <div className="tab-content" id="pills-tabContent">
         {tabs.map((tab) => (
           <div

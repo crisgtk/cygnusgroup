@@ -3,6 +3,8 @@ import React from "react";
 import Select from "react-select";
 import emailjs from "emailjs-com";
 import SingleAgentInfo from "./SingleAgentInfo";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const InfoWithForm = ({ id, listings }) => {
 
@@ -41,16 +43,18 @@ const InfoWithForm = ({ id, listings }) => {
 
     emailjs.sendForm('service_q9bn4ak', 'template_yvck0o8', e.target, '9x-mtp4qFdy0LyxlH')
       .then((result) => {
+        toast.success("Correo enviado correctamente")
           console.log(result.text);
       }, (error) => {
           console.log(error.text);
+          toast.error("Error al enviar el correo")
       });
   };
 
   return (
     <>
       <SingleAgentInfo data={data} />
-
+      <ToastContainer />
       <div className="row">
         <div className="col-md-12">
           <form className="form-style1 row" onSubmit={sendEmail}>
