@@ -1,10 +1,15 @@
 import React from "react";
 
-const PropertyFeaturesAminites = () => {
+const PropertyFeaturesAminites = ({ id, listings }) => {
+
+  const data = listings.filter((elm) => elm.id == id)[0] || listings[0];
+
+  if (!data) {
+    return <div>Loading...</div>;
+  }
+
   const featuresAmenitiesData = [
-    ["Aire Acondicionado", "Parrilla", "Secadora", "Gimnasio"],
-    ["Jardín", "Microondas", "Ducha Exterior", "Refrigerador"],
-    ["Piscina", "Cable TV", "Lavadora", "WiFi"],
+    data.tags
   ];
 
   return (

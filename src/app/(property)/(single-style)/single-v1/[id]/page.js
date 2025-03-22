@@ -118,7 +118,7 @@ const SingleV1 = ({ params }) => {
                   Caracteristicas &amp; Comodidades
                 </h4>
                 <div className="row">
-                  <PropertyFeaturesAminites />
+                  <PropertyFeaturesAminites id={params.id} listings={listings}/>
                 </div>
               </div>
               {/* End .ps-widget */}
