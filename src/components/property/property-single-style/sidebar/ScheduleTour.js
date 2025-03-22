@@ -43,7 +43,7 @@ const ScheduleTour = ({ id, listings }) => {
 
   return (
     <div className="ps-navtab">
-      <ToastContainer />
+      <ToastContainer lassName="custom-toast-container"/>
       <div className="tab-content" id="pills-tabContent">
         {tabs.map((tab) => (
           <div

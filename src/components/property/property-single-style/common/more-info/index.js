@@ -53,8 +53,8 @@ const InfoWithForm = ({ id, listings }) => {
 
   return (
     <>
+      <ToastContainer className="custom-toast-container"/>
       <SingleAgentInfo data={data} />
-      <ToastContainer />
       <div className="row">
         <div className="col-md-12">
           <form className="form-style1 row" onSubmit={sendEmail}>
