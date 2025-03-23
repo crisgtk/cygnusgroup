@@ -27,7 +27,24 @@ async function getMenu() {
     }
 }
 
+async function getLocations() {
+    try {
+        const response = await axios.get(`${API_BASE_URL}/menu/getLocations`);
+        
+        if (response.data.status === 0) {
+            const menuItems = JSON.parse(response.data.value);
+            return menuItems;
+        } else {
+            throw new Error(response.data.errorMessage || 'Error al obtener el menú');
+        }
+    } catch (error) {
+        console.error('Error al obtener datos:', error);
+        throw error;
+    }
+}
+
 module.exports = {
-    getMenu
+    getMenu,
+    getLocations
 };
 

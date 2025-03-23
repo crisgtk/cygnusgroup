@@ -5,6 +5,7 @@ import Slider, { Range } from "rc-slider";
 
 import LookingFor from "./LookingFor";
 import Location from "./Location";
+import { formatCurrency } from "@/utilis/formatCurrency";
 
 const FilterContent = () => {
   const router = useRouter();
@@ -20,7 +21,7 @@ const FilterContent = () => {
     // { id: "sold", label: "Sold" },
   ];
 
-  const [price, setPrice] = useState([1000000, 9000000]);
+  const [price, setPrice] = useState([1000000, 900000000]);
 
   // price range handler
   const handleOnChange = (value) => {
@@ -92,7 +93,7 @@ const FilterContent = () => {
                         className="btn open-btn text-start dropdown-toggle"
                         data-bs-toggle="dropdown"
                         data-bs-auto-close="outside"
-                        style={{ fontSize: "13px" }}>
+                        style={{ fontSize: "12px" }}>
                         ${price[0]} - ${price[1]}{" "}
                         <i className="fas fa-caret-down" />
                       </div>
@@ -101,16 +102,17 @@ const FilterContent = () => {
                           <div className="range-wrapper at-home10">
                             <Slider
                               range
-                              max={100000}
-                              min={0}
+                              max={900000000}
+                              min={20000000}
+                              step={500000}
                               defaultValue={price}
                               onChange={(value) => handleOnChange(value)}
                               id="slider"
                             />
                             <div className="d-flex align-items-center">
-                              <span id="slider-range-value1">${price[0]}</span>
+                              <span id="slider-range-value1">${formatCurrency(price[0])}</span>
                               <i className="fa-sharp fa-solid fa-minus mx-2 dark-color icon" />
-                              <span id="slider-range-value2">${price[1]}</span>
+                              <span id="slider-range-value2">{formatCurrency(price[1])}</span>
                             </div>
                           </div>
                         </div>
