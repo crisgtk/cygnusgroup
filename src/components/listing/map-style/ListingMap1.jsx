@@ -267,7 +267,7 @@ export default function ListingMap1({data}) {
                       {!getLocation.forRent && (
                         <div className="list-tag fz12">
                           <span className="flaticon-electricity me-2" />
-                          FEATURED
+                          En Venta
                         </div>
                       )}
                     </div>
@@ -298,7 +298,7 @@ export default function ListingMap1({data}) {
                     </div>
                     <hr className="mt-2 mb-2" />
                     <div className="list-meta2 d-flex justify-content-between align-items-center">
-                      <span className="for-what">For Rent</span>
+                      <span className="for-what"></span>
                       <div className="icons d-flex align-items-center">
                         <a href="#">
                           <span className="flaticon-fullscreen" />

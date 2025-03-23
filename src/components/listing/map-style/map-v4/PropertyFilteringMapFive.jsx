@@ -104,7 +104,6 @@ export default function PropertyFilteringMapFive({listings}) {
       setBathroms(elm)
     }
     const handlelocation =(elm)=>{
-      console.log(elm)
       setLocation(elm)
     }
     const handlesquirefeet =(elm)=>{
@@ -164,13 +163,13 @@ export default function PropertyFilteringMapFive({listings}) {
       
           let filteredArrays = [];
 
-
-      
           if (propertyTypes.length > 0) {
+
             const filtered = refItems.filter((elm) =>
-            propertyTypes.includes(elm.propertyType)
+            propertyTypes.includes(elm.propertyName)
             );
             filteredArrays = [...filteredArrays, filtered];
+
           }
           filteredArrays = [...filteredArrays,refItems.filter((el=>el.bed >=bedrooms)) ];
           filteredArrays = [...filteredArrays,refItems.filter((el=>el.bath >=bathroms)) ];
@@ -211,15 +210,11 @@ export default function PropertyFilteringMapFive({listings}) {
             filteredArrays = [...filteredArrays, filtered];
           }
           
-
- 
-         
-      
          const nonEmptyFilteredArrays = filteredArrays.filter(array => array.length > 0);
 
          const commonItems = refItems.filter((item) =>
-           nonEmptyFilteredArrays.every((array) => array.includes(item))
-         );
+          nonEmptyFilteredArrays.every((array) => array.includes(item))
+        );
 
           setFilteredData(commonItems);
          
@@ -277,7 +272,7 @@ export default function PropertyFilteringMapFive({listings}) {
               <div className="advance-search-list no-box-shadow d-flex justify-content-center">
                 <div className="dropdown-lists">
                   <ul className="p-0 mb-0">
-                    <TopFilterBar2 filterFunctions={filterFunctions}/>
+                    {/* <TopFilterBar2 filterFunctions={filterFunctions}/> */}
                   </ul>
                 </div>
               </div>
