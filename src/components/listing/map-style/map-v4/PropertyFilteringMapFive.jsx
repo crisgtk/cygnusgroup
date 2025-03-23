@@ -1,7 +1,7 @@
 'use client'
 
 
-import listings from "@/data/listings";
+//import listings from "@/data/listings";
 import React, { useState,useEffect } from 'react'
 import TopFilterBar2 from "./TopFilterBar2";
 import AdvanceFilterModal from "@/components/common/advance-filter-two";
@@ -11,7 +11,14 @@ import FeaturedListings from "./FeatuerdListings";
 import PaginationTwo from "../../PaginationTwo";
 import ListingMap1 from "../ListingMap1";
 
-export default function PropertyFilteringMapFive() {
+export default function PropertyFilteringMapFive({listings}) {
+
+      const data = listings;
+
+      if (!data) {
+        return <div>Loading...</div>;
+      }
+
     const [filteredData, setFilteredData] = useState([]);
 
     const [currentSortingOption, setCurrentSortingOption] = useState('Newest')
@@ -144,7 +151,8 @@ export default function PropertyFilteringMapFive() {
 
     useEffect(() => {
       
-        const refItems = listings.filter((elm) => {
+        const refItems = data.filter((elm) => {
+
             if (listingStatus == "All") {
               return true;
             } else if (listingStatus == "Buy") {
@@ -207,11 +215,12 @@ export default function PropertyFilteringMapFive() {
  
          
       
-          const commonItems = refItems.filter((item) =>
-            filteredArrays.every((array) => array.includes(item))
-          );
+         const nonEmptyFilteredArrays = filteredArrays.filter(array => array.length > 0);
 
-         
+         const commonItems = refItems.filter((item) =>
+           nonEmptyFilteredArrays.every((array) => array.includes(item))
+         );
+
           setFilteredData(commonItems);
          
           
@@ -226,8 +235,8 @@ export default function PropertyFilteringMapFive() {
         squirefeet,
         yearBuild,
         categories,
-        searchQuery
-
+        searchQuery,
+        data
     ])
 
     useEffect(() => {
@@ -298,17 +307,17 @@ export default function PropertyFilteringMapFive() {
           <div className="row" data-aos="fade-up" data-aos-duration="200">
             <div className="col-xl-7 overflow-hidden position-relative">
               <div className="half_map_area map-canvas half_style">
-<ListingMap1/>
+                <ListingMap1 data={pageItems}/>
               </div>
             </div>
             {/* End col-7 */}
 
             <div className="col-xl-5">
               <div className="half_map_area_content mt30">
-                <h4 className="mb-1">New York Homes for Sale</h4>
+                <h4 className="mb-1">Propiedades disponibles</h4>
 
                 <div className="row align-items-center mb10">
-                  <TopFilterBar  pageContentTrac={pageContentTrac}  colstyle ={colstyle} setColstyle={setColstyle}  setCurrentSortingOption={setCurrentSortingOption} />
+                  {/* <TopFilterBar  pageContentTrac={pageContentTrac}  colstyle ={colstyle} setColstyle={setColstyle}  setCurrentSortingOption={setCurrentSortingOption} /> */}
                 </div>
                 <div className="row">
                   <FeaturedListings  colstyle ={colstyle}  data={pageItems} />

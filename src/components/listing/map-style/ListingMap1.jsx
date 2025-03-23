@@ -191,14 +191,21 @@ const containerStyle = {
   width: "100%",
   height: "100%",
 };
-export default function ListingMap1() {
+export default function ListingMap1({data}) {
+
+  const dataListing = data;
+
+  if (!dataListing) {
+    return <div>Loading...</div>;
+  }
+
   const [getLocation, setLocation] = useState(null);
 
   const { isLoaded } = useLoadScript({
-    googleMapsApiKey: "AIzaSyAAz77U5XQuEME6TpftaMdX0bBelQxXRlM",
+    googleMapsApiKey: "AIzaSyAEK60BvwAdEzMbBKbelBIWD8D8YgLi7Q8",
   });
   const center = useMemo(
-    () => ({ lat: 27.411201277163975, lng: -96.12394824867293 }),
+    () => ({ lat: -36.60664, lng: -72.10344 }),
     []
   );
 
@@ -225,12 +232,12 @@ export default function ListingMap1() {
         >
           <MarkerClusterer>
             {(clusterer) =>
-              listings.slice(0, 6).map((marker) => (
+              dataListing.slice(0, 6).map((marker) => (
                 <Marker
                   key={marker.id}
                   position={{
-                    lat: marker.lat,
-                    lng: marker.long,
+                    lat: marker.lat / 100000,
+                    lng: marker.long / 100000,
                   }}
                   clusterer={clusterer}
                   onClick={() => locationHandler(marker)}
@@ -241,8 +248,8 @@ export default function ListingMap1() {
           {getLocation !== null && (
             <InfoWindow
               position={{
-                lat: getLocation.lat,
-                lng: getLocation.long,
+                lat: getLocation.lat / 100000,
+                lng: getLocation.long / 100000,
               }}
               onCloseClick={closeCardHandler}
             >
@@ -254,7 +261,7 @@ export default function ListingMap1() {
                       height={248}
                       className="w-100 h-100 cover"
                       src={getLocation.image}
-                      alt="listings"
+                      alt="dataListing"
                     />
                     <div className="sale-sticker-wrap">
                       {!getLocation.forRent && (
