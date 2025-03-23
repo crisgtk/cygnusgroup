@@ -20,11 +20,9 @@ const MenuWidget = () => {
     {
       title: "otras páginas",
       links: [
-        { label: "Inicio", href: "#" },
-        { label: "Los Nogales", href: "#" },
-        { label: "Los Cerezos", href: "#" },
-        { label: "El Manzano", href: "#" },
-        { label: "Los Cerezos II", href: "#" },
+        { label: "Inicio", href: "/" },
+        { label: "Propiedades", href: "/grid-full-3-col" },
+        { label: "Mapa", href: "/map-v4" }
       ],
     },
   ];

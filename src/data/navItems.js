@@ -1,6 +1,7 @@
 export const homeItems = [
-  { href: "/", label: "Home v1" },
-  { href: "/home-v5", label: "Home v5" },
+  { href: "/", label: "Principal" },
+  { href: "/grid-full-3-col", label: "Todas las propiedades" },
+  { href: "/map-v4", label: "Mapa de propiedades" },
 ];
 
 export const listingItems = [

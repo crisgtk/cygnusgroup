@@ -2,8 +2,9 @@ module.exports = [
   {
     label: "Inicio",
     subMenu: [
-      { path: "/home-v1", label: "Home v1" },
-      { path: "/home-v5", label: "Home v5" },
+      { path: "/home-v1", label: "Principal" },
+      { path: "/grid-full-3-col", label: "Todas las propiedades" },
+      { path: "/map-v4", label: "Mapa de propiedades" },
     ],
   },
   // {
