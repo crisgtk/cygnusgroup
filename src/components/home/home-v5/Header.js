@@ -16,14 +16,16 @@ const Header = () => {
   const [navbar, setNavbar] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showDropdown, setShowDropdown] = useState(false);
   const modalRef = useRef(null);
+  const localData = localStorage.getItem('userPreferences');
+  const userPreferences = localData ? JSON.parse(localData) : null;
 
   const closeModal = () => {
     if (modalRef.current) {
       modalRef.current.querySelector('.btn-close').click();
     }
   };
-
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -42,6 +44,7 @@ const Header = () => {
         };
 
         localStorage.setItem('userPreferences', JSON.stringify(userPreferences));
+        toast.success("Logeado correctamente");
         closeModal();
       }
     } catch (error) {
@@ -49,7 +52,11 @@ const Header = () => {
       console.error("Error:", error);
     }
   };
-  
+
+  const handleLogout = () => {
+    localStorage.removeItem('userPreferences');
+    window.location.reload(); // Recarga la página para reflejar el estado de cierre de sesión
+  };
 
   const changeBackground = () => {
     if (window.scrollY >= 10) {
@@ -104,19 +111,39 @@ const Header = () => {
               </div>
               {/* End .col-auto */}
 
-              <div className="col-auto">
-                <div className="d-flex align-items-center">
-                  <a
-                    href="#"
-                    className="login-info d-flex align-items-center"
-                    data-bs-toggle="modal"
-                    data-bs-target="#loginSignupModal"
-                    role="button">
-                    <i className="far fa-user-circle fz16 me-2" />{" "}
-                    <span className="d-none d-xl-block">Login</span>
-                  </a>
+              {userPreferences ? (
+                <div className="col-auto">
+                  <div className="d-flex align-items-center">
+                    <a
+                      href="#"
+                      className="login-info d-flex align-items-center"
+                      onClick={() => setShowDropdown(!showDropdown)}
+                      role="button">
+                      <i className="far fa-user-circle fz16 me-2" />{" "}
+                      <span className="d-none d-xl-block">Hola {userPreferences.Name}</span>
+                    </a>
+                    {showDropdown && (
+                      <div className="dropdown-menu show">
+                        <a className="dropdown-item" href="#" onClick={handleLogout}>Cerrar sesión</a>
+                      </div>
+                    )}
+                  </div>
                 </div>
-              </div>
+              ) : (
+                <div className="col-auto">
+                  <div className="d-flex align-items-center">
+                    <a
+                      href="#"
+                      className="login-info d-flex align-items-center"
+                      data-bs-toggle="modal"
+                      data-bs-target="#loginSignupModal"
+                      role="button">
+                      <i className="far fa-user-circle fz16 me-2" />{" "}
+                      <span className="d-none d-xl-block">Login</span>
+                    </a>
+                  </div>
+                </div>
+              )}
               {/* End .col-auto */}
             </div>
             {/* End .row */}
