@@ -4,6 +4,7 @@ import DefaultHeader from "@/components/common/DefaultHeader";
 
 import Footer from "@/components/common/default-footer";
 import MobileMenu from "@/components/common/mobile-menu";
+import Header from "@/components/home/home-v5/Header";
 
 import ProperteyFiltering from "@/components/listing/grid-view/grid-full-3-col/ProperteyFiltering";
 import { getListings } from "@/transform/propertiesTransform";
@@ -36,7 +37,11 @@ const GridFull3Col = () => {
   return (
     <>
       {/* Main Header Nav */}
-      <DefaultHeader />
+      <Header />
+      <br/>
+      <br/>
+      <br/>
+      <br/>
       {/* End Main Header Nav */}
 
       {/* Mobile Nav  */}

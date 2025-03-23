@@ -46,6 +46,7 @@ const Header = () => {
         localStorage.setItem('userPreferences', JSON.stringify(userPreferences));
         toast.success("Logeado correctamente");
         closeModal();
+        window.location.reload();
       }
     } catch (error) {
       toast.error("Error", error);

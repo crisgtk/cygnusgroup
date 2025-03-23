@@ -3,6 +3,7 @@
 import DefaultHeader from "@/components/common/DefaultHeader";
 
 import MobileMenu from "@/components/common/mobile-menu";
+import Header from "@/components/home/home-v5/Header";
 
 import PropertyFilteringMapFive from "@/components/listing/map-style/map-v4/PropertyFilteringMapFive";
 import { getListings } from "@/transform/propertiesTransform";
@@ -34,7 +35,11 @@ const MapV4 = () => {
   return (
     <>
       {/* Main Header Nav */}
-      <DefaultHeader />
+      <Header />
+      <br/>
+      <br/>
+      <br/>
+      <br/>
       {/* End Main Header Nav */}
 
       {/* Mobile Nav  */}

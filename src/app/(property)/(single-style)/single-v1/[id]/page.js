@@ -27,6 +27,7 @@ import MortgageCalculator from "@/components/property/property-single-style/comm
 import WalkScore from "@/components/property/property-single-style/common/WalkScore";
 import { getListings } from "@/transform/propertiesTransform";
 import { getGalleryTransform } from "@/transform/galeryTransform";
+import Header from "@/components/home/home-v5/Header";
 
 // export const metadata = {
 //   title: "Cygnus",
@@ -61,7 +62,11 @@ const SingleV1 = ({ params }) => {
   return (
     <>
       {/* Main Header Nav */}
-      <DefaultHeader />
+      <Header />
+      <br/>
+      <br/>
+      <br/>
+      <br/>
       {/* End Main Header Nav */}
 
       {/* Mobile Nav  */}
