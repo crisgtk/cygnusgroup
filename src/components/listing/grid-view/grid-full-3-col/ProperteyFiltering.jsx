@@ -34,7 +34,7 @@ export default function ProperteyFiltering({listings}) {
 
   const [listingStatus, setListingStatus] = useState("All");
   const [propertyTypes, setPropertyTypes] = useState([]);
-  const [priceRange, setPriceRange] = useState([0, 100000000000000]);
+  const [priceRange, setPriceRange] = useState([0, 900000000]);
   const [bedrooms, setBedrooms] = useState(0);
   const [bathroms, setBathroms] = useState(0);
   const [location, setLocation] = useState("All Cities");
@@ -135,6 +135,9 @@ export default function ProperteyFiltering({listings}) {
 
   useEffect(() => {
     const refItems = dataListings.filter((elm) => {
+
+      console.log("this is propertyTypes:::", propertyTypes);
+      console.log("elm:::", elm);
     
       if (listingStatus == "All") {
        
@@ -152,10 +155,15 @@ export default function ProperteyFiltering({listings}) {
 
     if (propertyTypes.length > 0) {
       const filtered = refItems.filter((elm) =>
-        propertyTypes.includes(elm.propertyType)
+        propertyTypes.includes(elm.propertyName)
       );
       filteredArrays = [...filteredArrays, filtered];
+
+      console.log("filtered:::", filtered)
     }
+
+    
+
     filteredArrays = [
       ...filteredArrays,
       refItems.filter((el) => el.bed >= bedrooms),

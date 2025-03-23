@@ -149,7 +149,7 @@ const TopFilterBar = ({
 
       <div className="col-xl-4">
         <div className="page_control_shorting d-flex align-items-center justify-content-center justify-content-sm-end">
-          <div className="pcs_dropdown pr10 d-flex align-items-center">
+          {/* <div className="pcs_dropdown pr10 d-flex align-items-center">
             <span style={{ minWidth: "60px" }}>Ordenar</span>
             <select
               className="form-select"
@@ -162,7 +162,7 @@ const TopFilterBar = ({
               <option>Menor Precio</option>
               <option>Mayor Precio</option>
             </select>
-          </div>
+          </div> */}
           <div
             className={`pl15 pr15 bdrl1 bdrr1 d-none d-md-block  cursor ${
               !colstyle ? "menuActive" : "#"
