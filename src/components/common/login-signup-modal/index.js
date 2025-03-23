@@ -1,7 +1,8 @@
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
 
-const LoginSignupModal = () => {
+const LoginSignupModal = ({email, password, setEmail, setPassword, handleSubmit}) => {
+
   return (
     <div className="modal-content">
       <div className="modal-header">
@@ -13,6 +14,7 @@ const LoginSignupModal = () => {
           className="btn-close"
           data-bs-dismiss="modal"
           aria-label="Close"
+          ref={modalRef}
         />
       </div>
       {/* End header */}
@@ -54,7 +56,7 @@ const LoginSignupModal = () => {
                 id="nav-home"
                 role="tabpanel"
                 aria-labelledby="nav-home-tab">
-                <SignIn />
+                <SignIn email={email} password={password} setEmail={setEmail} setPassword={setPassword} handleSubmit={handleSubmit} />
               </div>
               {/* End signin content */}
 

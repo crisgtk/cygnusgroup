@@ -43,8 +43,24 @@ async function getLocations() {
     }
 }
 
+
+async function getUser(email, password) {
+    try {
+        const response = await axios.post(`${API_BASE_URL}/menu/ShearchUser`, { email, password });
+        
+        if (response.data.status === 0) {
+            return JSON.parse(response.data.value);
+        } else {
+            throw new Error(response.data.errorMessage || 'Error al obtener el usuario');
+        }
+    } catch (error) {
+        console.error('Error al obtener datos:', error);
+        throw error;
+    }
+}
 module.exports = {
     getMenu,
-    getLocations
+    getLocations,
+    getUser
 };
 

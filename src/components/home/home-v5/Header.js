@@ -3,12 +3,40 @@
 import MainMenu from "@/components/common/MainMenu";
 import SidebarPanel from "@/components/common/sidebar-panel";
 import LoginSignupModal from "@/components/common/login-signup-modal";
+import { ToastContainer, toast } from "react-toastify";
+import "bootstrap/dist/css/bootstrap.min.css"; // Importa el CSS de Bootstrap
+import "bootstrap/dist/js/bootstrap.bundle.min"; 
+import "react-toastify/dist/ReactToastify.css";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
+import { getUser } from "@/server/menu";
 
 const Header = () => {
   const [navbar, setNavbar] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    try {
+      const data = await getUser(email, password);
+      console.log(data);
+      if(data.length === 0){
+        toast.error("Usuario o contraseña incorrectos");
+      }else {
+        // Cerrar la modal
+    
+      }
+    } catch (error) {
+      toast.error("Error", error);
+      console.error("Error:", error);
+    }
+  };
+  
 
   const changeBackground = () => {
     if (window.scrollY >= 10) {
@@ -27,6 +55,7 @@ const Header = () => {
 
   return (
     <>
+      <ToastContainer className="custom-toast-container"/>
       <header
         className={
           "header-nav nav-homepage-style main-menu sticky slideInDown animated"
@@ -73,34 +102,6 @@ const Header = () => {
                     <i className="far fa-user-circle fz16 me-2" />{" "}
                     <span className="d-none d-xl-block">Login</span>
                   </a>
-                  {/* <Link
-                    className="ud-btn btn-white add-property bdrs12 mx-2 mx-xl-4 border-0"
-                    href="/dashboard-add-property">
-                    Add Property
-                    <i className="fal fa-arrow-right-long" />
-                  </Link> */}
-                  {/* <a
-                    className="sidemenu-btn filter-btn-right"
-                    href="#"
-                    data-bs-toggle="offcanvas"
-                    data-bs-target="#SidebarPanel"
-                    aria-controls="SidebarPanelLabel">
-                    <Image
-                      width={25}
-                      height={9}
-                      className="img-1"
-                      src="/images/icon/nav-icon-white.svg"
-                      alt="humberger menu"
-                    />
-
-                    <Image
-                      width={25}
-                      height={9}
-                      className="img-2"
-                      src="/images/icon/nav-icon-dark.svg"
-                      alt="humberger menu"
-                    />
-                  </a> */}
                 </div>
               </div>
               {/* End .col-auto */}
@@ -120,7 +121,7 @@ const Header = () => {
           aria-labelledby="loginSignupModalLabel"
           aria-hidden="true">
           <div className="modal-dialog  modal-dialog-scrollable modal-dialog-centered">
-            <LoginSignupModal />
+            <LoginSignupModal email={email} password={password} setEmail={setEmail} setPassword={setPassword} handleSubmit={handleSubmit}/>
           </div>
         </div>
       </div>
