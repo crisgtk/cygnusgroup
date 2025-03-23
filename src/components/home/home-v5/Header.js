@@ -9,14 +9,20 @@ import "bootstrap/dist/js/bootstrap.bundle.min";
 import "react-toastify/dist/ReactToastify.css";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { getUser } from "@/server/menu";
 
 const Header = () => {
   const [navbar, setNavbar] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const modalRef = useRef(null);
 
+  const closeModal = () => {
+    if (modalRef.current) {
+      modalRef.current.querySelector('.btn-close').click();
+    }
+  };
 
 
   const handleSubmit = async (event) => {
@@ -24,12 +30,19 @@ const Header = () => {
 
     try {
       const data = await getUser(email, password);
-      console.log(data);
+      
       if(data.length === 0){
         toast.error("Usuario o contraseña incorrectos");
       }else {
-        // Cerrar la modal
-    
+
+        const userPreferences = {
+          ID: data[0].ID,
+          Name: data[0].Name,
+          TOKEN: data[0].Token
+        };
+
+        localStorage.setItem('userPreferences', JSON.stringify(userPreferences));
+        closeModal();
       }
     } catch (error) {
       toast.error("Error", error);
@@ -121,7 +134,7 @@ const Header = () => {
           aria-labelledby="loginSignupModalLabel"
           aria-hidden="true">
           <div className="modal-dialog  modal-dialog-scrollable modal-dialog-centered">
-            <LoginSignupModal email={email} password={password} setEmail={setEmail} setPassword={setPassword} handleSubmit={handleSubmit}/>
+            <LoginSignupModal email={email} password={password} setEmail={setEmail} setPassword={setPassword} handleSubmit={handleSubmit} modalRef={modalRef}/>
           </div>
         </div>
       </div>

@@ -1,10 +1,10 @@
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
 
-const LoginSignupModal = ({email, password, setEmail, setPassword, handleSubmit}) => {
+const LoginSignupModal = ({email, password, setEmail, setPassword, handleSubmit, modalRef}) => {
 
   return (
-    <div className="modal-content">
+    <div className="modal-content" ref={modalRef}>
       <div className="modal-header">
         <h5 className="modal-title" id="exampleModalToggleLabel">
           Acceso a dashboard
@@ -14,7 +14,6 @@ const LoginSignupModal = ({email, password, setEmail, setPassword, handleSubmit}
           className="btn-close"
           data-bs-dismiss="modal"
           aria-label="Close"
-          ref={modalRef}
         />
       </div>
       {/* End header */}

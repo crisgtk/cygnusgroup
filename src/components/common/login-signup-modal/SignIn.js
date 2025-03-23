@@ -1,5 +1,3 @@
-import { getUser } from "@/server/menu";
-import Link from "next/link";
 import React from "react";
 
 
@@ -33,18 +31,6 @@ const SignIn = ({email, password, setEmail, setPassword, handleSubmit}) => {
         />
       </div>
       {/* End Password */}
-
-      <div className="checkbox-style1 d-block d-sm-flex align-items-center justify-content-between mb10">
-        {/* <label className="custom_checkbox fz14 ff-heading">
-          Recordarme
-          <input type="checkbox" defaultChecked="checked" />
-          <span className="checkmark" />
-        </label> */}
-        {/* <a className="fz14 ff-heading" href="#">
-          Olividaste tu password?
-        </a> */}
-      </div>
-      {/* End  Lost your password? */}
 
       <div className="d-grid mb20">
         <button className="ud-btn btn-thm" type="submit">
