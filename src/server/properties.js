@@ -3,9 +3,10 @@ import axios from 'axios';
 
 const API_BASE_URL = process.env.REACT_APP_API_URL || 'https://localhost:5001';
 
-export const getProperties = async () => {
+export const getProperties = async (id= '') => {
   try {
-    const response = await axios.get(`${API_BASE_URL}/menu/getProperties`);
+    const url = id ? `${API_BASE_URL}/menu/getProperties/${id}` : `${API_BASE_URL}/menu/getProperties`;
+    const response = await axios.get(url);
     
     if (response.data.status === 0) {
       return JSON.parse(response.data.value);
