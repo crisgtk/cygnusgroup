@@ -6,6 +6,7 @@ import SidebarDashboard from "@/components/property/dashboard/SidebarDashboard";
 import FilterHeader from "../../../../components/property/dashboard/dashboard-my-properties/FilterHeader";
 import PropertyDataTable from "@/components/property/dashboard/dashboard-my-properties/PropertyDataTable";
 import DboardMobileNavigation from "@/components/property/dashboard/DboardMobileNavigation";
+import Header from "@/components/home/home-v5/Header";
 
 export const metadata = {
   title: "Dashboard Properties || Homez - Real Estate NextJS Template",
@@ -15,7 +16,7 @@ const DashboardMyProperties = () => {
   return (
     <>
       {/* Main Header Nav */}
-      <DashboardHeader />
+      <Header />
       {/* End Main Header Nav */}
 
       {/* Mobile Nav  */}

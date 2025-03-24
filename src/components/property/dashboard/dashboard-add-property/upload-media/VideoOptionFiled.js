@@ -3,8 +3,6 @@ import Select from "react-select";
 
 const videoField = [
   { value: "Youtube", label: "Youtube" },
-  { value: "Facebook", label: "Facebook" },
-  { value: "Vimeo", label: "Vimeo" },
 ];
 
 const customStyles = {
@@ -22,7 +20,7 @@ const customStyles = {
   },
 };
 
-const VideoOptionFiled = () => {
+const VideoOptionFiled = ({setYouTubeLink}) => {
   return (
     <>
       <div className="col-sm-6 col-xl-4">
@@ -40,6 +38,7 @@ const VideoOptionFiled = () => {
               classNamePrefix="select"
               required
               isMulti
+              
             />
           </div>
         </div>
@@ -49,7 +48,7 @@ const VideoOptionFiled = () => {
           <label className="heading-color ff-heading fw600 mb10">
             Inserta URL del video
           </label>
-          <input type="text" className="form-control" placeholder="enlace" />
+          <input type="text" className="form-control" placeholder="enlace" onChange={(e) => setYouTubeLink(e.target.value)} />
         </div>
       </div>
     </>

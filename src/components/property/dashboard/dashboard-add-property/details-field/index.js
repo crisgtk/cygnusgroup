@@ -2,24 +2,25 @@ import React from "react";
 import MultiSelectField from "./MultiSelectField";
 import StructureType from "./StructureType";
 
-const DetailsFiled = () => {
+const DetailsFiled = (setSqft, setBedrooms, setBathrooms, setYearBuilt) => {
   return (
     <form className="form-style1">
       <div className="row">
         <div className="col-sm-6 col-xl-4">
           <div className="mb20">
             <label className="heading-color ff-heading fw600 mb10">
-              Tamaño en pies (solo números)
+              mts2
             </label>
             <input
               type="text"
               className="form-control"
               placeholder="Tu Nombre"
+              onChange={(e) => setSqft(e.target.value)}
             />
           </div>
         </div>
 
-        <div className="col-sm-6 col-xl-4">
+        {/* <div className="col-sm-6 col-xl-4">
           <div className="mb20">
             <label className="heading-color ff-heading fw600 mb10">
               Tamaño del lote en pies (solo números)
@@ -30,9 +31,9 @@ const DetailsFiled = () => {
               placeholder="Tu Nombre"
             />
           </div>
-        </div>
+        </div> */}
 
-        <div className="col-sm-6 col-xl-4">
+        {/* <div className="col-sm-6 col-xl-4">
           <div className="mb20">
             <label className="heading-color ff-heading fw600 mb10">
               Habitaciones
@@ -43,7 +44,7 @@ const DetailsFiled = () => {
               placeholder="Tu Nombre"
             />
           </div>
-        </div>
+        </div> */}
 
         <div className="col-sm-6 col-xl-4">
           <div className="mb20">
@@ -54,6 +55,7 @@ const DetailsFiled = () => {
               type="text"
               className="form-control"
               placeholder="Tu Nombre"
+              onChange={(e) => setBedrooms(e.target.value)}
             />
           </div>
         </div>
@@ -65,10 +67,11 @@ const DetailsFiled = () => {
               type="text"
               className="form-control"
               placeholder="Tu Nombre"
+              onChange={(e) => setBathrooms(e.target.value)}
             />
           </div>
         </div>
-
+{/* 
         <div className="col-sm-6 col-xl-4">
           <div className="mb20">
             <label className="heading-color ff-heading fw600 mb10">
@@ -80,9 +83,9 @@ const DetailsFiled = () => {
               placeholder="Tu Nombre"
             />
           </div>
-        </div>
+        </div> */}
 
-        <div className="col-sm-6 col-xl-4">
+        {/* <div className="col-sm-6 col-xl-4">
           <div className="mb20">
             <label className="heading-color ff-heading fw600 mb10">
               Garajes
@@ -93,8 +96,8 @@ const DetailsFiled = () => {
               placeholder="Tu Nombre"
             />
           </div>
-        </div>
-
+        </div> */}
+{/* 
         <div className="col-sm-6 col-xl-4">
           <div className="mb20">
             <label className="heading-color ff-heading fw600 mb10">
@@ -106,18 +109,19 @@ const DetailsFiled = () => {
               placeholder="Tu Nombre"
             />
           </div>
-        </div>
+        </div> */}
 
         <div className="col-sm-6 col-xl-4">
           <div className="mb20">
             <label className="heading-color ff-heading fw600 mb10">
               Año de construcción (numérico)
             </label>
-            <input type="text" className="form-control" />
+            <input type="text" className="form-control"  onChange={(e) => setYearBuilt(e.target.value)}/>
+
           </div>
         </div>
 
-        <div className="col-sm-6 col-xl-4">
+        {/* <div className="col-sm-6 col-xl-4">
           <div className="mb20">
             <label className="heading-color ff-heading fw600 mb10">
               Disponible desde (fecha)
@@ -128,9 +132,9 @@ const DetailsFiled = () => {
               placeholder="99.aa.aaaa"
             />
           </div>
-        </div>
+        </div> */}
 
-        <div className="col-sm-6 col-xl-4">
+        {/* <div className="col-sm-6 col-xl-4">
           <div className="mb20">
             <label className="heading-color ff-heading fw600 mb10">
               Sótano
@@ -141,9 +145,9 @@ const DetailsFiled = () => {
               placeholder="Tu Nombre"
             />
           </div>
-        </div>
+        </div> */}
 
-        <div className="col-sm-6 col-xl-4">
+        {/* <div className="col-sm-6 col-xl-4">
           <div className="mb20">
             <label className="heading-color ff-heading fw600 mb10">
               Detalles extra
@@ -165,9 +169,9 @@ const DetailsFiled = () => {
               placeholder="Tu Nombre"
             />
           </div>
-        </div>
+        </div> */}
 
-        <div className="col-sm-6 col-xl-4">
+        {/* <div className="col-sm-6 col-xl-4">
           <div className="mb20">
             <label className="heading-color ff-heading fw600 mb10">
               Material Exterior
@@ -178,12 +182,12 @@ const DetailsFiled = () => {
               placeholder="Tu Nombre"
             />
           </div>
-        </div>
+        </div> */}
 
-        <StructureType />
+        {/* <StructureType /> */}
       </div>
 
-      <div className="row">
+      {/* <div className="row">
         <MultiSelectField />
 
         <div className="col-sm-12">
@@ -199,7 +203,7 @@ const DetailsFiled = () => {
             />
           </div>
         </div>
-      </div>
+      </div> */}
     </form>
   );
 };

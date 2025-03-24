@@ -33,7 +33,27 @@ export const getPropertyDescriptions = async () => {
   }
 };
 
+export async function insertProperty(propertyData) {
+  try {
+      const response = await axios.post('http://localhost:5000/properties/InsertProperty', propertyData, {
+          headers: {
+              'Content-Type': 'application/json'
+          }
+      });
+      
+      if (response.data.status === 0) {
+          return response.data.value;
+      } else {
+          throw new Error(response.data.errorMessage || 'Error al insertar la propiedad');
+      }
+  } catch (error) {
+      console.error('Error al insertar la propiedad:', error);
+      throw error;
+  }
+}
+
 export default {
     getProperties,
-    getPropertyDescriptions
+    getPropertyDescriptions,
+    insertProperty
 };

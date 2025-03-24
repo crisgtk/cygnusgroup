@@ -30,7 +30,7 @@ const amenitiesData = {
   ],
 };
 
-const Amenities = () => {
+const Amenities = ({setTags}) => {
   return (
     <div className="row">
       {Object.keys(amenitiesData).map((columnKey, index) => (
@@ -42,6 +42,13 @@ const Amenities = () => {
                 <input
                   type="checkbox"
                   defaultChecked={amenity.defaultChecked}
+                  onChange={(e) => {
+                    if (e.target.checked) {
+                      setTags((prev) => [...prev, amenity.label]);
+                    } else {
+                      setTags((prev) => prev.filter((tag) => tag !== amenity.label));
+                    }
+                  }}
                 />
                 <span className="checkmark" />
               </label>
