@@ -32,6 +32,34 @@ export const getPropertyDescriptions = async () => {
     throw new Error(error.message);
   }
 };
+export const getPropertyForSlice = async () => {
+  try {
+    const response = await axios.get(`${API_BASE_URL}/menu/getPropertyForSlice`);
+
+    if (response.data.status === 0) {
+      return JSON.parse(response.data.value);
+    } else {
+      throw new Error(response.data.errorMessage || 'Error al obtener la descripción de las propiedades');
+    }
+
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+export const getPropertyForCities = async () => {
+  try {
+    const response = await axios.get(`${API_BASE_URL}/menu/getPropertyForCities`);
+
+    if (response.data.status === 0) {
+      return JSON.parse(response.data.value);
+    } else {
+      throw new Error(response.data.errorMessage || 'Error al obtener la descripción de las propiedades');
+    }
+
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
 
 export async function insertProperty(propertyData) {
   try {
@@ -55,5 +83,7 @@ export async function insertProperty(propertyData) {
 export default {
     getProperties,
     getPropertyDescriptions,
+    getPropertyForCities,
+    getPropertyForSlice,
     insertProperty
 };

@@ -4,8 +4,6 @@ import MainMenu from "@/components/common/MainMenu";
 import SidebarPanel from "@/components/common/sidebar-panel";
 import LoginSignupModal from "@/components/common/login-signup-modal";
 import { ToastContainer, toast } from "react-toastify";
-import "bootstrap/dist/css/bootstrap.min.css"; // Importa el CSS de Bootstrap
-import "bootstrap/dist/js/bootstrap.bundle.min"; 
 import "react-toastify/dist/ReactToastify.css";
 import Image from "next/image";
 import Link from "next/link";

@@ -1,13 +1,29 @@
-import { getProperties, getPropertyDescriptions } from "@/server/properties";
+import { getProperties, getPropertyDescriptions, getPropertyForCities, getPropertyForSlice } from "@/server/properties";
 
 let cachedProperties = null;
 let cachedPropertyDescriptions = null;
+let cachedPropertySlide = null;
+let cachedPropertyForCites= null;
 
 async function fetchProperties() {
   if (!cachedProperties) {
     cachedProperties = await getProperties();
   }
   return cachedProperties;
+}
+
+async function fetchPropertiesSlice() {
+  if (!cachedProperties) {
+    cachedPropertySlide = await getPropertyForSlice();
+  }
+  return cachedPropertySlide;
+}
+
+async function fetchPropertiesForCities() {
+  if (!cachedPropertyForCites) {
+    cachedPropertyForCites = await getPropertyForCities();
+  }
+  return cachedPropertyForCites;
 }
 
 async function fetchPropertyDescriptions() {
@@ -18,12 +34,12 @@ async function fetchPropertyDescriptions() {
 }
 
 export async function getSliderItemsTransform() {
-  const properties = await fetchProperties();
+  const properties = await fetchPropertiesSlice();
   return properties.map((property) => ({
     image: property.Image,
     price: property.price,
     title: property.Title,
-    description: property.Description1,
+    description: property.Description,
   }));
 }
 
@@ -71,7 +87,7 @@ export async function getListings() {
 }
 
 export async function getCities() {
-  const listings = await fetchProperties();
+  const listings = await fetchPropertiesForCities();
   return listings.map((property) => ({
     id: property.Id,
     name: property.location,
