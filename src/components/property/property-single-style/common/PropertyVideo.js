@@ -11,12 +11,21 @@ const PropertyVideo = ({ id, listings }) => {
     return <div>Loading...</div>;
   }
 
+  // Extraer el ID de YouTube de la URL
+  const youtubeId = data.youtubeLink.match(/(?:https?:\/\/(?:www\.)?youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=))([a-zA-Z0-9_-]{11})/);
+
+  const videoId = youtubeId ? youtubeId[1] : null;
+
+  if (!videoId) {
+    return <div>Invalid YouTube URL</div>;
+  }
+
   return (
     <>
       <ModalVideo
         channel="youtube"
         isOpen={isOpen}
-        videoId={data.youtubeLink}
+        videoId={videoId}
         onClose={() => setOpen(false)}
       />
 

@@ -8,6 +8,8 @@ import DetailsFiled from "./details-field";
 import Amenities from "./Amenities";
 import { insertProperty } from "@/server/properties";
 import { formatCurrency } from "@/utilis/formatCurrency";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const AddPropertyTabContent = () => {
 
@@ -79,7 +81,7 @@ const AddPropertyTabContent = () => {
       YearBuilt: parseInt(yearBuilt),
       Features: true,
       PhotoLinks: photoLinks,
-      Tags: tags.join(", "),
+      Tags: tags !== "" ? tags.join(", "): tags,
       Sqft: parseInt(sqft),
       ExecutiveId: executiveId
     };
@@ -90,12 +92,14 @@ const AddPropertyTabContent = () => {
       const result = await insertProperty(propertyData);
       console.log('Property inserted successfully:', result);
     } catch (error) {
-      console.error('Error inserting property:', error);
+      console.error('Faltan datos obligatorios para poder Insertar propiedad:', error);
+      toast.error('Faltan datos obligatorios para poder Insertar propiedad');
     }
   };
 
   return (
     <>
+     <ToastContainer className="custom-toast-container"/>
       <nav>
         <div className="nav nav-tabs" id="nav-tab2" role="tablist">
           <button
@@ -269,9 +273,17 @@ const AddPropertyTabContent = () => {
         </div>
         {/* End tab for Select Amenities */}
       </div>
-      <button onClick={handleSubmit} className="btn btn-primary mt-3">
-        Insertar Propiedad
-      </button>
+      
+      <div className="col-sm-6 col-xl-12 col-lg-12">
+      <div className="d-flex align-items-center justify-content-start justify-content-md-center mt-3 mt-md-0">
+        <div className="col-auto">
+          <button onClick={handleSubmit} className="ud-btn btn-thm">
+            Insertar Propiedad
+          </button>
+        </div>
+        </div>
+        <br></br>
+      </div>
     </>
   );
 };
