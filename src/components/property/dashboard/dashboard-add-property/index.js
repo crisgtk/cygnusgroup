@@ -1,14 +1,21 @@
 "use client"
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import PropertyDescription from "./property-description";
 import UploadMedia from "./upload-media";
 import LocationField from "./LocationField";
 import DetailsFiled from "./details-field";
 import Amenities from "./Amenities";
 import { insertProperty } from "@/server/properties";
+import { formatCurrency } from "@/utilis/formatCurrency";
 
 const AddPropertyTabContent = () => {
+
+
+
+
+
+
   const [title, setTitle] = useState("");
   const [descriptionDetail, setDescriptionDetail] = useState("");
   const [descriptionDetail2, setDescriptionDetail2] = useState("");
@@ -36,33 +43,44 @@ const AddPropertyTabContent = () => {
   const [sqft, setSqft] = useState(0);
   const [executiveId, setExecutiveId] = useState(0);
 
+
+
+  useEffect(() => {
+    const localData = localStorage.getItem('userPreferences');
+    const userPreferences = localData ? JSON.parse(localData) : null;
+    const id= userPreferences.ID;
+    setExecutiveId(id);
+  }, []);
+
+
+
   const handleSubmit = async () => {
     const propertyData = {
       Title: title,
       DescriptionDetail: descriptionDetail,
       DescriptionDetail2: descriptionDetail2,
-      Category: category,
-      ForRent: forRent,
-      Status: status,
-      Price: price,
+      Category: category.value,
+      ForRent: forRent.value,
+      Status: status.value,
+      Price: formatCurrency(price),
       Image: image,
       YouTubeLink: youTubeLink,
       VirtualTourLink: virtualTourLink,
       Address: address,
-      Country: country,
-      City: city,
+      Country: country.value,
+      City: city.value,
       Comuna: comuna,
       ShortDescription: shortDescription,
-      Latitude: latitude,
-      Longitude: longitude,
-      Rooms: rooms,
-      Bedrooms: bedrooms,
-      Bathrooms: bathrooms,
-      YearBuilt: yearBuilt,
-      Features: features,
+      Latitude: parseFloat(latitude,10),
+      Longitude: parseFloat(longitude,10),
+      Rooms: parseInt(5),
+      Bedrooms: parseInt(bedrooms,10),
+      Bathrooms: parseInt(bathrooms,10),
+      YearBuilt: parseInt(yearBuilt),
+      Features: true,
       PhotoLinks: photoLinks,
-      Tags: tags,
-      Sqft: sqft,
+      Tags: tags.join(", "),
+      Sqft: parseInt(sqft),
       ExecutiveId: executiveId
     };
 

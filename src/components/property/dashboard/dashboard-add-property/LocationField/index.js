@@ -2,7 +2,7 @@ import React from "react";
 import SelectMulitField from "./SelectMulitField";
 import Map from "./Map";
 
-const LocationField = ({setAddress, setComuna, setCity, setLatitude, setLongitude}) => {
+const LocationField = ({setAddress, setComuna, setCity, setCountry, setLatitude, setLongitude}) => {
   return (
     <form className="form-style1">
       <div className="row">
@@ -21,7 +21,7 @@ const LocationField = ({setAddress, setComuna, setCity, setLatitude, setLongitud
         </div>
         {/* End col-12 */}
 
-        <SelectMulitField  setCity={setCity}/>
+        <SelectMulitField  setCity={setCity} setCountry={setCountry}/>
 
         {/* <div className="col-sm-6 col-xl-4">
           <div className="mb20">

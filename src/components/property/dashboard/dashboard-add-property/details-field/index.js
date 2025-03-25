@@ -2,7 +2,7 @@ import React from "react";
 import MultiSelectField from "./MultiSelectField";
 import StructureType from "./StructureType";
 
-const DetailsFiled = (setSqft, setBedrooms, setBathrooms, setYearBuilt) => {
+const DetailsFiled = ({setSqft, setBedrooms, setBathrooms, setYearBuilt}) => {
   return (
     <form className="form-style1">
       <div className="row">
@@ -12,7 +12,7 @@ const DetailsFiled = (setSqft, setBedrooms, setBathrooms, setYearBuilt) => {
               mts2
             </label>
             <input
-              type="text"
+              type="number"
               className="form-control"
               placeholder="Tu Nombre"
               onChange={(e) => setSqft(e.target.value)}
@@ -52,7 +52,7 @@ const DetailsFiled = (setSqft, setBedrooms, setBathrooms, setYearBuilt) => {
               Dormitorios
             </label>
             <input
-              type="text"
+              type="number"
               className="form-control"
               placeholder="Tu Nombre"
               onChange={(e) => setBedrooms(e.target.value)}
@@ -64,7 +64,7 @@ const DetailsFiled = (setSqft, setBedrooms, setBathrooms, setYearBuilt) => {
           <div className="mb20">
             <label className="heading-color ff-heading fw600 mb10">Baños</label>
             <input
-              type="text"
+              type="number"
               className="form-control"
               placeholder="Tu Nombre"
               onChange={(e) => setBathrooms(e.target.value)}
@@ -116,7 +116,7 @@ const DetailsFiled = (setSqft, setBedrooms, setBathrooms, setYearBuilt) => {
             <label className="heading-color ff-heading fw600 mb10">
               Año de construcción (numérico)
             </label>
-            <input type="text" className="form-control"  onChange={(e) => setYearBuilt(e.target.value)}/>
+            <input type="number" className="form-control"  onChange={(e) => setYearBuilt(e.target.value)}/>
 
           </div>
         </div>

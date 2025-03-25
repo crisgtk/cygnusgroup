@@ -5,9 +5,9 @@ let cachedPropertyDescriptions = null;
 let cachedPropertySlide = null;
 let cachedPropertyForCites= null;
 
-async function fetchProperties() {
+async function fetchProperties(id) {
   if (!cachedProperties) {
-    cachedProperties = await getProperties();
+    cachedProperties = await getProperties(id);
   }
   return cachedProperties;
 }
@@ -51,8 +51,8 @@ export async function getLocationTransform() {
   }));
 }
 
-export async function getListings() {
-  const listings = await fetchProperties();
+export async function getListings(id) {
+  const listings = await fetchProperties(id);
   return listings.map((property) => ({
     id: property.Id,
     image: property.Image,
@@ -82,7 +82,10 @@ export async function getListings() {
     executivePhone: property.ExecutivePhone,
     executiveEmail: property.ExecutiveEmail,
     executiveCategory: property.ExecutiveCategory,
-    executiveImage: property.ExecutiveImage
+    executiveImage: property.ExecutiveImage,
+    createDate: property.CreateDate,
+    Deleted: property.Deleted,
+    status: property.Status, 
   }));
 }
 

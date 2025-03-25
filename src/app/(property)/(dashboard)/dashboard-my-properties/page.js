@@ -1,3 +1,5 @@
+"use client";
+
 import DashboardHeader from "@/components/common/DashboardHeader";
 import MobileMenu from "@/components/common/mobile-menu";
 import Pagination from "@/components/property/Pagination";
@@ -7,12 +9,37 @@ import FilterHeader from "../../../../components/property/dashboard/dashboard-my
 import PropertyDataTable from "@/components/property/dashboard/dashboard-my-properties/PropertyDataTable";
 import DboardMobileNavigation from "@/components/property/dashboard/DboardMobileNavigation";
 import Header from "@/components/home/home-v5/Header";
+import { useEffect, useState } from "react";
+import { getListings } from "@/transform/propertiesTransform";
 
-export const metadata = {
-  title: "Dashboard Properties || Homez - Real Estate NextJS Template",
-};
+// export const metadata = {
+//   title: "Dashboard Properties || Homez - Real Estate NextJS Template",
+// };
+
+
 
 const DashboardMyProperties = () => {
+
+  const [listings, setListings] = useState([]);
+
+  useEffect(() => {
+    const localData = localStorage.getItem('userPreferences');
+    const userPreferences = localData ? JSON.parse(localData) : null;
+    const id= userPreferences.ID;
+    const loadListings = async (id) => {
+      try {
+        const items = await getListings(id);
+        setListings(items);
+      } catch (error) {
+        console.error("Error al cargar los items:", error);
+      }
+    };
+
+    loadListings(id);
+  }, []);
+
+  console.log("listings:::", listings);
+
   return (
     <>
       {/* Main Header Nav */}
@@ -45,9 +72,9 @@ const DashboardMyProperties = () => {
                     <h2>Mis propiedades</h2>
                   </div>
                 </div>
-                <div className="col-xxl-9">
+                {/* <div className="col-xxl-9">
                   <FilterHeader />
-                </div>
+                </div> */}
               </div>
               {/* End .row */}
 
@@ -55,7 +82,7 @@ const DashboardMyProperties = () => {
                 <div className="col-xl-12">
                   <div className="ps-widget bgc-white bdrs12 default-box-shadow2 p30 mb30 overflow-hidden position-relative">
                     <div className="packages_table table-responsive">
-                      <PropertyDataTable />
+                      <PropertyDataTable listings={listings}/>
 
                       {/* <div className="mt30">
                         <Pagination />

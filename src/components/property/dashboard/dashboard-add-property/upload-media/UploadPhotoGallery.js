@@ -18,7 +18,8 @@ const UploadPhotoGallery = ({setImage, setPhotoLinks, photoLinks}) => {
       };
       reader.readAsDataURL(file);
     }
-    setPhotoLinks(newImages);
+    setImage('/images/proyect/los_nogales.png')
+    setPhotoLinks('/images/proyect/los_nogales.png');
   };
 
   const handleDrop = (event) => {

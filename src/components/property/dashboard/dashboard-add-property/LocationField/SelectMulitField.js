@@ -23,7 +23,7 @@ const customStyles = {
   },
 };
 
-const SelectMultiField = ({setCity}) => {
+const SelectMultiField = ({setCity, setCountry}) => {
   const fieldTitles = ["Pais", "Ciudad", "Región"];
   return (
     <>
@@ -39,14 +39,16 @@ const SelectMultiField = ({setCity}) => {
                 className="select-custom pl-0"
                 classNamePrefix="select"
                 required
-                isMulti
                 options={options[key].map((item) => ({
                   value: item,
                   label: item,
                 }))}
                 onChange={(selectedOptions) => {
                   if (fieldTitles[index] === "Ciudad") {
-                    setCity(selectedOptions.map(option => option.value));
+                    setCity(selectedOptions);
+                  }
+                  if (fieldTitles[index] === "Pais") {
+                    setCountry(selectedOptions);
                   }
                 }}
               />

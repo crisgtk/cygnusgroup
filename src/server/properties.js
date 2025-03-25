@@ -64,7 +64,7 @@ export const getPropertyForCities = async () => {
 
 export async function insertProperty(propertyData) {
   try {
-      const response = await axios.post('http://localhost:5000/properties/InsertProperty', propertyData, {
+      const response = await axios.post(`${API_BASE_URL}/properties/InsertProperty`, propertyData, {
           headers: {
               'Content-Type': 'application/json'
           }
@@ -79,7 +79,23 @@ export async function insertProperty(propertyData) {
       console.error('Error al insertar la propiedad:', error);
       throw error;
   }
+  
 }
+export const updateStatusProperty = async (id, status) => {
+  try {
+    const url = `${API_BASE_URL}/properties/updateStatusProperty/${id}/${status}`;
+    const response = await axios.get(url);
+    
+    if (response.data.status === 0) {
+      return JSON.parse(response.data.status);
+    } else {
+      throw new Error(response.data.errorMessage || 'Error al obtener las propiedades');
+    }
+
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
 
 export default {
     getProperties,
