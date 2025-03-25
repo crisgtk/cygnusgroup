@@ -19,6 +19,8 @@ export default function PropertyFilteringMapFive({listings}) {
         return <div>Loading...</div>;
       }
 
+      console.log("the data:::", data)
+
     const [filteredData, setFilteredData] = useState([]);
 
     const [currentSortingOption, setCurrentSortingOption] = useState('Newest')
@@ -30,8 +32,11 @@ export default function PropertyFilteringMapFive({listings}) {
     const [colstyle, setColstyle] = useState(false)
     const [pageItems, setPageItems] = useState([])
     const [pageContentTrac, setPageContentTrac] = useState([])
+
+    console.log("pageItems:::", pageItems)
   
     useEffect(() => {
+      console.log("sortedFilteredData:::", sortedFilteredData)
       setPageItems(sortedFilteredData
         .slice((pageNumber - 1) * 4, pageNumber * 4))
         setPageContentTrac([((pageNumber - 1) * 4) + 1 ,pageNumber * 4,sortedFilteredData.length])
@@ -152,6 +157,8 @@ export default function PropertyFilteringMapFive({listings}) {
       
         const refItems = data.filter((elm) => {
 
+          console.log("elm:::", elm)
+
             if (listingStatus == "All") {
               return true;
             } else if (listingStatus == "Buy") {
@@ -212,9 +219,15 @@ export default function PropertyFilteringMapFive({listings}) {
           
          const nonEmptyFilteredArrays = filteredArrays.filter(array => array.length > 0);
 
+
+         console.log("nonEmptyFilteredArrays:::", nonEmptyFilteredArrays)
+         console.log("refItems:::", refItems)
+
          const commonItems = refItems.filter((item) =>
-          nonEmptyFilteredArrays.every((array) => array.includes(item))
+          nonEmptyFilteredArrays.some((array) => array.includes(item))
         );
+
+        console.log("commonItems:::", commonItems)
 
           setFilteredData(commonItems);
          

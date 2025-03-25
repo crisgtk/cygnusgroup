@@ -32,6 +32,8 @@ export default function ListingMap1({data}) {
     return <div>Loading...</div>;
   }
 
+  console.log("dataListing:::", dataListing);
+
   const [getLocation, setLocation] = useState(null);
 
   const { isLoaded } = useLoadScript({

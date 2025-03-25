@@ -36,6 +36,7 @@ async function fetchPropertyDescriptions() {
 export async function getSliderItemsTransform() {
   const properties = await fetchPropertiesSlice();
   return properties.map((property) => ({
+    id: property.Id,
     image: property.Image,
     price: property.price,
     title: property.Title,

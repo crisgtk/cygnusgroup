@@ -88,7 +88,7 @@ const Hero = () => {
                         </p>
                         <div className="slider-btn-block">
                           <Link
-                            href="/single-v1/1"
+                            href={`/single-v1/${item.id}`}
                             className="ud-btn btn-white slider-btn">
                             Ir a ver detalles
                             <i className="fal fa-arrow-right-long" />
