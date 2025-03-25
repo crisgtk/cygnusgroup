@@ -9,10 +9,11 @@ import FeaturedListings from "./FeatuerdListings";
 import Pagination from "../../Pagination";
 import PaginationTwo from "../../PaginationTwo";
 import { useSearchParams } from "next/navigation";
+import { capitalizeFirstLetter } from "@/utilis/capitalizeFirstLetter";
 
 export default function ProperteyFiltering({listings, params}) {
   const searchParams = useSearchParams();
-  const buy = searchParams.get("buy");
+  const statusProperty = searchParams.get("buy");
   const description = searchParams.get("description");
   const property = searchParams.get("property");
   const city = searchParams.get("city")
@@ -86,6 +87,10 @@ export default function ProperteyFiltering({listings, params}) {
   
         if (numbers.some((p) => p !== 0)) {  
           setPriceRange(numbers); 
+        }
+
+        if(statusProperty){
+          setListingStatus(capitalizeFirstLetter(statusProperty))
         }
     }
     }, []);
