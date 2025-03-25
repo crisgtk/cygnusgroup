@@ -7,21 +7,21 @@ const SidebarDashboard = () => {
   const pathname = usePathname();
 
   const sidebarItems = [
-    {
-      title: "PRINCIPAL",
-      items: [
-        {
-          href: "/dashboard-home",
-          icon: "flaticon-discovery",
-          text: "Dashboard",
-        },
-        // {
-        //   href: "/dashboard-message",
-        //   icon: "flaticon-chat-1",
-        //   text: "Mensajes",
-        // },
-      ],
-    },
+    // {
+    //   title: "PRINCIPAL",
+    //   items: [
+    //     {
+    //       href: "/dashboard-home",
+    //       icon: "flaticon-discovery",
+    //       text: "Dashboard",
+    //     },
+    //     // {
+    //     //   href: "/dashboard-message",
+    //     //   icon: "flaticon-chat-1",
+    //     //   text: "Mensajes",
+    //     // },
+    //   ],
+    // },
     {
       title: "GESTION",
       items: [
@@ -35,33 +35,33 @@ const SidebarDashboard = () => {
           icon: "flaticon-home",
           text: "Lista Propiedades",
         },
-        {
-          href: "/dashboard-my-favourites",
-          icon: "flaticon-like",
-          text: "Mis Favoritas",
-        },
-        {
-          href: "/dashboard-saved-search",
-          icon: "flaticon-search-2",
-          text: "Busqueda Avanzada",
-        },
+        // {
+        //   href: "/dashboard-my-favourites",
+        //   icon: "flaticon-like",
+        //   text: "Mis Favoritas",
+        // },
+        // {
+        //   href: "/dashboard-saved-search",
+        //   icon: "flaticon-search-2",
+        //   text: "Busqueda Avanzada",
+        // },
       ],
     },
-    {
-      title: "GESTIONAR CUENTA",
-      items: [
-        {
-          href: "/dashboard-my-profile",
-          icon: "flaticon-user",
-          text: "Mi Perfil",
-        },
-        {
-          href: "/login",
-          icon: "flaticon-logout",
-          text: "Cerrar Sesión",
-        },
-      ],
-    },
+    // {
+    //   title: "GESTIONAR CUENTA",
+    //   items: [
+    //     {
+    //       href: "/dashboard-my-profile",
+    //       icon: "flaticon-user",
+    //       text: "Mi Perfil",
+    //     },
+    //     {
+    //       href: "/login",
+    //       icon: "flaticon-logout",
+    //       text: "Cerrar Sesión",
+    //     },
+    //   ],
+    // },
   ];
 
   return (

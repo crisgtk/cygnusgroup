@@ -50,12 +50,12 @@ export const propertyItems = [
   {
     label: "Dashboard",
     subMenuItems: [
-      { label: "Dashboard", href: "/dashboard-home" },
-      { label: "Nueva Propiedad", href: "/dashboard-add-property" },
+      // { label: "Dashboard", href: "/dashboard-home" },
+      { label: "Nueva Propiedad1", href: "/dashboard-add-property" },
       { label: "Lista Propìedades", href: "/dashboard-my-properties" },
-      { label: "Mis Favoritas", href: "/dashboard-my-favourites" },
-      { label: "Busqueda avanzada", href: "/dashboard-saved-search" },
-      { label: "Mi Perfil", href: "/dashboard-my-profile" },
+      // { label: "Mis Favoritas", href: "/dashboard-my-favourites" },
+      // { label: "Busqueda avanzada", href: "/dashboard-saved-search" },
+      // { label: "Mi Perfil", href: "/dashboard-my-profile" },
     ],
   },
 ];

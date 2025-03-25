@@ -85,11 +85,11 @@ module.exports = [
     label: "Admin",
     subMenu: [
       { label: "Dashboard", path: "/dashboard-home" },
-      { label: "Nueva Propiedad", path: "/dashboard-add-property" },
+      { label: "Nueva Propiedad2", path: "/dashboard-add-property" },
       { label: "Lista Propìedades", path: "/dashboard-my-properties" },
-      { label: "Mis Favoritas", path: "/dashboard-my-favourites" },
-      { label: "Busqueda avanzada", path: "/dashboard-saved-search" },
-      { label: "Mi Perfil", path: "/dashboard-my-profile" },
+      // { label: "Mis Favoritas", path: "/dashboard-my-favourites" },
+      // { label: "Busqueda avanzada", path: "/dashboard-saved-search" },
+      // { label: "Mi Perfil", path: "/dashboard-my-profile" },
     ],
   },
   // {
