@@ -1,13 +1,13 @@
 "use client";
 import Select from "react-select";
 
-const LookingFor = () => {
+const LookingFor = ({setInqueryType}) => {
   const inqueryType = [
-    { value: "Apartments", label: "Departamento" },
-    { value: "Houses", label: "Casas" },
-    { value: "Office", label: "Oficinas" },
-    { value: "TownHome", label: "Parcelas" },
-    { value: "Villa", label: "Terrenos" },
+    { value: "Departamento", label: "Departamento" },
+    { value: "Casas", label: "Casas" },
+    { value: "Oficinas", label: "Oficinas" },
+    { value: "Parcelas", label: "Parcelas" },
+    { value: "Terrenos", label: "Terrenos" },
   ];
 
   const customStyles = {
@@ -31,7 +31,6 @@ const LookingFor = () => {
   return (
     <>
       <Select
-        defaultValue={[inqueryType[0]]}
         name="colors"
         options={inqueryType}
         styles={customStyles}
@@ -39,6 +38,7 @@ const LookingFor = () => {
         classNamePrefix="select"
         required
         isClearable={false}
+        onChange={setInqueryType}
       />
     </>
   );

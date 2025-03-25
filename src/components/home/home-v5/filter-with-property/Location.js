@@ -3,7 +3,7 @@ import Select from "react-select";
 import React, { useEffect, useState } from "react";
 import { getLocationsTransform } from "@/transform/menuTransform";
 
-const Location = () => {
+const Location = ({setCity}) => {
   const [inqueryType, setInqueryType] = useState([]);
 
   // const inqueryType = [
@@ -51,6 +51,7 @@ const Location = () => {
         classNamePrefix="select"
         required
         isClearable={false}
+        onChange={setCity}
       />
     </>
   );

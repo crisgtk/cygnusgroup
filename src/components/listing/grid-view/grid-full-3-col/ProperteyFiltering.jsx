@@ -8,8 +8,16 @@ import TopFilterBar from "./TopFilterBar";
 import FeaturedListings from "./FeatuerdListings";
 import Pagination from "../../Pagination";
 import PaginationTwo from "../../PaginationTwo";
+import { useSearchParams } from "next/navigation";
 
-export default function ProperteyFiltering({listings}) {
+export default function ProperteyFiltering({listings, params}) {
+  const searchParams = useSearchParams();
+  const buy = searchParams.get("buy");
+  const description = searchParams.get("description");
+  const property = searchParams.get("property");
+  const city = searchParams.get("city")
+  const price = searchParams.get("price")
+  // console.log("the params:::", buy,description,property,city,price)
   const [filteredData, setFilteredData] = useState([]);
 
   const [currentSortingOption, setCurrentSortingOption] = useState("Newest");
@@ -67,6 +75,21 @@ export default function ProperteyFiltering({listings}) {
       element.value = "All Cities";
     });
   };
+
+  useEffect(() => {
+       if(Array.isArray(property) && property.length > 0){
+        setPropertyTypes([property])
+       }
+
+       if(price !== null){
+        const numbers = price.split(",").map(Number); // Convierte "0,0" en [0, 0]
+  
+        if (numbers.some((p) => p !== 0)) {  
+          setPriceRange(numbers); 
+        }
+    }
+    }, []);
+   
 
   const handlelistingStatus = (elm) => {
     setListingStatus((pre) => (pre == elm ? "All" : elm));
@@ -135,9 +158,6 @@ export default function ProperteyFiltering({listings}) {
 
   useEffect(() => {
     const refItems = dataListings.filter((elm) => {
-
-      console.log("this is propertyTypes:::", propertyTypes);
-      console.log("elm:::", elm);
     
       if (listingStatus == "All") {
        
@@ -158,8 +178,6 @@ export default function ProperteyFiltering({listings}) {
         propertyTypes.includes(elm.propertyName)
       );
       filteredArrays = [...filteredArrays, filtered];
-
-      console.log("filtered:::", filtered)
     }
 
     

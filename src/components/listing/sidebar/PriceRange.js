@@ -5,9 +5,9 @@ import "rc-slider/assets/index.css";
 import { formatCurrency } from "@/utilis/formatCurrency";
 
 
-const PriceRange = ({ filterFunctions }) => {
+const PriceRange = ({ filterFunctions, priceRange }) => {
   const [price, setPrice] = useState([
-    filterFunctions?.priceRange?.[0] || 2000000,
+    filterFunctions?.priceRange?.[0] || 0,
     filterFunctions?.priceRange?.[1] || 900000000,
   ]);
 
@@ -21,7 +21,7 @@ const PriceRange = ({ filterFunctions }) => {
       <Slider
         range
         max={900000000} 
-        min={2000000} 
+        min={0} 
         step={500000} 
         defaultValue={price}
         onChange={handleOnChange}

@@ -10,10 +10,14 @@ import { formatCurrency } from "@/utilis/formatCurrency";
 const FilterContent = () => {
   const router = useRouter();
   const [activeTab, setActiveTab] = useState("buy");
+  const [description, setDescription] = useState("");
+  const [inqueryType, setInqueryType] = useState([]);
+  const [city, setCity] = useState([]);
 
   const handleTabClick = (tab) => {
     setActiveTab(tab);
   };
+
 
   const tabs = [
     { id: "buy", label: "Venta" },
@@ -21,12 +25,17 @@ const FilterContent = () => {
     // { id: "sold", label: "Sold" },
   ];
 
-  const [price, setPrice] = useState([1000000, 900000000]);
+  const [price, setPrice] = useState([0, 0]);
 
   // price range handler
   const handleOnChange = (value) => {
     setPrice(value);
   };
+
+  const handleClick = () => {
+    router.push(`/grid-full-3-col?buy=${activeTab}&description=${description}&property=${inqueryType.value}&city=${city.value}&price=${price}`);
+  };
+
   return (
     <div className="advance-style4 at-home5 mt-100 mt50-lg mb10 mx-auto animate-up-2">
       <ul className="nav nav-tabs p-0 m-0">
@@ -57,7 +66,9 @@ const FilterContent = () => {
                           className="form-control bgc-f7 bdrs12 ps-0"
                           type="text"
                           name="search"
-                          placeholder={`Busqueda rápida para ${tab.label}`}
+                          placeholder={`Busqueda rápida para ${tab.label}`
+                        }
+                        onChange={(e) => setDescription(e.target.value)}
                         />
                       </div>
                     </form>
@@ -69,7 +80,7 @@ const FilterContent = () => {
                   <div className="mt-3 mt-md-0 px-0">
                     <div className="bootselect-multiselect">
                       <label className="fz14">Busqueda por</label>
-                      <LookingFor />
+                      <LookingFor setInqueryType={setInqueryType}/>
                     </div>
                   </div>
                 </div>
@@ -79,7 +90,7 @@ const FilterContent = () => {
                   <div className="mt-3 mt-md-0">
                     <div className="bootselect-multiselect">
                       <label className="fz14">Lugar</label>
-                      <Location />
+                      <Location setCity={setCity}/>
                     </div>
                   </div>
                 </div>
@@ -103,14 +114,14 @@ const FilterContent = () => {
                             <Slider
                               range
                               max={900000000}
-                              min={20000000}
+                              min={0}
                               step={500000}
-                              defaultValue={price}
+                              // defaultValue={price}
                               onChange={(value) => handleOnChange(value)}
                               id="slider"
                             />
                             <div className="d-flex align-items-center">
-                              <span id="slider-range-value1">${formatCurrency(price[0])}</span>
+                              <span id="slider-range-value1">{formatCurrency(price[0])}</span>
                               <i className="fa-sharp fa-solid fa-minus mx-2 dark-color icon" />
                               <span id="slider-range-value2">{formatCurrency(price[1])}</span>
                             </div>
@@ -134,7 +145,7 @@ const FilterContent = () => {
                     <button
                       className="advance-search-icon ud-btn btn-thm ms-4"
                       type="button"
-                      onClick={() => router.push("/grid-full-3-col")}>
+                      onClick={handleClick}>
                       <span className="flaticon-search" />
                     </button>
                   </div>
