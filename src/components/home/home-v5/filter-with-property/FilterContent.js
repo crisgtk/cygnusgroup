@@ -66,9 +66,10 @@ const FilterContent = () => {
                           className="form-control bgc-f7 bdrs12 ps-0"
                           type="text"
                           name="search"
-                          placeholder={`Busqueda rápida para ${tab.label}`
+                          placeholder={`Busqueda por ${tab.label}`
                         }
                         onChange={(e) => setDescription(e.target.value)}
+                        disabled
                         />
                       </div>
                     </form>

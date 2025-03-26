@@ -6,6 +6,7 @@ import PropertyType from "../../sidebar/PropertyType";
 import PriceRange from "../../sidebar/PriceRange";
 import Bedroom from "../../sidebar/Bedroom";
 import Bathroom from "../../sidebar/Bathroom";
+import ListingLocation from "../../sidebar/ListingLocation";
 
 const TopFilterBar = ({
   filterFunctions,
@@ -33,13 +34,13 @@ const TopFilterBar = ({
                     <ListingStatus filterFunctions={filterFunctions} />
                   </div>
                 </div>
-                <div className="text-end mt10 pr10">
+                {/* <div className="text-end mt10 pr10">
                   <button
                     type="button"
                     className="done-btn ud-btn btn-thm drop_btn">
                     Aplicar
                   </button>
-                </div>
+                </div> */}
               </div>
             </li>
             {/* End li Listing Status */}
@@ -60,16 +61,40 @@ const TopFilterBar = ({
                     <PropertyType filterFunctions={filterFunctions} />
                   </div>
                 </div>
-                <div className="text-end mt10 pr10">
+                {/* <div className="text-end mt10 pr10">
                   <button
                     type="button"
                     className="done-btn ud-btn btn-thm dropdown-toggle">
                     Aplicar
                   </button>
-                </div>
+                </div> */}
               </div>
             </li>
             {/* End li Property Type */}
+            <li className="list-inline-item position-relative">
+              <button
+                type="button"
+                className="open-btn mb15 dropdown-toggle"
+                data-bs-toggle="dropdown"
+                data-bs-auto-close="outside">
+                Por ciudad <i className="fa fa-angle-down ms-2" />
+              </button>
+              <div className="dropdown-menu">
+                <div className="widget-wrapper bdrb1 pb25 mb0 pl20">
+                  <h6 className="list-title">Lugar</h6>
+                  <div className="radio-element">
+                    <ListingLocation filterFunctions={filterFunctions} />
+                  </div>
+                </div>
+                {/* <div className="text-end mt10 pr10">
+                  <button
+                    type="button"
+                    className="done-btn ud-btn btn-thm drop_btn">
+                    Aplicar
+                  </button>
+                </div> */}
+              </div>
+            </li>
 
             <li className="list-inline-item position-relative">
               <button
@@ -88,13 +113,13 @@ const TopFilterBar = ({
                     <PriceRange filterFunctions={filterFunctions} />
                   </div>
                 </div>
-                <div className="text-end mt10 pr10">
+                {/* <div className="text-end mt10 pr10">
                   <button
                     type="button"
                     className="done-btn ud-btn btn-thm drop_btn3">
                     Aplicar
                   </button>
-                </div>
+                </div> */}
               </div>
             </li>
             {/* End li Price */}
@@ -121,13 +146,13 @@ const TopFilterBar = ({
                     <Bathroom filterFunctions={filterFunctions} />
                   </div>
                 </div>
-                <div className="text-end mt10 pr10">
+                {/* <div className="text-end mt10 pr10">
                   <button
                     type="button"
                     className="done-btn ud-btn btn-thm drop_btn4">
                     Aplicar
                   </button>
-                </div>
+                </div> */}
               </div>
             </li>
             {/* End bed and bathroom check */}

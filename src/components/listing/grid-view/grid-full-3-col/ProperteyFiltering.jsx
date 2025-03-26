@@ -93,11 +93,7 @@ export default function ProperteyFiltering({listings, params}) {
           setListingStatus(capitalizeFirstLetter(statusProperty))
         }
 
-        console.log("city:::", city)
-        console.log("Tipo de city:::", typeof city);
-
-        if (city) {
-          console.log("entre:::")
+        if (city && city !== "undefined") {
           setLocation(city);
       }
     }
@@ -105,7 +101,7 @@ export default function ProperteyFiltering({listings, params}) {
    
 
   const handlelistingStatus = (elm) => {
-    setListingStatus((pre) => (pre == elm ? "All" : elm));
+    setListingStatus((pre) => (pre == elm ? "All Cities" : elm));
   };
 
   const handlepropertyTypes = (elm) => {
@@ -127,8 +123,7 @@ export default function ProperteyFiltering({listings, params}) {
     setBathroms(elm);
   };
   const handlelocation = (elm) => {
-    console.log(elm);
-    setLocation(elm);
+    setLocation((pre) => (pre == elm ? "All" : elm));;
   };
   const handlesquirefeet = (elm) => {
     setSquirefeet(elm);
@@ -214,7 +209,6 @@ export default function ProperteyFiltering({listings, params}) {
     ];
 
     if (location != "All Cities") {
-      console.log("entre:::", refItems)
       filteredArrays = [
         ...filteredArrays,
         refItems.filter((el) => el.city == location),
