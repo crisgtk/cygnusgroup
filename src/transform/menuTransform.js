@@ -13,7 +13,7 @@ export async function getLocationsTransform() {
     const locations = await fechLocations();
     console.log("locations:::", locations);
     return locations.map((location) => ({
-        value: location.location,
-        label: location.location,
+        value: location.City,
+        label: location.City,
     }));
 }

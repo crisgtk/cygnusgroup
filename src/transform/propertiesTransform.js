@@ -93,11 +93,11 @@ export async function getListings(id) {
 export async function getCities() {
   const listings = await fetchPropertiesForCities();
   return listings.map((property) => ({
-    id: property.Id,
-    name: property.location,
+    //id: property.Id,
+    name: property.City,
     image: property.Image,
     propertyCount: property.propertyCount,
-    forRent: property.ForRent,
+    //forRent: property.ForRent,
   }));
 }
 

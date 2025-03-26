@@ -117,7 +117,7 @@ export default function ListingMap1({data}) {
                         {getLocation.title}
                       </Link>
                     </h6>
-                    <p className="list-text">{getLocation.location}</p>
+                    <p className="list-text">{getLocation.city}</p>
                     <div className="list-meta d-flex align-items-center">
                       <a href="#">
                         <span className="flaticon-bed" /> {getLocation.bed} bed

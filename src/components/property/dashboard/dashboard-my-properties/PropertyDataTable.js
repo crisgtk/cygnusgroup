@@ -126,7 +126,7 @@ const PropertyDataTable = ({listings}) => {
                       {property.title}
                     </Link>
                   </div>
-                  <p className="list-text mb-0">{property.location}</p>
+                  <p className="list-text mb-0">{property.city}</p>
                   <div className="list-price">
                     <a href="#">{property.price}</a>
                   </div>

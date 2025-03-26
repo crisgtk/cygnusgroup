@@ -92,6 +92,14 @@ export default function ProperteyFiltering({listings, params}) {
         if(statusProperty){
           setListingStatus(capitalizeFirstLetter(statusProperty))
         }
+
+        console.log("city:::", city)
+        console.log("Tipo de city:::", typeof city);
+
+        if (city) {
+          console.log("entre:::")
+          setLocation(city);
+      }
     }
     }, []);
    
@@ -206,6 +214,7 @@ export default function ProperteyFiltering({listings, params}) {
     ];
 
     if (location != "All Cities") {
+      console.log("entre:::", refItems)
       filteredArrays = [
         ...filteredArrays,
         refItems.filter((el) => el.city == location),
