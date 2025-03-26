@@ -1,7 +1,9 @@
 const axios = require('axios');
 
 // Definir la URL base
-const API_BASE_URL = process.env.REACT_APP_API_URL;
+const isLocal = process.env.NODE_ENV === 'development';
+
+const API_BASE_URL = isLocal ? 'https://localhost:5001' : process.env.REACT_APP_API_URL;
 
 // Función para obtener datos desde tu API .NET
 async function getMenu() {

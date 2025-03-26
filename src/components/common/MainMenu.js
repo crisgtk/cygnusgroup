@@ -14,9 +14,7 @@ const MainMenu = () => {
   const pathname = usePathname();
   const [topMenu, setTopMenu] = useState("");
   const [submenu, setSubmenu] = useState("");
-  const [activeLink, setActiveLink] = useState("");
   const [propertyItems, setpropertyItems] = useState([]);
-  const localData = localStorage.getItem('userPreferences');
   const [userPreferences, setUserPreferences] = useState(null);
 
   async function cargarMenu() {

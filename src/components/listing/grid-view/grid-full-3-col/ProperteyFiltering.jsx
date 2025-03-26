@@ -8,16 +8,16 @@ import TopFilterBar from "./TopFilterBar";
 import FeaturedListings from "./FeatuerdListings";
 import Pagination from "../../Pagination";
 import PaginationTwo from "../../PaginationTwo";
-import { useSearchParams } from "next/navigation";
+//import { useSearchParams } from "next/navigation";
 import { capitalizeFirstLetter } from "@/utilis/capitalizeFirstLetter";
 
 export default function ProperteyFiltering({listings, params}) {
-  const searchParams = useSearchParams();
-  const statusProperty = searchParams.get("buy");
-  const description = searchParams.get("description");
-  const property = searchParams.get("property");
-  const city = searchParams.get("city")
-  const price = searchParams.get("price")
+  // const searchParams = useSearchParams();
+  // const statusProperty = searchParams.get("buy");
+  // const description = searchParams.get("description");
+  // const property = searchParams.get("property");
+  // const city = searchParams.get("city")
+  // const price = searchParams.get("price")
   // console.log("the params:::", buy,description,property,city,price)
   const [filteredData, setFilteredData] = useState([]);
 
@@ -78,6 +78,15 @@ export default function ProperteyFiltering({listings, params}) {
   };
 
   useEffect(() => {
+    const queryParams = new URLSearchParams(window.location.search);
+
+    const statusProperty = queryParams.get("buy");
+    const description = queryParams.get("description");
+    const property = queryParams.get("property");
+    const city = queryParams.get("city")
+    const price = queryParams.get("price")
+
+
        if(Array.isArray(property) && property.length > 0){
         setPropertyTypes([property])
        }

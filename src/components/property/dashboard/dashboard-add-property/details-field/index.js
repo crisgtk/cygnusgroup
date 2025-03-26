@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import MultiSelectField from "./MultiSelectField";
 import StructureType from "./StructureType";
