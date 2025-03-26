@@ -1,9 +1,8 @@
 const axios = require('axios');
 
 // Definir la URL base
-const isLocal = process.env.NODE_ENV === 'development';
 
-const API_BASE_URL = isLocal ? 'https://localhost:5001' : process.env.REACT_APP_API_URL;
+const API_BASE_URL = 'http://crisgtk.cl/apiarr';
 
 // Función para obtener datos desde tu API .NET
 async function getMenu() {
