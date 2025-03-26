@@ -17,7 +17,7 @@ const MainMenu = () => {
   const [activeLink, setActiveLink] = useState("");
   const [propertyItems, setpropertyItems] = useState([]);
   const localData = localStorage.getItem('userPreferences');
-  const userPreferences = localData ? JSON.parse(localData) : null;
+  const [userPreferences, setUserPreferences] = useState(null);
 
   async function cargarMenu() {
     try {
@@ -28,6 +28,13 @@ const MainMenu = () => {
         console.error('Error al cargar el menú:::', error);
     }
 }
+
+useEffect(() => {
+  if (typeof window !== "undefined") {
+    const localData = localStorage.getItem("userPreferences");
+    setUserPreferences(localData ? JSON.parse(localData) : null);
+  }
+}, []);
 
   useEffect(() => {
   cargarMenu();

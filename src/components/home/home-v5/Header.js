@@ -16,14 +16,20 @@ const Header = () => {
   const [password, setPassword] = useState("");
   const [showDropdown, setShowDropdown] = useState(false);
   const modalRef = useRef(null);
-  const localData = localStorage.getItem('userPreferences');
-  const userPreferences = localData ? JSON.parse(localData) : null;
+  const [userPreferences, setUserPreferences] = useState(null);
 
   const closeModal = () => {
     if (modalRef.current) {
       modalRef.current.querySelector('.btn-close').click();
     }
   };
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const localData = localStorage.getItem("userPreferences");
+      setUserPreferences(localData ? JSON.parse(localData) : null);
+    }
+  }, []);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
