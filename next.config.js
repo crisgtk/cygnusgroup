@@ -2,6 +2,7 @@
 const nextConfig = {
     images: {
       domains: ['res.cloudinary.com'],
+      unoptimized: true, 
     },
     eslint: {
       ignoreDuringBuilds: true, // Esto desactiva ESLint durante el build

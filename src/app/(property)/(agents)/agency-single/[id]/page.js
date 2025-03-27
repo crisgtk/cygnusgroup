@@ -17,6 +17,8 @@ export const metadata = {
   title: "Agency Single || Homez - Real Estate NextJS Template",
 };
 
+
+
 const AgencySingle = ({params}) => {
   return (
     <>
@@ -180,5 +182,13 @@ const AgencySingle = ({params}) => {
     </>
   );
 };
+
+export async function generateStaticParams() {
+  const blogIds = [1, 2, 3, 4]; // O puedes obtener estos IDs dinámicamente desde una API o base de datos
+
+  return blogIds.map(id => ({
+    id: String(id), // Aquí usamos String(id) para asegurarnos de que sea un string
+  }));
+}
 
 export default AgencySingle;
