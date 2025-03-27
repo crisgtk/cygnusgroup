@@ -16,174 +16,7 @@ const option = {
   zoomControl: true,
   disableDefaultUI: true,
   styles: [
-    {
-      featureType: "all",
-      elementType: "geometry.fill",
-      stylers: [
-        {
-          weight: "2.00",
-        },
-      ],
-    },
-    {
-      featureType: "all",
-      elementType: "geometry.stroke",
-      stylers: [
-        {
-          color: "#9c9c9c",
-        },
-      ],
-    },
-    {
-      featureType: "all",
-      elementType: "labels.text",
-      stylers: [
-        {
-          visibility: "on",
-        },
-      ],
-    },
-    {
-      featureType: "landscape",
-      elementType: "all",
-      stylers: [
-        {
-          color: "#f2f2f2",
-        },
-      ],
-    },
-    {
-      featureType: "landscape",
-      elementType: "geometry.fill",
-      stylers: [
-        {
-          color: "#ffffff",
-        },
-      ],
-    },
-    {
-      featureType: "landscape.man_made",
-      elementType: "geometry.fill",
-      stylers: [
-        {
-          color: "#ffffff",
-        },
-      ],
-    },
-    {
-      featureType: "poi",
-      elementType: "all",
-      stylers: [
-        {
-          visibility: "off",
-        },
-      ],
-    },
-    {
-      featureType: "road",
-      elementType: "all",
-      stylers: [
-        {
-          saturation: -100,
-        },
-        {
-          lightness: 45,
-        },
-      ],
-    },
-    {
-      featureType: "road",
-      elementType: "geometry.fill",
-      stylers: [
-        {
-          color: "#eeeeee",
-        },
-      ],
-    },
-    {
-      featureType: "road",
-      elementType: "labels.text.fill",
-      stylers: [
-        {
-          color: "#7b7b7b",
-        },
-      ],
-    },
-    {
-      featureType: "road",
-      elementType: "labels.text.stroke",
-      stylers: [
-        {
-          color: "#ffffff",
-        },
-      ],
-    },
-    {
-      featureType: "road.highway",
-      elementType: "all",
-      stylers: [
-        {
-          visibility: "simplified",
-        },
-      ],
-    },
-    {
-      featureType: "road.arterial",
-      elementType: "labels.icon",
-      stylers: [
-        {
-          visibility: "off",
-        },
-      ],
-    },
-    {
-      featureType: "transit",
-      elementType: "all",
-      stylers: [
-        {
-          visibility: "off",
-        },
-      ],
-    },
-    {
-      featureType: "water",
-      elementType: "all",
-      stylers: [
-        {
-          color: "#46bcec",
-        },
-        {
-          visibility: "on",
-        },
-      ],
-    },
-    {
-      featureType: "water",
-      elementType: "geometry.fill",
-      stylers: [
-        {
-          color: "#c8d7d4",
-        },
-      ],
-    },
-    {
-      featureType: "water",
-      elementType: "labels.text.fill",
-      stylers: [
-        {
-          color: "#070707",
-        },
-      ],
-    },
-    {
-      featureType: "water",
-      elementType: "labels.text.stroke",
-      stylers: [
-        {
-          color: "#ffffff",
-        },
-      ],
-    },
+    // ...existing styles...
   ],
   scrollwheel: true,
 };
@@ -191,14 +24,23 @@ const containerStyle = {
   width: "100%",
   height: "100%",
 };
-export default function ListingMap1() {
+export default function ListingMap1({data}) {
+
+  const dataListing = data;
+
+  if (!dataListing) {
+    return <div>Loading...</div>;
+  }
+
+  console.log("dataListing:::", dataListing);
+
   const [getLocation, setLocation] = useState(null);
 
   const { isLoaded } = useLoadScript({
-    googleMapsApiKey: "AIzaSyAAz77U5XQuEME6TpftaMdX0bBelQxXRlM",
+    googleMapsApiKey: "AIzaSyAEK60BvwAdEzMbBKbelBIWD8D8YgLi7Q8",
   });
   const center = useMemo(
-    () => ({ lat: 27.411201277163975, lng: -96.12394824867293 }),
+    () => ({ lat: -36.60664, lng: -72.10344 }),
     []
   );
 
@@ -225,7 +67,7 @@ export default function ListingMap1() {
         >
           <MarkerClusterer>
             {(clusterer) =>
-              listings.slice(0, 6).map((marker) => (
+              dataListing.map((marker) => (
                 <Marker
                   key={marker.id}
                   position={{
@@ -254,13 +96,13 @@ export default function ListingMap1() {
                       height={248}
                       className="w-100 h-100 cover"
                       src={getLocation.image}
-                      alt="listings"
+                      alt="dataListing"
                     />
                     <div className="sale-sticker-wrap">
                       {!getLocation.forRent && (
                         <div className="list-tag fz12">
                           <span className="flaticon-electricity me-2" />
-                          FEATURED
+                          En Venta
                         </div>
                       )}
                     </div>
@@ -275,7 +117,7 @@ export default function ListingMap1() {
                         {getLocation.title}
                       </Link>
                     </h6>
-                    <p className="list-text">{getLocation.location}</p>
+                    <p className="list-text">{getLocation.city}</p>
                     <div className="list-meta d-flex align-items-center">
                       <a href="#">
                         <span className="flaticon-bed" /> {getLocation.bed} bed
@@ -291,7 +133,7 @@ export default function ListingMap1() {
                     </div>
                     <hr className="mt-2 mb-2" />
                     <div className="list-meta2 d-flex justify-content-between align-items-center">
-                      <span className="for-what">For Rent</span>
+                      <span className="for-what"></span>
                       <div className="icons d-flex align-items-center">
                         <a href="#">
                           <span className="flaticon-fullscreen" />

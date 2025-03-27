@@ -1,18 +1,18 @@
 "use client";
 import Select from "react-select";
 
-const PropertyDescription = () => {
+const PropertyDescription = ({title, setTitle, descriptionDetail, setDescriptionDetail, category, setCategory, forRent, setForRent, status, setStatus, price, setPrice, setShortDescription}) => {
   const catergoryOptions = [
-    { value: "Apartments", label: "Departamento" },
-    { value: "Houses", label: "Casas" },
+    { value: 5, label: "Departamentos" },
+    { value: 4, label: "Casas" },
     ,
-    { value: "Office", label: "Oficinas" },
-    { value: "Townhome", label: "Parcelas" },
-    { value: "Villa", label: "Terrenos" },
+    { value: 3, label: "Oficinas" },
+    { value: 2, label: "Parcelas" },
+    { value: 1, label: "Terrenos" },
   ];
   const listedIn = [
-    { value: "Active", label: "Venta" },
-    { value: "Sold", label: "Arriendo" },
+    { value: false, label: "Venta" },
+    { value: true, label: "Arriendo" },
   ];
   const PropertyStatus = [
     { value: "All Cities", label: "Publicada" },
@@ -46,6 +46,8 @@ const PropertyDescription = () => {
               type="text"
               className="form-control"
               placeholder="Ingrese título"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
             />
           </div>
         </div>
@@ -60,7 +62,8 @@ const PropertyDescription = () => {
               cols={30}
               rows={5}
               placeholder="Ingrese una descripción para la propiedad."
-              defaultValue={""}
+              value={descriptionDetail}
+              onChange={(e) => setDescriptionDetail(e.target.value)}
             />
           </div>
         </div>
@@ -73,14 +76,13 @@ const PropertyDescription = () => {
             </label>
             <div className="location-area">
               <Select
-                defaultValue={[catergoryOptions[1]]}
                 name="colors"
                 options={catergoryOptions}
                 styles={customStyles}
                 className="select-custom pl-0"
                 classNamePrefix="select"
                 required
-                isMulti
+                onChange={setCategory}
               />
             </div>
           </div>
@@ -92,14 +94,13 @@ const PropertyDescription = () => {
             <label className="heading-color ff-heading fw600 mb10">Tipo</label>
             <div className="location-area">
               <Select
-                defaultValue={[listedIn[1]]}
                 name="colors"
                 options={listedIn}
                 styles={customStyles}
                 className="select-custom pl-0"
                 classNamePrefix="select"
                 required
-                isMulti
+                onChange={setForRent}
               />
             </div>
           </div>
@@ -113,14 +114,13 @@ const PropertyDescription = () => {
             </label>
             <div className="location-area">
               <Select
-                defaultValue={[PropertyStatus[1]]}
                 name="colors"
                 options={PropertyStatus}
                 styles={customStyles}
                 className="select-custom pl-0"
                 classNamePrefix="select"
                 required
-                isMulti
+                onChange={setStatus}
               />
             </div>
           </div>
@@ -130,18 +130,32 @@ const PropertyDescription = () => {
         <div className="col-sm-6 col-xl-4">
           <div className="mb30">
             <label className="heading-color ff-heading fw600 mb10">
-              Precio $
+              Precio $ (sin puntos EJ: 1000000000)
             </label>
             <input
-              type="text"
+              type="number"
               className="form-control"
-              placeholder="Your Name"
+              placeholder="9000000"
+              onChange={(e) => setPrice(Number(e.target.value))}
             />
           </div>
         </div>
         {/* End .col-6 */}
 
         <div className="col-sm-6 col-xl-4">
+          <div className="mb30">
+            <label className="heading-color ff-heading fw600 mb10">Desctipción corta ("para slice")</label>
+            <input
+              type="text"
+              className="form-control"
+              placeholder="descripcion corta"
+              onChange={(e) => setShortDescription(e.target.value)}
+            />
+          </div>
+        </div>
+        {/* End .col-6 */}
+
+        {/* <div className="col-sm-6 col-xl-4">
           <div className="mb30">
             <label className="heading-color ff-heading fw600 mb10">XXX</label>
             <input
@@ -150,19 +164,7 @@ const PropertyDescription = () => {
               placeholder="Your Name"
             />
           </div>
-        </div>
-        {/* End .col-6 */}
-
-        <div className="col-sm-6 col-xl-4">
-          <div className="mb30">
-            <label className="heading-color ff-heading fw600 mb10">XXX</label>
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Your Name"
-            />
-          </div>
-        </div>
+        </div> */}
         {/* End .col-6 */}
       </div>
     </form>

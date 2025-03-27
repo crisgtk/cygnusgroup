@@ -1,9 +1,10 @@
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
 
-const LoginSignupModal = () => {
+const LoginSignupModal = ({email, password, setEmail, setPassword, handleSubmit, modalRef}) => {
+
   return (
-    <div className="modal-content">
+    <div className="modal-content" ref={modalRef}>
       <div className="modal-header">
         <h5 className="modal-title" id="exampleModalToggleLabel">
           Acceso a dashboard
@@ -33,7 +34,7 @@ const LoginSignupModal = () => {
                   aria-selected="true">
                   Correo
                 </button>
-                <button
+                {/* <button
                   className="nav-link fw600"
                   id="nav-profile-tab"
                   data-bs-toggle="tab"
@@ -43,7 +44,7 @@ const LoginSignupModal = () => {
                   aria-controls="nav-profile"
                   aria-selected="false">
                   Nueva Cuenta
-                </button>
+                </button> */}
               </div>
             </nav>
             {/* End nav tab items */}
@@ -54,7 +55,7 @@ const LoginSignupModal = () => {
                 id="nav-home"
                 role="tabpanel"
                 aria-labelledby="nav-home-tab">
-                <SignIn />
+                <SignIn email={email} password={password} setEmail={setEmail} setPassword={setPassword} handleSubmit={handleSubmit} />
               </div>
               {/* End signin content */}
 

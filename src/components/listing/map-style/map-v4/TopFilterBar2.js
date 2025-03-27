@@ -27,20 +27,20 @@ const TopFilterBar2 = ({filterFunctions}) => {
           data-bs-toggle="dropdown"
           data-bs-auto-close="outside"
         >
-          For Sale <i className="fa fa-angle-down ms-2" />
+          Tipo <i className="fa fa-angle-down ms-2" />
         </button>
         <div className="dropdown-menu">
           <div className="widget-wrapper bdrb1 pb25 mb0 pl20">
-            <h6 className="list-title">Listing Status</h6>
+            <h6 className="list-title">Listado</h6>
             <div className="radio-element">
               <ListingStatus  filterFunctions={filterFunctions}  />
             </div>
           </div>
-          <div className="text-end mt10 pr10">
+          {/* <div className="text-end mt10 pr10">
             <button type="button" className="done-btn ud-btn btn-thm drop_btn">
               Done
             </button>
-          </div>
+          </div> */}
         </div>
       </li>
       {/* End li Listing Status */}
@@ -52,11 +52,11 @@ const TopFilterBar2 = ({filterFunctions}) => {
           data-bs-toggle="dropdown"
           data-bs-auto-close="outside"
         >
-          Property Type <i className="fa fa-angle-down ms-2" />
+          Clasificación<i className="fa fa-angle-down ms-2" />
         </button>
         <div className="dropdown-menu">
           <div className="widget-wrapper bdrb1 pb25 mb0 pl20">
-            <h6 className="list-title">Property Type</h6>
+            <h6 className="list-title">Tipo de propiedad</h6>
             <div className="checkbox-style1">
               <PropertyType  filterFunctions={filterFunctions}  />
             </div>

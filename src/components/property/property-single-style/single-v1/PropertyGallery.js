@@ -2,29 +2,36 @@
 import { Gallery, Item } from "react-photoswipe-gallery";
 import "photoswipe/dist/photoswipe.css";
 import Image from "next/image";
-import listings from "@/data/listings";
+//import listings from "@/data/listings";
+import { use } from "react";
 
-const images = [
-  {
-    src: "/images/region/quinchimali8.jpeg",
-    alt: "2.jpg",
-  },
-  {
-    src: "/images/region/quinchimali7.jpeg",
-    alt: "3.jpg",
-  },
-  {
-    src: "/images/region/quinchimali5.jpeg",
-    alt: "4.jpg",
-  },
-  {
-    src: "/images/region/quinchimali4.jpeg",
-    alt: "5.jpg",
-  },
-];
+// const images = [
+//   {
+//     src: "/images/region/quinchimali8.jpeg",
+//     alt: "2.jpg",
+//   },
+//   {
+//     src: "/images/region/quinchimali7.jpeg",
+//     alt: "3.jpg",
+//   },
+//   {
+//     src: "/images/region/quinchimali5.jpeg",
+//     alt: "4.jpg",
+//   },
+//   {
+//     src: "/images/region/quinchimali4.jpeg",
+//     alt: "5.jpg",
+//   },
+// ];
 
-const PropertyGallery = ({ id }) => {
+const PropertyGallery = ({ id, listings, gallery }) => {
+
   const data = listings.filter((elm) => elm.id == id)[0] || listings[0];
+
+  if (!data || gallery.length === 0) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <>
       <Gallery>
@@ -32,13 +39,13 @@ const PropertyGallery = ({ id }) => {
           <div className="sp-img-content mb15-md">
             <div className="popup-img preview-img-1 sp-img">
               <Item
-                original={"/images/proyect/cerezos_quinchimali.png"}
-                thumbnail={"/images/proyect/cerezos_quinchimali.png"}
+                original={data.image}
+                thumbnail={data.image}
                 width={610}
                 height={510}>
                 {({ ref, open }) => (
                   <Image
-                    src={"/images/proyect/cerezos_quinchimali.png"}
+                    src={data.image}
                     width={591}
                     height={558}
                     ref={ref}
@@ -56,7 +63,7 @@ const PropertyGallery = ({ id }) => {
 
         <div className="col-sm-6">
           <div className="row">
-            {images.map((image, index) => (
+            {gallery.map((image, index) => (
               <div className="col-6 ps-sm-0" key={index}>
                 <div className="sp-img-content">
                   <div

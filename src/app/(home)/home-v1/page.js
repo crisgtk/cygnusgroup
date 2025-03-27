@@ -17,7 +17,7 @@ import Link from "next/link";
 import PopulerProperty from "@/components/home/home-v1/PopulerProperty";
 
 export const metadata = {
-  title: "Home v1 || Homez - Real Estate NextJS Template",
+  title: "Cygnus Group Propiedades",
 };
 
 const Home_V1 = () => {
@@ -347,5 +347,13 @@ const Home_V1 = () => {
     </>
   );
 };
+
+export async function generateStaticParams() {
+  const blogIds = [1, 2, 3, 4]; // O puedes obtener estos IDs dinámicamente desde una API o base de datos
+
+  return blogIds.map(id => ({
+    id: String(id), // Aquí usamos String(id) para asegurarnos de que sea un string
+  }));
+}
 
 export default Home_V1;

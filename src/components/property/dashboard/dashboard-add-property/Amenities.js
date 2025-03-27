@@ -1,36 +1,38 @@
+"use client";
+
 import React from "react";
 
 const amenitiesData = {
   column1: [
     { label: "Ático", defaultChecked: false },
-    { label: "Cancha de baloncesto", defaultChecked: true },
-    { label: "Aire acondicionado", defaultChecked: true },
-    { label: "Césped", defaultChecked: true },
+    { label: "Cancha de baloncesto", defaultChecked: false },
+    { label: "Aire acondicionado", defaultChecked: false },
+    { label: "Césped", defaultChecked: false },
     { label: "Piscina", defaultChecked: false },
     { label: "Parrilla", defaultChecked: false },
     { label: "Microondas", defaultChecked: false },
   ],
   column2: [
     { label: "Cable TV", defaultChecked: false },
-    { label: "Secadora", defaultChecked: true },
-    { label: "Ducha exterior", defaultChecked: true },
-    { label: "Lavadora", defaultChecked: true },
+    { label: "Secadora", defaultChecked: false },
+    { label: "Ducha exterior", defaultChecked: false },
+    { label: "Lavadora", defaultChecked: false },
     { label: "Gimnasio", defaultChecked: false },
     { label: "Vista al océano", defaultChecked: false },
     { label: "Espacio privado", defaultChecked: false },
   ],
   column3: [
     { label: "Vista al lago", defaultChecked: false },
-    { label: "Bodega", defaultChecked: true },
-    { label: "Jardín delantero", defaultChecked: true },
-    { label: "Refrigerador", defaultChecked: true },
+    { label: "Bodega", defaultChecked: false },
+    { label: "Jardín delantero", defaultChecked: false },
+    { label: "Refrigerador", defaultChecked: false },
     { label: "WiFi", defaultChecked: false },
     { label: "Lavandería", defaultChecked: false },
     { label: "Sauna", defaultChecked: false },
   ],
 };
 
-const Amenities = () => {
+const Amenities = ({setTags}) => {
   return (
     <div className="row">
       {Object.keys(amenitiesData).map((columnKey, index) => (
@@ -42,6 +44,13 @@ const Amenities = () => {
                 <input
                   type="checkbox"
                   defaultChecked={amenity.defaultChecked}
+                  onChange={(e) => {
+                    if (e.target.checked) {
+                      setTags((prev) => [...prev, amenity.label]);
+                    } else {
+                      setTags((prev) => prev.filter((tag) => tag !== amenity.label));
+                    }
+                  }}
                 />
                 <span className="checkmark" />
               </label>

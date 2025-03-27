@@ -11,11 +11,11 @@ const Footer = () => {
   return (
     <>
       <div className="container">
-        <div className="row">
+        {/* <div className="row">
           <div className="col-xl-6 mx-auto">
             <Subscribe />
           </div>
-        </div>
+        </div> */}
         {/* End .row */}
 
         <div className="row">

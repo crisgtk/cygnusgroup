@@ -1,5 +1,6 @@
 import DashboardHeader from "@/components/common/DashboardHeader";
 import MobileMenu from "@/components/common/mobile-menu";
+import Header from "@/components/home/home-v5/Header";
 import Pagination from "@/components/property/Pagination";
 import DboardMobileNavigation from "@/components/property/dashboard/DboardMobileNavigation";
 import Footer from "@/components/property/dashboard/Footer";
@@ -14,7 +15,7 @@ const DashboardMyFavourites = () => {
   return (
     <>
       {/* Main Header Nav */}
-      <DashboardHeader />
+      <Header />
       {/* End Main Header Nav */}
 
       {/* Mobile Nav  */}

@@ -107,7 +107,7 @@ const PropertyNearby = () => {
                         ? `Grados: ${detail.grades} Distancia: ${detail.distance}`
                         : `Distancia: ${detail.distance}`}
                     </p>
-                    <div className="blog-single-review">
+                    {/* <div className="blog-single-review">
                       <ul className="mb0 ps-0">
                         {[1, 2, 3, 4, 5].map((starIndex) => (
                           <li key={starIndex} className="list-inline-item me-0">
@@ -117,7 +117,7 @@ const PropertyNearby = () => {
                           </li>
                         ))}
                       </ul>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               ))}

@@ -31,7 +31,7 @@ const FeaturedListings = ({ data, colstyle }) => {
                 {!listing.forRent && (
                   <div className="list-tag fz12">
                     <span className="flaticon-electricity me-2" />
-                    FEATURED
+                    En Venta
                   </div>
                 )}
               </div>
@@ -42,9 +42,9 @@ const FeaturedListings = ({ data, colstyle }) => {
             </div>
             <div className="list-content">
               <h6 className="list-title">
-                <Link href={`/single-v6/${listing.id}`}>{listing.title}</Link>
+                <Link href={`/single-v1/${listing.id}`}>{listing.title}</Link>
               </h6>
-              <p className="list-text">{listing.location}</p>
+              <p className="list-text">{listing.city}</p>
               <div className="list-meta d-flex align-items-center">
                 <a href="#">
                   <span className="flaticon-bed" /> {listing.bed} Piezas

@@ -1,12 +1,18 @@
 import React from "react";
 import Image from "next/image";
 
-const SingleAgentInfo = () => {
+const SingleAgentInfo = ({ data }) => {
+
   const agentData = {
-    id: 1,
-    name: "Jonathan Pino",
-    phoneNumbers: ["(+56) 9877665650"],
-    socialMedia: ["facebook", "twitter", "instagram", "linkedin"],
+    id: data.executiveId,
+    name: data.executiveName,
+    phoneNumbers: [data.executivePhone],
+    socialMedia: ["facebook", "instagram", "linkedin"],
+  };
+
+  const formatPhoneNumber = (phoneNumber) => {
+    // Remove spaces, parentheses, and dashes
+    return phoneNumber.replace(/[\s()-]/g, "");
   };
 
   return (
@@ -24,23 +30,28 @@ const SingleAgentInfo = () => {
         <h6 className="title mb-1">{agentData.name}</h6>
         <div className="agent-meta mb10 d-md-flex align-items-center">
           {agentData.phoneNumbers.map((phoneNumber, index) => (
-            <a key={index} className="text fz15 pe-2 bdrr1" href="#">
+            <a key={index} className="text fz15 pe-2 bdrr1" href={`tel:${formatPhoneNumber(phoneNumber)}`}>
               <i className="flaticon-call pe-1 ps-1" />
               {phoneNumber}
             </a>
           ))}
-          <a className="text fz15 ps-2" href="#">
+          <a
+            className="text fz15 ps-2"
+            href={`https://wa.me/${formatPhoneNumber(agentData.phoneNumbers[0])}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <i className="flaticon-whatsapp pe-1" />
             WhatsApp
           </a>
         </div>
-        <div className="agent-social">
+        {/* <div className="agent-social">
           {agentData.socialMedia.map((social, index) => (
             <a key={index} className="mr20" href="#">
               <i className={`fab fa-${social}`} />
             </a>
           ))}
-        </div>
+        </div> */}
       </div>
     </div>
   );

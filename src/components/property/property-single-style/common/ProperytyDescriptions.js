@@ -1,17 +1,17 @@
 import React from "react";
 
-const ProperytyDescriptions = () => {
+const ProperytyDescriptions = ({id, listings}) => {
+
+  const data = listings.filter((elm) => elm.id == id)[0] || listings[0];
+
+  if (!data) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <>
       <p className="text mb10">
-        Esta casa de 3 habitaciones con un altillo y 2 baños en la comunidad
-        cerrada de The Hideout lo tiene todo. Desde el plano de planta abierto
-        hasta la abundante luz natural que entra por las ventanas, esta casa es
-        perfecta para recibir invitados. La sala de estar y el comedor tienen
-        techos altos abovedados y una hermosa chimenea. Disfrutarás pasar tiempo
-        en la terraza admirando las hermosas vistas. En la cocina encontrarás
-        electrodomésticos de acero inoxidable, un salpicadero de azulejos y una
-        barra de desayuno.
+       {data.parrafo1}
       </p>
       <div className="agent-single-accordion">
         <div className="accordion accordion-flush" id="accordionFlushExample">
@@ -24,13 +24,7 @@ const ProperytyDescriptions = () => {
               style={{}}>
               <div className="accordion-body p-0">
                 <p className="text">
-                  Contenido de marcador de posición para este acordeón, que está
-                  destinado a demostrar la clase. Este es el cuerpo del acordeón
-                  del primer elemento, donde obtienes un rendimiento innovador y
-                  una increíble duración de batería. A esto se suma una
-                  impresionante pantalla Liquid Retina XDR, la mejor cámara y
-                  audio jamás vistos en una MacBook, y todos los puertos que
-                  necesitas.
+                {data.parrafo2}
                 </p>
               </div>
             </div>

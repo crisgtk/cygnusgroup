@@ -1,6 +1,7 @@
 export const homeItems = [
-  { href: "/", label: "Home v1" },
-  { href: "/home-v5", label: "Home v5" },
+  { href: "/", label: "Principal" },
+  { href: "/grid-full-3-col", label: "Todas las propiedades" },
+  { href: "/map-v4", label: "Mapa de propiedades" },
 ];
 
 export const listingItems = [
@@ -46,40 +47,15 @@ export const listingItems = [
 ];
 
 export const propertyItems = [
-  // {
-  //   label: "Agents",
-  //   subMenuItems: [
-  //     { label: "Agents", href: "/agents" },
-  //     { label: "Agent Single", href: "/agent-single/1" },
-  //     { label: "Agency", href: "/agency" },
-  //     { label: "Agency Single", href: "/agency-single/1" },
-  //   ],
-  // },
-
-  // {
-  //   label: "Single Style",
-  //   subMenuItems: [
-  //     { label: "Single V1", href: "/single-v1/1" },
-  //     { label: "Single V2", href: "/single-v2/1" },
-  //     { label: "Single V3", href: "/single-v3/1" },
-  //     { label: "Single V4", href: "/single-v4/1" },
-  //     { label: "Single V5", href: "/single-v5/1" },
-  //     { label: "Single V6", href: "/single-v6/1" },
-  //     { label: "Single V7", href: "/single-v7/1" },
-  //     { label: "Single V8", href: "/single-v8/1" },
-  //     { label: "Single V9", href: "/single-v9/1" },
-  //     { label: "Single V10", href: "/single-v10/1" },
-  //   ],
-  // },
   {
     label: "Dashboard",
     subMenuItems: [
-      { label: "Dashboard", href: "/dashboard-home" },
-      { label: "Nueva Propiedad", href: "/dashboard-add-property" },
+      // { label: "Dashboard", href: "/dashboard-home" },
+      { label: "Nueva Propiedad1", href: "/dashboard-add-property" },
       { label: "Lista Propìedades", href: "/dashboard-my-properties" },
-      { label: "Mis Favoritas", href: "/dashboard-my-favourites" },
-      { label: "Busqueda avanzada", href: "/dashboard-saved-search" },
-      { label: "Mi Perfil", href: "/dashboard-my-profile" },
+      // { label: "Mis Favoritas", href: "/dashboard-my-favourites" },
+      // { label: "Busqueda avanzada", href: "/dashboard-saved-search" },
+      // { label: "Mi Perfil", href: "/dashboard-my-profile" },
     ],
   },
 ];

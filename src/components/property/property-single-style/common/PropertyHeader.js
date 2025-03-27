@@ -1,10 +1,15 @@
 "use client";
 
-import listings from "@/data/listings";
-import React from "react";
+//import listings from "@/data/listings";
 
-const PropertyHeader = ({ id }) => {
+const PropertyHeader = ({ id, listings }) => {
+
   const data = listings.filter((elm) => elm.id == id)[0] || listings[0];
+
+  if (!data) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <>
       <div className="col-lg-8">
@@ -12,7 +17,7 @@ const PropertyHeader = ({ id }) => {
           <h2 className="sp-lg-title">{data.title}</h2>
           <div className="pd-meta mb15 d-md-flex align-items-center">
             <p className="text fz15 mb-0 bdrr1 pr10 bdrrn-sm">
-              {data.location}
+              {data.city}
             </p>
             <a
               className="ff-heading text-thm fz15 bdrr1 pr10 ml0-sm ml10 bdrrn-sm"
@@ -24,14 +29,12 @@ const PropertyHeader = ({ id }) => {
               className="ff-heading bdrr1 fz15 pr10 ml10 ml0-sm bdrrn-sm"
               href="#">
               <i className="far fa-clock pe-2" />
-              {Number(new Date().getFullYear()) -
-                Number(data.yearBuilding)}{" "}
-              meses
+              Construido el {data.yearBuilding}
             </a>
-            <a className="ff-heading ml10 ml0-sm fz15" href="#">
+            {/* <a className="ff-heading ml10 ml0-sm fz15" href="#">
               <i className="flaticon-fullscreen pe-2 align-text-top" />
               8721
-            </a>
+            </a> */}
           </div>
           <div className="property-meta d-flex align-items-center">
             <a className="text fz15" href="#">
@@ -54,7 +57,7 @@ const PropertyHeader = ({ id }) => {
       <div className="col-lg-4">
         <div className="single-property-content">
           <div className="property-action text-lg-end">
-            <div className="d-flex mb20 mb10-md align-items-center justify-content-lg-end">
+            {/* <div className="d-flex mb20 mb10-md align-items-center justify-content-lg-end">
               <a className="icon mr10" href="#">
                 <span className="flaticon-like" />
               </a>
@@ -67,7 +70,7 @@ const PropertyHeader = ({ id }) => {
               <a className="icon" href="#">
                 <span className="flaticon-printer" />
               </a>
-            </div>
+            </div> */}
             <h3 className="price mb-0">{data.price}</h3>
           </div>
         </div>

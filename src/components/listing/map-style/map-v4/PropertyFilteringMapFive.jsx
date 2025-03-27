@@ -1,7 +1,7 @@
 'use client'
 
 
-import listings from "@/data/listings";
+//import listings from "@/data/listings";
 import React, { useState,useEffect } from 'react'
 import TopFilterBar2 from "./TopFilterBar2";
 import AdvanceFilterModal from "@/components/common/advance-filter-two";
@@ -11,7 +11,16 @@ import FeaturedListings from "./FeatuerdListings";
 import PaginationTwo from "../../PaginationTwo";
 import ListingMap1 from "../ListingMap1";
 
-export default function PropertyFilteringMapFive() {
+export default function PropertyFilteringMapFive({listings}) {
+
+      const data = listings;
+
+      if (!data) {
+        return <div>Loading...</div>;
+      }
+
+      console.log("the data:::", data)
+
     const [filteredData, setFilteredData] = useState([]);
 
     const [currentSortingOption, setCurrentSortingOption] = useState('Newest')
@@ -23,8 +32,11 @@ export default function PropertyFilteringMapFive() {
     const [colstyle, setColstyle] = useState(false)
     const [pageItems, setPageItems] = useState([])
     const [pageContentTrac, setPageContentTrac] = useState([])
+
+    console.log("pageItems:::", pageItems)
   
     useEffect(() => {
+      console.log("sortedFilteredData:::", sortedFilteredData)
       setPageItems(sortedFilteredData
         .slice((pageNumber - 1) * 4, pageNumber * 4))
         setPageContentTrac([((pageNumber - 1) * 4) + 1 ,pageNumber * 4,sortedFilteredData.length])
@@ -97,7 +109,6 @@ export default function PropertyFilteringMapFive() {
       setBathroms(elm)
     }
     const handlelocation =(elm)=>{
-      console.log(elm)
       setLocation(elm)
     }
     const handlesquirefeet =(elm)=>{
@@ -144,7 +155,10 @@ export default function PropertyFilteringMapFive() {
 
     useEffect(() => {
       
-        const refItems = listings.filter((elm) => {
+        const refItems = data.filter((elm) => {
+
+          console.log("elm:::", elm)
+
             if (listingStatus == "All") {
               return true;
             } else if (listingStatus == "Buy") {
@@ -156,13 +170,13 @@ export default function PropertyFilteringMapFive() {
       
           let filteredArrays = [];
 
-
-      
           if (propertyTypes.length > 0) {
+
             const filtered = refItems.filter((elm) =>
-            propertyTypes.includes(elm.propertyType)
+            propertyTypes.includes(elm.propertyName)
             );
             filteredArrays = [...filteredArrays, filtered];
+
           }
           filteredArrays = [...filteredArrays,refItems.filter((el=>el.bed >=bedrooms)) ];
           filteredArrays = [...filteredArrays,refItems.filter((el=>el.bath >=bathroms)) ];
@@ -203,15 +217,18 @@ export default function PropertyFilteringMapFive() {
             filteredArrays = [...filteredArrays, filtered];
           }
           
+         const nonEmptyFilteredArrays = filteredArrays.filter(array => array.length > 0);
 
- 
-         
-      
-          const commonItems = refItems.filter((item) =>
-            filteredArrays.every((array) => array.includes(item))
-          );
 
-         
+         console.log("nonEmptyFilteredArrays:::", nonEmptyFilteredArrays)
+         console.log("refItems:::", refItems)
+
+         const commonItems = refItems.filter((item) =>
+          nonEmptyFilteredArrays.some((array) => array.includes(item))
+        );
+
+        console.log("commonItems:::", commonItems)
+
           setFilteredData(commonItems);
          
           
@@ -226,8 +243,8 @@ export default function PropertyFilteringMapFive() {
         squirefeet,
         yearBuild,
         categories,
-        searchQuery
-
+        searchQuery,
+        data
     ])
 
     useEffect(() => {
@@ -268,7 +285,7 @@ export default function PropertyFilteringMapFive() {
               <div className="advance-search-list no-box-shadow d-flex justify-content-center">
                 <div className="dropdown-lists">
                   <ul className="p-0 mb-0">
-                    <TopFilterBar2 filterFunctions={filterFunctions}/>
+                    {/* <TopFilterBar2 filterFunctions={filterFunctions}/> */}
                   </ul>
                 </div>
               </div>
@@ -298,17 +315,17 @@ export default function PropertyFilteringMapFive() {
           <div className="row" data-aos="fade-up" data-aos-duration="200">
             <div className="col-xl-7 overflow-hidden position-relative">
               <div className="half_map_area map-canvas half_style">
-<ListingMap1/>
+                <ListingMap1 data={pageItems}/>
               </div>
             </div>
             {/* End col-7 */}
 
             <div className="col-xl-5">
               <div className="half_map_area_content mt30">
-                <h4 className="mb-1">New York Homes for Sale</h4>
+                <h4 className="mb-1">Propiedades disponibles</h4>
 
                 <div className="row align-items-center mb10">
-                  <TopFilterBar  pageContentTrac={pageContentTrac}  colstyle ={colstyle} setColstyle={setColstyle}  setCurrentSortingOption={setCurrentSortingOption} />
+                  {/* <TopFilterBar  pageContentTrac={pageContentTrac}  colstyle ={colstyle} setColstyle={setColstyle}  setCurrentSortingOption={setCurrentSortingOption} /> */}
                 </div>
                 <div className="row">
                   <FeaturedListings  colstyle ={colstyle}  data={pageItems} />

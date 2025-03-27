@@ -1,6 +1,6 @@
 "use client";
 
-import listings from "@/data/listings";
+import listings2 from "@/data/listings";
 import React, { useState, useEffect } from "react";
 import ListingSidebar from "../../sidebar";
 import AdvanceFilterModal from "@/components/common/advance-filter-two";
@@ -8,9 +8,17 @@ import TopFilterBar from "./TopFilterBar";
 import FeaturedListings from "./FeatuerdListings";
 import Pagination from "../../Pagination";
 import PaginationTwo from "../../PaginationTwo";
+//import { useSearchParams } from "next/navigation";
+import { capitalizeFirstLetter } from "@/utilis/capitalizeFirstLetter";
 
-export default function ProperteyFiltering() {
-  console.log("listing:::", listings);
+export default function ProperteyFiltering({listings, params}) {
+  // const searchParams = useSearchParams();
+  // const statusProperty = searchParams.get("buy");
+  // const description = searchParams.get("description");
+  // const property = searchParams.get("property");
+  // const city = searchParams.get("city")
+  // const price = searchParams.get("price")
+  // console.log("the params:::", buy,description,property,city,price)
   const [filteredData, setFilteredData] = useState([]);
 
   const [currentSortingOption, setCurrentSortingOption] = useState("Newest");
@@ -35,13 +43,19 @@ export default function ProperteyFiltering() {
 
   const [listingStatus, setListingStatus] = useState("All");
   const [propertyTypes, setPropertyTypes] = useState([]);
-  const [priceRange, setPriceRange] = useState([0, 100000000000000]);
+  const [priceRange, setPriceRange] = useState([0, 900000000]);
   const [bedrooms, setBedrooms] = useState(0);
   const [bathroms, setBathroms] = useState(0);
   const [location, setLocation] = useState("All Cities");
   const [squirefeet, setSquirefeet] = useState([]);
   const [yearBuild, setyearBuild] = useState([]);
   const [categories, setCategories] = useState([]);
+
+  const dataListings = listings;
+
+  if (!dataListings) {
+    return <div>Loading...</div>;
+  }
 
   const resetFilter = () => {
     setListingStatus("All");
@@ -63,8 +77,40 @@ export default function ProperteyFiltering() {
     });
   };
 
+  useEffect(() => {
+    const queryParams = new URLSearchParams(window.location.search);
+
+    const statusProperty = queryParams.get("buy");
+    const description = queryParams.get("description");
+    const property = queryParams.get("property");
+    const city = queryParams.get("city")
+    const price = queryParams.get("price")
+
+
+       if(Array.isArray(property) && property.length > 0){
+        setPropertyTypes([property])
+       }
+
+       if(price !== null){
+        const numbers = price.split(",").map(Number); // Convierte "0,0" en [0, 0]
+  
+        if (numbers.some((p) => p !== 0)) {  
+          setPriceRange(numbers); 
+        }
+
+        if(statusProperty){
+          setListingStatus(capitalizeFirstLetter(statusProperty))
+        }
+
+        if (city && city !== "undefined") {
+          setLocation(city);
+      }
+    }
+    }, []);
+   
+
   const handlelistingStatus = (elm) => {
-    setListingStatus((pre) => (pre == elm ? "All" : elm));
+    setListingStatus((pre) => (pre == elm ? "All Cities" : elm));
   };
 
   const handlepropertyTypes = (elm) => {
@@ -86,8 +132,7 @@ export default function ProperteyFiltering() {
     setBathroms(elm);
   };
   const handlelocation = (elm) => {
-    console.log(elm);
-    setLocation(elm);
+    setLocation((pre) => (pre == elm ? "All" : elm));;
   };
   const handlesquirefeet = (elm) => {
     setSquirefeet(elm);
@@ -129,15 +174,16 @@ export default function ProperteyFiltering() {
   };
 
   useEffect(() => {
-    const refItems = listings.filter((elm) => {
-      console.log("element:::", elm);
+    const refItems = dataListings.filter((elm) => {
+    
       if (listingStatus == "All") {
+       
         return true;
       } else if (listingStatus == "Buy") {
-        console.log("Buy::", elm);
+  
         return !elm.forRent;
       } else if (listingStatus == "Rent") {
-        console.log("rent::", elm);
+       
         return elm.forRent;
       }
     });
@@ -146,10 +192,13 @@ export default function ProperteyFiltering() {
 
     if (propertyTypes.length > 0) {
       const filtered = refItems.filter((elm) =>
-        propertyTypes.includes(elm.propertyType)
+        propertyTypes.includes(elm.propertyName)
       );
       filteredArrays = [...filteredArrays, filtered];
     }
+
+    
+
     filteredArrays = [
       ...filteredArrays,
       refItems.filter((el) => el.bed >= bedrooms),
@@ -201,7 +250,6 @@ export default function ProperteyFiltering() {
     const commonItems = refItems.filter((item) =>
       filteredArrays.every((array) => array.includes(item))
     );
-    console.log("commonItems:::", commonItems);
     setFilteredData(commonItems);
   }, [
     listingStatus,
@@ -213,6 +261,7 @@ export default function ProperteyFiltering() {
     squirefeet,
     yearBuild,
     categories,
+    dataListings,
   ]);
 
   useEffect(() => {

@@ -2,9 +2,10 @@ import {
   homeItems,
   blogItems,
   listingItems,
-  propertyItems,
+  //propertyItems,
   pageItems,
 } from "@/data/navItems";
+import { getMenu } from '@/server/menu';
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -13,7 +14,29 @@ const MainMenu = () => {
   const pathname = usePathname();
   const [topMenu, setTopMenu] = useState("");
   const [submenu, setSubmenu] = useState("");
-  const [activeLink, setActiveLink] = useState("");
+  const [propertyItems, setpropertyItems] = useState([]);
+  const [userPreferences, setUserPreferences] = useState(null);
+
+  async function cargarMenu() {
+    try {
+        const menuData = await getMenu();
+        setpropertyItems(menuData);
+        // Aquí puedes hacer algo con los datos del menú
+    } catch (error) {
+        console.error('Error al cargar el menú:::', error);
+    }
+}
+
+useEffect(() => {
+  if (typeof window !== "undefined") {
+    const localData = localStorage.getItem("userPreferences");
+    setUserPreferences(localData ? JSON.parse(localData) : null);
+  }
+}, []);
+
+  useEffect(() => {
+  cargarMenu();
+  }, []);
 
   useEffect(() => {
     homeItems.forEach((elm) => {
@@ -103,42 +126,43 @@ const MainMenu = () => {
         </ul>
       </li> */}
       {/* End listings */}
-
-      <li className="visible_list dropitem">
-        <a className="list-item" href="#">
-          <span
-            className={topMenu == "property" ? "title menuActive" : "title"}>
-            Admin
-          </span>
-          <span className="arrow"></span>
-        </a>
-        <ul className="sub-menu">
-          {propertyItems.map((item, index) => (
-            <li key={index} className="dropitem">
-              <a href="#">
-                <span
-                  className={
-                    submenu == item.label ? "title menuActive" : "title"
-                  }>
-                  {item.label}
-                </span>
-                <span className="arrow"></span>
-              </a>
-              <ul className="sub-menu">
-                {item.subMenuItems.map((subMenuItem, subIndex) => (
-                  <li key={subIndex}>
-                    <Link
-                      className={`${handleActive(subMenuItem.href)}`}
-                      href={subMenuItem.href}>
-                      {subMenuItem.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </li>
-          ))}
-        </ul>
-      </li>
+      {userPreferences && (
+        <li className="visible_list dropitem">
+          <a className="list-item" href="#">
+            <span
+              className={topMenu == "property" ? "title menuActive" : "title"}>
+              Admin
+            </span>
+            <span className="arrow"></span>
+          </a>
+          <ul className="sub-menu">
+            {propertyItems.map((item, index) => (
+              <li key={index} className="dropitem">
+                <a href="#">
+                  <span
+                    className={
+                      submenu == item.label ? "title menuActive" : "title"
+                    }>
+                    {item.label}
+                  </span>
+                  <span className="arrow"></span>
+                </a>
+                <ul className="sub-menu">
+                  {item.subMenuItems.map((subMenuItem, subIndex) => (
+                    <li key={subIndex}>
+                      <Link
+                        className={`${handleActive(subMenuItem.href)}`}
+                        href={subMenuItem.href}>
+                        {subMenuItem.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </li>
+            ))}
+          </ul>
+        </li>
+      )}
       {/* End property Items */}
 
       {/* <li className="visible_list dropitem">
@@ -160,7 +184,7 @@ const MainMenu = () => {
       </li> */}
       {/* End blog Items */}
 
-      <li className="visible_list dropitem">
+      {/* <li className="visible_list dropitem">
         <a className="list-item" href="#">
           <span className={topMenu == "pages" ? "title menuActive" : "title"}>
             Page
@@ -176,7 +200,7 @@ const MainMenu = () => {
             </li>
           ))}
         </ul>
-      </li>
+      </li> */}
       {/* End pages Items */}
     </ul>
   );
