@@ -8,7 +8,7 @@ export const getProperties = async (id= '') => {
     const response = await axios.get(url);
     
     if (response.data.status === 0) {
-      return JSON.parse(response.data.value);
+      return JSON.parse(response.data.value) || [];
     } else {
       throw new Error(response.data.errorMessage || 'Error al obtener las propiedades');
     }

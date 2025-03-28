@@ -174,7 +174,7 @@ export default function ProperteyFiltering({listings, params}) {
   };
 
   useEffect(() => {
-    const refItems = dataListings.filter((elm) => {
+    const refItems = dataListings?.filter((elm) => {
     
       if (listingStatus == "All") {
        

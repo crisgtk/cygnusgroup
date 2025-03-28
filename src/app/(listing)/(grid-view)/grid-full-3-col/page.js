@@ -30,7 +30,7 @@ const GridFull3Col = () => {
       };
   
       loadListings();
-    }, []);
+    }, [getListings]);
 
   
 
