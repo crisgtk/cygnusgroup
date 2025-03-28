@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'http://crisgtk.cl/apiarr';
+const API_BASE_URL = 'https://crisgtk.cl/apiarr';
 
 export const getProperties = async (id= '') => {
   try {

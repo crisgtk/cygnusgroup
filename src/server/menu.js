@@ -2,7 +2,7 @@ const axios = require('axios');
 
 // Definir la URL base
 
-const API_BASE_URL = 'http://crisgtk.cl/apiarr';
+const API_BASE_URL = 'https://crisgtk.cl/apiarr';
 
 // Función para obtener datos desde tu API .NET
 async function getMenu() {
