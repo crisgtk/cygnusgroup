@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "export": "next export", 
+    "export": "next export",
     "lint": "next lint"
   },
   "dependencies": {
@@ -21,6 +21,7 @@
     "emailjs-com": "^3.2.0",
     "eslint": "8.42.0",
     "eslint-config-next": "^14.1.0",
+    "lucide-react": "^0.485.0",
     "next": "^14.1.0",
     "photoswipe": "^5.3.8",
     "prop-types": "15.6.0",
