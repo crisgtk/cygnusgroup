@@ -4,6 +4,7 @@ import Image from "next/image";
 import SwiperCore, { Navigation, Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.min.css";
+import { User, Search } from "lucide-react";
 
 const Testimonial = () => {
   return (
@@ -43,13 +44,7 @@ const Testimonial = () => {
                 </div>
                 <div className="thumb d-flex align-items-center mb40">
                   <div className="flex-shrink-0">
-                    <Image
-                      width={60}
-                      height={60}
-                      className="wa"
-                      src={testimonial.image}
-                      alt="avatar"
-                    />
+                  <User size={24} color="black" />
                   </div>
                   <div className="flex-grow-1 ms-3">
                     <h6 className="mb-0">{testimonial.name}</h6>

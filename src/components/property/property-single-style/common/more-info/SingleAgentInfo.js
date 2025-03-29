@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import { User, Search } from "lucide-react";
 
 const SingleAgentInfo = ({ data }) => {
 
@@ -18,13 +19,14 @@ const SingleAgentInfo = ({ data }) => {
   return (
     <div className="agent-single d-sm-flex align-items-center bdrb1 mb30 pb25">
       <div className="single-img mb30-sm">
-        <Image
+      <User size={60} color="black" />
+        {/* <Image
           width={90}
           height={90}
           className="w90"
           src="/images/team/agent-3.png"
           alt="agent"
-        />
+        /> */}
       </div>
       <div className="single-contant ml30 ml0-xs">
         <h6 className="title mb-1">{agentData.name}</h6>

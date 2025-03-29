@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import { User, Search } from "lucide-react";
 
 const ContactWithAgent = ({ id, listings }) => {
 
@@ -19,13 +20,14 @@ const ContactWithAgent = ({ id, listings }) => {
     <>
       <div className="agent-single d-sm-flex align-items-center pb25">
         <div className="single-img mb30-sm">
-          <Image
+        <User size={60} color="black" />
+          {/* <Image
             width={90}
             height={90}
             className="w90"
             src={data.executiveImage === "1" ?  "/images/team/agent-3.png" : data.ExecutiveImage}
             alt="avatar"
-          />
+          /> */}
         </div>
         <div className="single-contant ml20 ml0-xs">
           <h6 className="title mb-1">{data.executiveName}</h6>
