@@ -2,7 +2,7 @@ module.exports = [
   {
     label: "Inicio",
     subMenu: [
-      { path: "/home-v1", label: "Principal" },
+      { path: "/", label: "Principal" },
       { path: "/grid-full-3-col", label: "Todas las propiedades" },
       { path: "/map-v4", label: "Mapa de propiedades" },
     ],
@@ -81,17 +81,17 @@ module.exports = [
   //     },
   //   ],
   // },
-  {
-    label: "Admin",
-    subMenu: [
-      { label: "Dashboard", path: "/dashboard-home" },
-      { label: "Nueva Propiedad2", path: "/dashboard-add-property" },
-      { label: "Lista Propìedades", path: "/dashboard-my-properties" },
-      // { label: "Mis Favoritas", path: "/dashboard-my-favourites" },
-      // { label: "Busqueda avanzada", path: "/dashboard-saved-search" },
-      // { label: "Mi Perfil", path: "/dashboard-my-profile" },
-    ],
-  },
+  // {
+  //   label: "Admin",
+  //   subMenu: [
+  //     { label: "Dashboard", path: "/dashboard-home" },
+  //     { label: "Nueva Propiedad2", path: "/dashboard-add-property" },
+  //     { label: "Lista Propìedades", path: "/dashboard-my-properties" },
+  //     // { label: "Mis Favoritas", path: "/dashboard-my-favourites" },
+  //     // { label: "Busqueda avanzada", path: "/dashboard-saved-search" },
+  //     // { label: "Mi Perfil", path: "/dashboard-my-profile" },
+  //   ],
+  // },
   // {
   //   label: "Blog",
   //   subMenu: [
@@ -102,18 +102,18 @@ module.exports = [
   //   ],
   // },
 
-  {
-    label: "Pages",
-    subMenu: [
-      { path: "/about", label: "About" },
-      { path: "/contact", label: "Contact" },
-      { path: "/compare", label: "Compate" },
-      { path: "/pricing", label: "Pricing" },
-      { path: "/faq", label: "Faq" },
-      { path: "/login", label: "Login" },
-      { path: "/register", label: "Register" },
-      { path: "/404", label: "404" },
-      { path: "/invoice", label: "Invoice" },
-    ],
-  },
+  // {
+  //   label: "Pages",
+  //   subMenu: [
+  //     { path: "/about", label: "About" },
+  //     { path: "/contact", label: "Contact" },
+  //     { path: "/compare", label: "Compate" },
+  //     { path: "/pricing", label: "Pricing" },
+  //     { path: "/faq", label: "Faq" },
+  //     { path: "/login", label: "Login" },
+  //     { path: "/register", label: "Register" },
+  //     { path: "/404", label: "404" },
+  //     { path: "/invoice", label: "Invoice" },
+  //   ],
+  // },
 ];

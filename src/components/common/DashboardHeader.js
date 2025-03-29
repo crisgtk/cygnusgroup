@@ -83,7 +83,7 @@ const DashboardHeader = () => {
                       <Image
                         width={200}
                         height={50}
-                        src="/images/logo/logo2.png"
+                        src="/images/logo/logo2.svg"
                         alt="Header Logo"
                       />
                     </Link>

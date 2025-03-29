@@ -91,22 +91,24 @@ const Header = () => {
               <div className="col-auto">
                 <div className="d-flex align-items-center justify-content-between">
                   <div className="logos mr40">
+                  <div style={{ maxHeight: '100px', overflow: 'hidden', display: 'flex', alignItems: 'center' }}>
                     <Link className="header-logo logo1" href="/home-v5">
                       <Image
                         width={500}
-                        height={94}
-                        src="/images/logo/logo2.png"
+                        height={500}
+                        src="/images/logo/logo2.svg"
                         alt="Header Logo"
                       />
                     </Link>
                     <Link className="header-logo logo2" href="/">
                       <Image
                         width={500}
-                        height={94}
-                        src="/images/logo/logo2.png"
+                        height={500}
+                        src="/images/logo/logo2.svg"
                         alt="Header Logo"
                       />
                     </Link>
+                    </div>
                   </div>
                   {/* End Logo */}
 

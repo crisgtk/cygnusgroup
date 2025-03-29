@@ -32,7 +32,7 @@ const Invoice = () => {
                           <Image
                             width={138}
                             height={44}
-                            src="/images/logo/logo2.png"
+                            // src="/images/logo/logo2.svg"
                             alt="header-logo2"
                           />
                         </Link>
