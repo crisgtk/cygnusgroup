@@ -132,20 +132,20 @@ const PropertyDescription = ({title, setTitle, descriptionDetail, setDescription
             </label>
             <div className="location-area">
             <Controller
-  name="statusProperty"
-  control={control}
-  rules={{ required: "El estado de la propiedad es obligatorio" }}
-  render={({ field }) => (
-    <Select
-      {...field}
-      options={PropertyStatus}
-      styles={customStyles}
-      className="select-custom pl-0"
-      classNamePrefix="select"
-      placeholder="Seleccione el estado"
-    />
-  )}
-/>
+              name="statusProperty"
+              control={control}
+              rules={{ required: "El estado de la propiedad es obligatorio" }}
+              render={({ field }) => (
+                <Select
+                  {...field}
+                  options={PropertyStatus}
+                  styles={customStyles}
+                  className="select-custom pl-0"
+                  classNamePrefix="select"
+                  placeholder="Seleccione el estado"
+                />
+              )}
+            />
               {errors.statusProperty && (
                 <span className="text-danger">{errors.statusProperty.message}</span>
               )}
