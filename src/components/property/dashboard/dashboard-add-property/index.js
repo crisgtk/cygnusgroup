@@ -1,6 +1,7 @@
 "use client"
 
 import React, { useEffect, useState } from "react";
+import { useForm, Controller } from "react-hook-form";
 import PropertyDescription from "./property-description";
 import UploadMedia from "./upload-media";
 import LocationField from "./LocationField";
@@ -12,10 +13,6 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const AddPropertyTabContent = () => {
-
-
-
-
 
 
   const [title, setTitle] = useState("");
@@ -45,8 +42,6 @@ const AddPropertyTabContent = () => {
   const [sqft, setSqft] = useState(0);
   const [executiveId, setExecutiveId] = useState(0);
 
-
-
   useEffect(() => {
     const localData = localStorage.getItem('userPreferences');
     const userPreferences = localData ? JSON.parse(localData) : null;
@@ -54,9 +49,14 @@ const AddPropertyTabContent = () => {
     setExecutiveId(id);
   }, []);
 
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    control
+  } = useForm();
 
-
-  const handleSubmit = async () => {
+  const onSubmit = async () => {
     const propertyData = {
       Title: title,
       DescriptionDetail: descriptionDetail,
@@ -96,6 +96,8 @@ const AddPropertyTabContent = () => {
       toast.error('Faltan datos obligatorios para poder Insertar propiedad');
     }
   };
+
+
 
   return (
     <>
@@ -183,6 +185,10 @@ const AddPropertyTabContent = () => {
               price={price}
               setPrice={setPrice}
               setShortDescription={setShortDescription}
+              register={register}
+              errors={errors}
+              Controller={Controller}
+              control = {control}
             />
           </div>
         </div>
@@ -277,7 +283,7 @@ const AddPropertyTabContent = () => {
       <div className="col-sm-6 col-xl-12 col-lg-12">
       <div className="d-flex align-items-center justify-content-start justify-content-md-center mt-3 mt-md-0">
         <div className="col-auto">
-          <button onClick={handleSubmit} className="ud-btn btn-thm">
+          <button onClick={handleSubmit(onSubmit)} className="ud-btn btn-thm">
             Insertar Propiedad
           </button>
         </div>

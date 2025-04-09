@@ -1,7 +1,7 @@
 "use client";
 import Select from "react-select";
 
-const PropertyDescription = ({title, setTitle, descriptionDetail, setDescriptionDetail, category, setCategory, forRent, setForRent, status, setStatus, price, setPrice, setShortDescription}) => {
+const PropertyDescription = ({title, setTitle, descriptionDetail, setDescriptionDetail, category, setCategory, forRent, setForRent, status, setStatus, price, setPrice, setShortDescription, register, errors, Controller, control}) => {
   const catergoryOptions = [
     { value: 5, label: "Departamentos" },
     { value: 4, label: "Casas" },
@@ -47,8 +47,13 @@ const PropertyDescription = ({title, setTitle, descriptionDetail, setDescription
               className="form-control"
               placeholder="Ingrese título"
               value={title}
+              id="title"
+              {...register("title", { required: "El título es obligatorio" })}
               onChange={(e) => setTitle(e.target.value)}
             />
+             {errors.title && (
+              <span className="text-danger">{errors.title.message}</span>
+            )}
           </div>
         </div>
         {/* End .col-12 */}
@@ -63,8 +68,13 @@ const PropertyDescription = ({title, setTitle, descriptionDetail, setDescription
               rows={5}
               placeholder="Ingrese una descripción para la propiedad."
               value={descriptionDetail}
+              id="descriptionDetail"
+              {...register("descriptionDetail", { required: "La descripción es obligatoria" })}
               onChange={(e) => setDescriptionDetail(e.target.value)}
             />
+              {errors.descriptionDetail && (
+              <span className="text-danger">{errors.descriptionDetail.message}</span>
+            )}
           </div>
         </div>
         {/* End .col-6 */}
@@ -81,9 +91,13 @@ const PropertyDescription = ({title, setTitle, descriptionDetail, setDescription
                 styles={customStyles}
                 className="select-custom pl-0"
                 classNamePrefix="select"
-                required
+                id="category"
+                {...register("category", { required: "La categoría es obligatoria" })}
                 onChange={setCategory}
               />
+                 {errors.category && (
+              <span className="text-danger">{errors.category.message}</span>
+            )}
             </div>
           </div>
         </div>
@@ -99,9 +113,13 @@ const PropertyDescription = ({title, setTitle, descriptionDetail, setDescription
                 styles={customStyles}
                 className="select-custom pl-0"
                 classNamePrefix="select"
-                required
+                id="type"
+                {...register("type", { required: "El tipo es obligatorio" })}
                 onChange={setForRent}
               />
+                   {errors.type && (
+              <span className="text-danger">{errors.type.message}</span>
+            )}
             </div>
           </div>
         </div>
@@ -113,15 +131,24 @@ const PropertyDescription = ({title, setTitle, descriptionDetail, setDescription
               Estado de la propiedad
             </label>
             <div className="location-area">
-              <Select
-                name="colors"
-                options={PropertyStatus}
-                styles={customStyles}
-                className="select-custom pl-0"
-                classNamePrefix="select"
-                required
-                onChange={setStatus}
-              />
+            <Controller
+  name="statusProperty"
+  control={control}
+  rules={{ required: "El estado de la propiedad es obligatorio" }}
+  render={({ field }) => (
+    <Select
+      {...field}
+      options={PropertyStatus}
+      styles={customStyles}
+      className="select-custom pl-0"
+      classNamePrefix="select"
+      placeholder="Seleccione el estado"
+    />
+  )}
+/>
+              {errors.statusProperty && (
+                <span className="text-danger">{errors.statusProperty.message}</span>
+              )}
             </div>
           </div>
         </div>
@@ -136,8 +163,13 @@ const PropertyDescription = ({title, setTitle, descriptionDetail, setDescription
               type="number"
               className="form-control"
               placeholder="9000000"
+              id="price"
+                {...register("price", { required: "El precio es obligatorio",validate: (value) => value > 0 || "El precio debe ser mayor a 0", })}
               onChange={(e) => setPrice(Number(e.target.value))}
             />
+            {errors.price && (
+              <span className="text-danger">{errors.price.message}</span>
+            )}
           </div>
         </div>
         {/* End .col-6 */}
@@ -149,8 +181,13 @@ const PropertyDescription = ({title, setTitle, descriptionDetail, setDescription
               type="text"
               className="form-control"
               placeholder="descripcion corta"
+              id="shortDescription"
+              {...register("shortDescription", { required: "La descripción corta es obligatoria" })}
               onChange={(e) => setShortDescription(e.target.value)}
             />
+            {errors.shortDescription && (
+              <span className="text-danger">{errors.shortDescription.message}</span>
+            )}
           </div>
         </div>
         {/* End .col-6 */}
