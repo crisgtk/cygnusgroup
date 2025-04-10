@@ -85,15 +85,24 @@ const PropertyDescription = ({title, setTitle, descriptionDetail, setDescription
               Seleccione Categoria
             </label>
             <div className="location-area">
-              <Select
-                name="colors"
-                options={catergoryOptions}
-                styles={customStyles}
-                className="select-custom pl-0"
-                classNamePrefix="select"
-                id="category"
-                {...register("category", { required: "La categoría es obligatoria" })}
-                onChange={setCategory}
+            <Controller
+                name="category"
+                control={control}
+                rules={{ required: "La categoría es obligatoria" }}
+                render={({ field }) => (
+                  <Select
+                    {...field}
+                    options={catergoryOptions}
+                    styles={customStyles}
+                    className="select-custom pl-0"
+                    classNamePrefix="select"
+                    placeholder="Seleccione categoría"
+                    onChange={(selectedOption) => {
+                      field.onChange(selectedOption);
+                      setCategory(selectedOption);
+                    }}
+                  />
+                )}
               />
                  {errors.category && (
               <span className="text-danger">{errors.category.message}</span>
@@ -107,15 +116,24 @@ const PropertyDescription = ({title, setTitle, descriptionDetail, setDescription
           <div className="mb20">
             <label className="heading-color ff-heading fw600 mb10">Tipo</label>
             <div className="location-area">
-              <Select
-                name="colors"
-                options={listedIn}
-                styles={customStyles}
-                className="select-custom pl-0"
-                classNamePrefix="select"
-                id="type"
-                {...register("type", { required: "El tipo es obligatorio" })}
-                onChange={setForRent}
+            <Controller
+                name="type"
+                control={control}
+                rules={{ required: "El tipo es obligatorio" }}
+                render={({ field }) => (
+                  <Select
+                    {...field}
+                    options={listedIn}
+                    styles={customStyles}
+                    className="select-custom pl-0"
+                    classNamePrefix="select"
+                    placeholder="Seleccione tipo"
+                    onChange={(selectedOption) => {
+                      field.onChange(selectedOption);
+                      setForRent(selectedOption);
+                    }}
+                  />
+                )}
               />
                    {errors.type && (
               <span className="text-danger">{errors.type.message}</span>
