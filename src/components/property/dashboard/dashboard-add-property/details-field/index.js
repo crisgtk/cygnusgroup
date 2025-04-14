@@ -4,7 +4,7 @@ import React from "react";
 import MultiSelectField from "./MultiSelectField";
 import StructureType from "./StructureType";
 
-const DetailsFiled = ({setSqft, setBedrooms, setBathrooms, setYearBuilt}) => {
+const DetailsFiled = ({setSqft, setBedrooms, setBathrooms, setYearBuilt, register, errors}) => {
   return (
     <form className="form-style1">
       <div className="row">
@@ -16,9 +16,14 @@ const DetailsFiled = ({setSqft, setBedrooms, setBathrooms, setYearBuilt}) => {
             <input
               type="number"
               className="form-control"
-              placeholder="Tu Nombre"
+              placeholder="mts2"
+              id="mts"
+              {...register("mts", { required: "Los mts2 son obligatorios" })}
               onChange={(e) => setSqft(e.target.value)}
             />
+               {errors.mts && (
+              <span className="text-danger">{errors.mts.message}</span>
+            )}
           </div>
         </div>
 
@@ -56,9 +61,13 @@ const DetailsFiled = ({setSqft, setBedrooms, setBathrooms, setYearBuilt}) => {
             <input
               type="number"
               className="form-control"
-              placeholder="Tu Nombre"
+              placeholder="Dormitorios"
               onChange={(e) => setBedrooms(e.target.value)}
+              {...register("bedrooms", { required: "Los dormitorios son obligatorios" })}
             />
+            {errors.bedrooms && (
+              <span className="text-danger">{errors.bedrooms.message}</span>
+            )}
           </div>
         </div>
 
@@ -68,9 +77,13 @@ const DetailsFiled = ({setSqft, setBedrooms, setBathrooms, setYearBuilt}) => {
             <input
               type="number"
               className="form-control"
-              placeholder="Tu Nombre"
+              placeholder="Baños"
               onChange={(e) => setBathrooms(e.target.value)}
+              {...register("bathrooms", { required: "Los baños son obligatorios" })}
             />
+            {errors.bathrooms && (
+              <span className="text-danger">{errors.bathrooms.message}</span>
+            )}
           </div>
         </div>
 {/* 
@@ -118,8 +131,13 @@ const DetailsFiled = ({setSqft, setBedrooms, setBathrooms, setYearBuilt}) => {
             <label className="heading-color ff-heading fw600 mb10">
               Año de construcción (numérico)
             </label>
-            <input type="number" className="form-control"  onChange={(e) => setYearBuilt(e.target.value)}/>
-
+            <input type="number" className="form-control"  
+            {...register("yearBuilt", { required: "El año de construcción es obligatorio" })}
+            placeholder="Años"
+            onChange={(e) => setYearBuilt(e.target.value)}/>
+            {errors.yearBuilt && (
+              <span className="text-danger">{errors.yearBuilt.message}</span>
+            )}
           </div>
         </div>
 

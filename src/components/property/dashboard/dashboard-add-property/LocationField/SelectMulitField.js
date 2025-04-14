@@ -10,7 +10,7 @@ const options = {
 };
 
 const customStyles = {
-  option: (styles, { isFocused, isSelected, isHovered }) => {
+  option: (styles, { isFocused, isSelected, isHovered}) => {
     return {
       ...styles,
       backgroundColor: isSelected
@@ -24,7 +24,7 @@ const customStyles = {
   },
 };
 
-const SelectMultiField = ({setCity, setCountry}) => {
+const SelectMultiField = ({ setCity, setCountry, Controller, control, errors  }) => {
   const fieldTitles = ["Pais", "Ciudad", "Región"];
   return (
     <>
@@ -35,24 +35,36 @@ const SelectMultiField = ({setCity, setCountry}) => {
               {fieldTitles[index]}
             </label>
             <div className="location-area">
-              <Select
-                styles={customStyles}
-                className="select-custom pl-0"
-                classNamePrefix="select"
-                required
-                options={options[key].map((item) => ({
-                  value: item,
-                  label: item,
-                }))}
-                onChange={(selectedOptions) => {
-                  if (fieldTitles[index] === "Ciudad") {
-                    setCity(selectedOptions);
-                  }
-                  if (fieldTitles[index] === "Pais") {
-                    setCountry(selectedOptions);
-                  }
-                }}
+              <Controller
+                name={key} // Use the key as the field name
+                control={control}
+                rules={{ required: `El campo ${fieldTitles[index]} es obligatorio` }}
+                render={({ field }) => (
+                  <Select
+                    {...field}
+                    styles={customStyles}
+                    className="select-custom pl-0"
+                    classNamePrefix="select"
+                    options={options[key].map((item) => ({
+                      value: item,
+                      label: item,
+                    }))}
+                    placeholder={`Seleccione ${fieldTitles[index]}`}
+                    onChange={(selectedOption) => {
+                      field.onChange(selectedOption);
+                      if (fieldTitles[index] === "Ciudad") {
+                        setCity(selectedOption);
+                      }
+                      if (fieldTitles[index] === "Pais") {
+                        setCountry(selectedOption);
+                      }
+                    }}
+                  />                  
+                )}
               />
+             {errors[key] && (
+              <span className="text-danger">{errors[key].message}</span>
+            )}
             </div>
           </div>
         </div>

@@ -1,11 +1,12 @@
 "use client";
-import React, { useState } from "react";
+import React, { use, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Slider, { Range } from "rc-slider";
 
 import LookingFor from "./LookingFor";
 import Location from "./Location";
 import { formatCurrency } from "@/utilis/formatCurrency";
+import getUFValue from "@/server/ufVaule";
 
 const FilterContent = () => {
   const router = useRouter();
@@ -26,9 +27,23 @@ const FilterContent = () => {
   ];
 
   const [price, setPrice] = useState([0, 0]);
+  const [uf, setUf] = useState(0);
+
+
+  useEffect(() => {
+    const fetchUFValue = async () => {
+      try {
+        const dailyUfValue = await getUFValue();
+        setUf(dailyUfValue);
+      } catch (error) {
+        console.error("Error fetching UF value:", error);
+      }
+    };
+    fetchUFValue();
+  }, []);
 
   // price range handler
-  const handleOnChange = (value) => {
+  const handleOnChange = async (value) => {
     setPrice(value);
   };
 
@@ -106,7 +121,7 @@ const FilterContent = () => {
                         data-bs-toggle="dropdown"
                         data-bs-auto-close="outside"
                         style={{ fontSize: "12px" }}>
-                        ${price[0]} - ${price[1]}{" "}
+                        {formatCurrency(price[0])} - {formatCurrency(price[1])}{" "}
                         <i className="fas fa-caret-down" />
                       </div>
                       <div className="dropdown-menu">
@@ -136,6 +151,11 @@ const FilterContent = () => {
 
                 <div className="col-md-6 col-lg-4 col-xl-3">
                   <div className="d-flex align-items-center justify-content-start justify-content-md-center mt-3 mt-md-0">
+                  <div className="form-control bgc-f7 bdrs12 ps-0">
+                  <label className="fz14 mb-1">UF</label>
+                    <span className="mx-2">{(price[0] / uf).toFixed(2) }</span> UF
+                    <span className="mx-2">{(price[1] / uf).toFixed(2) }</span> UF
+                  </div>
                     {/* <button
                       className="advance-search-btn"
                       type="button"

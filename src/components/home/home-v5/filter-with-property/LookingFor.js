@@ -36,6 +36,7 @@ const LookingFor = ({setInqueryType}) => {
         styles={customStyles}
         className="text-start select-borderless"
         classNamePrefix="select"
+        placeholder="Seleccione..."
         required
         isClearable={false}
         onChange={setInqueryType}
