@@ -20,7 +20,7 @@ const AddPropertyTabContent = () => {
   const [descriptionDetail2, setDescriptionDetail2] = useState("");
   const [category, setCategory] = useState(0);
   const [forRent, setForRent] = useState(false);
-  const [status, setStatus] = useState("");
+  const [status, setStatus] = useState("done");
   const [price, setPrice] = useState("");
   const [image, setImage] = useState("");
   const [youTubeLink, setYouTubeLink] = useState("");
@@ -63,7 +63,7 @@ const AddPropertyTabContent = () => {
       DescriptionDetail2: descriptionDetail2,
       Category: category.value,
       ForRent: forRent.value,
-      Status: status.value,
+      Status: status,
       Price: formatCurrency(price),
       Image: image,
       YouTubeLink: youTubeLink,
@@ -91,6 +91,11 @@ const AddPropertyTabContent = () => {
     try {
       const result = await insertProperty(propertyData);
       console.log('Property inserted successfully:', result);
+      toast.success('Propiedad insertada correctamente');
+      setTimeout(() => {
+        window.location.reload();
+      }, 3000);
+      
     } catch (error) {
       console.error('Faltan datos obligatorios para poder Insertar propiedad:', error);
       toast.error('Faltan datos obligatorios para poder Insertar propiedad');
@@ -259,6 +264,8 @@ const AddPropertyTabContent = () => {
               setSqft={setSqft}
               executiveId={executiveId}
               setExecutiveId={setExecutiveId}
+              register={register}
+              errors={errors}
             />
           </div>
         </div>
