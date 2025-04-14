@@ -49,6 +49,7 @@ const Location = ({setCity}) => {
         styles={customStyles}
         className="text-start select-borderless"
         classNamePrefix="select"
+        placeholder="Seleccione..."
         required
         isClearable={false}
         onChange={setCity}
