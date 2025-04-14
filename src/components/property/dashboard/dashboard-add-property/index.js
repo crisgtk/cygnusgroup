@@ -230,6 +230,10 @@ const AddPropertyTabContent = () => {
               setLatitude={setLatitude}
               longitude={longitude}
               setLongitude={setLongitude}
+              register={register}
+              errors={errors}
+              Controller={Controller}
+              control={control}
             />
           </div>
         </div>

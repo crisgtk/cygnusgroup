@@ -4,7 +4,7 @@ import React from "react";
 import SelectMulitField from "./SelectMulitField";
 import Map from "./Map";
 
-const LocationField = ({setAddress, setComuna, setCity, setCountry, setLatitude, setLongitude}) => {
+const LocationField = ({setAddress, setComuna, setCity, setCountry, setLatitude, setLongitude, register, errors, Controller, control}) => {
   return (
     <form className="form-style1">
       <div className="row">
@@ -17,13 +17,18 @@ const LocationField = ({setAddress, setComuna, setCity, setCountry, setLatitude,
               type="text"
               className="form-control"
               placeholder="Dirección"
+              id="direccion"
+              {...register("direccion", { required: "La dirección es obligatoria" })}
               onChange={(e) => setAddress(e.target.value)}
             />
+              {errors.direccion && (
+              <span className="text-danger">{errors.direccion.message}</span>
+            )}
           </div>
         </div>
         {/* End col-12 */}
 
-        <SelectMulitField  setCity={setCity} setCountry={setCountry}/>
+        <SelectMulitField  setCity={setCity} setCountry={setCountry} Controller={Controller} control={control} errors={errors}/>
 
         {/* <div className="col-sm-6 col-xl-4">
           <div className="mb20">
@@ -42,8 +47,13 @@ const LocationField = ({setAddress, setComuna, setCity, setCountry, setLatitude,
               type="text"
               className="form-control"
               placeholder="Otra descripción"
+              id="location"
+              {...register("location", { required: "La localidad es obligatoria" })}
               onChange={(e) => setComuna(e.target.value)}
             />
+               {errors.location && (
+              <span className="text-danger">{errors.location.message}</span>
+            )}
           </div>
         </div>
         {/* End col-4 */}
@@ -66,7 +76,13 @@ const LocationField = ({setAddress, setComuna, setCity, setCountry, setLatitude,
             <label className="heading-color ff-heading fw600 mb10">
               Latitude
             </label>
-            <input type="text" className="form-control" onChange={(e) => setLatitude(e.target.value)}  />
+            <input type="number" className="form-control" 
+             id="latitude"
+             {...register("latitude", { required: "La latidude es obligatoria" })}
+            onChange={(e) => setLatitude(e.target.value)}  />
+                {errors.latitude && (
+              <span className="text-danger">{errors.latitude.message}</span>
+            )}
           </div>
         </div>
         {/* End .col-sm-6 */}
@@ -76,7 +92,13 @@ const LocationField = ({setAddress, setComuna, setCity, setCountry, setLatitude,
             <label className="heading-color ff-heading fw600 mb10">
               Longitude
             </label>
-            <input type="text" className="form-control" onChange={(e) => setLongitude(e.target.value)}  />
+            <input type="number" className="form-control" 
+            id="longitude"
+            {...register("longitude", { required: "La longitude es obligatoria" })}
+            onChange={(e) => setLongitude(e.target.value)}  />
+                {errors.longitude && (
+              <span className="text-danger">{errors.longitude.message}</span>
+            )}
           </div>
         </div>
       </div>
