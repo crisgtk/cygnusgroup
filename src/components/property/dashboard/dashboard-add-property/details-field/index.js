@@ -62,8 +62,8 @@ const DetailsFiled = ({setSqft, setBedrooms, setBathrooms, setYearBuilt, registe
               type="number"
               className="form-control"
               placeholder="Dormitorios"
-              onChange={(e) => setBedrooms(e.target.value)}
               {...register("bedrooms", { required: "Los dormitorios son obligatorios" })}
+              onChange={(e) => setBedrooms(e.target.value)}
             />
             {errors.bedrooms && (
               <span className="text-danger">{errors.bedrooms.message}</span>
@@ -78,8 +78,8 @@ const DetailsFiled = ({setSqft, setBedrooms, setBathrooms, setYearBuilt, registe
               type="number"
               className="form-control"
               placeholder="Baños"
-              onChange={(e) => setBathrooms(e.target.value)}
               {...register("bathrooms", { required: "Los baños son obligatorios" })}
+              onChange={(e) => setBathrooms(e.target.value)}
             />
             {errors.bathrooms && (
               <span className="text-danger">{errors.bathrooms.message}</span>
