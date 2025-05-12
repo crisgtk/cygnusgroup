@@ -1,4 +1,5 @@
 "use client";
+import getUFValue from "@/server/ufVaule";
 import Select from "react-select";
 
 const PropertyDescription = ({title, setTitle, descriptionDetail, setDescriptionDetail, category, setCategory, forRent, setForRent, status, setStatus, price, setPrice, setShortDescription, register, errors, Controller, control}) => {
@@ -33,6 +34,13 @@ const PropertyDescription = ({title, setTitle, descriptionDetail, setDescription
       };
     },
   };
+
+  const handleUFPrice = async (value) => {
+    const dailyUfValue = await getUFValue();
+    const ufValue = value * dailyUfValue;
+    console.log("UF Value+++", ufValue);
+    setPrice(ufValue);
+  }
 
   return (
     <form className="form-style1">
@@ -182,12 +190,27 @@ const PropertyDescription = ({title, setTitle, descriptionDetail, setDescription
               className="form-control"
               placeholder="9000000"
               id="price"
+              value={price}
                 {...register("price", { required: "El precio es obligatorio",validate: (value) => value > 0 || "El precio debe ser mayor a 0", })}
               onChange={(e) => setPrice(Number(e.target.value))}
             />
             {errors.price && (
               <span className="text-danger">{errors.price.message}</span>
             )}
+          </div>
+        </div>
+        <div className="col-sm-6 col-xl-4">
+          <div className="mb30">
+            <label className="heading-color ff-heading fw600 mb10">
+              Precio en UF
+            </label>
+            <input
+              type="number"
+              className="form-control"
+              placeholder="5000"
+              id="uf"
+              onChange={(e) => handleUFPrice(Number(e.target.value))}
+            />
           </div>
         </div>
         {/* End .col-6 */}
