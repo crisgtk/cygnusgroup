@@ -5,19 +5,19 @@ const ContactMeta = () => {
   const contactInfoData = [
     {
       text: "Concepción",
-      info: "Barros Arana 1098 Torre Mall del Centro Oficina #1807.",
+      info: "Barros Arana 1098, Torre Mall del Centro Oficina #1807.",
       link: "#", // Empty link value for the first object
       tel: "Cel +56 9 2383 0830"
     },
     {
       text: "Chillán",
-      info: "Av Libertad 845 Edificio Don Alfonso Oficina #303",
+      info: "Calle 18 de septiembre 246, Edificio Centro Urbano 18-S Oficina #312",
       link: "#",
-       tel: "Cel + 56 9 6676 4574"
+      tel: "Cel + 56 9 6676 4574"
     },
     {
       text: "Los Angeles",
-      info: "José Manso de Velazco 221, Oficina #1102",
+      info: "José Manso de Velazco 221 Oficina #1102",
       link: "#",
        tel: "Cel + 56 9 7306 2812"
     },
