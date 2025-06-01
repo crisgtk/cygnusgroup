@@ -1,9 +1,13 @@
 "use client";
+import { useState } from "react";
 import { Gallery, Item } from "react-photoswipe-gallery";
 import "photoswipe/dist/photoswipe.css";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { FreeMode, Navigation, Thumbs } from "swiper";
 import Image from "next/image";
+import "photoswipe/dist/photoswipe.css";
 //import listings from "@/data/listings";
-import { use } from "react";
+
 
 // const images = [
 //   {
@@ -25,7 +29,7 @@ import { use } from "react";
 // ];
 
 const PropertyGallery = ({ id, listings, gallery }) => {
-
+  const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const data = listings.filter((elm) => elm.id == id)[0] || listings[0];
 
   if (!data || gallery.length === 0) {
@@ -34,67 +38,88 @@ const PropertyGallery = ({ id, listings, gallery }) => {
 
   return (
     <>
-      <Gallery>
-        <div className="col-sm-6">
-          <div className="sp-img-content mb15-md">
-            <div className="popup-img preview-img-1 sp-img">
-              <Item
-                original={data.image}
-                thumbnail={data.image}
-                width={610}
-                height={510}>
-                {({ ref, open }) => (
-                  <Image
-                    src={data.image}
-                    width={591}
-                    height={558}
-                    ref={ref}
-                    onClick={open}
-                    alt="image"
-                    role="button"
-                    className="w-100 h-100 cover"
-                  />
-                )}
-              </Item>
-            </div>
-          </div>
-        </div>
-        {/* End .col-6 */}
-
-        <div className="col-sm-6">
-          <div className="row">
-            {gallery.map((image, index) => (
-              <div className="col-6 ps-sm-0" key={index}>
-                <div className="sp-img-content">
-                  <div
-                    className={`popup-img preview-img-${
-                      index + 2
-                    } sp-img mb10`}>
-                    <Item
-                      original={image.src}
-                      thumbnail={image.src}
-                      width={1570}
-                      height={850}>
-                      {({ ref, open }) => (
-                        <Image
-                          width={1570}
-                          height={850}
-                          className="w-100 h-100 cover"
-                          ref={ref}
-                          onClick={open}
-                          role="button"
-                          src={image.src}
-                          alt={image.alt}
-                        />
-                      )}
-                    </Item>
-                  </div>
-                </div>
+     <div className="ps-v6-slider nav_none mt30">
+            <Gallery>
+              <Swiper
+                loop={true}
+                spaceBetween={10}
+                navigation={{
+                  prevEl: ".prev-btn",
+                  nextEl: ".next-btn",
+                }}
+                thumbs={{
+                  swiper:
+                    thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null,
+                }}
+                modules={[FreeMode, Navigation, Thumbs]}
+                className="mySwiper2 position-relative sp-img-content"
+              >
+                {gallery.map((item, i) => (
+                <SwiperSlide key={i}>
+                  <Item
+                    original={item.src}
+                    thumbnail={item.src}
+                    width={1206}
+                    height={671}
+                  >
+                    {({ ref, open }) => (
+                      <Image
+                        width={1206}
+                        height={671}
+                        ref={ref}
+                        onClick={open}
+                        src={item.src}
+                        alt={item.alt}
+                        className="w-100 h-auto bdrs12 pointer"
+                      />
+                    )}
+                  </Item>
+    <button className="all-tag popup-img border-0 pe-none">
+      Ver todas las fotos
+    </button>
+  </SwiperSlide>
+))}
+{gallery.map((item, i) => (
+  <SwiperSlide key={i}>
+    <Image
+      height={510}
+      width={610}
+      src={item.src}
+      alt={item.alt}
+      className="w-100 bdrs12 cover pointer"
+    />
+  </SwiperSlide>
+))}
+              </Swiper>
+            </Gallery>
+    
+            <div className="row">
+              <div className="col-lg-5 col-md-7">
+                <Swiper
+                  onSwiper={setThumbsSwiper}
+                  loop={true}
+                  spaceBetween={10}
+                  slidesPerView={4}
+                  freeMode={true}
+                  watchSlidesProgress={true}
+                  modules={[FreeMode, Navigation, Thumbs]}
+                  className="mySwiper mt20"
+                >
+                  {gallery.map((item, i) => (
+                    <SwiperSlide key={i}>
+                      <Image
+                        height={90}
+                        width={83}
+                        src={item.src}
+                        alt={item.alt}
+                        className="w-100 bdrs12 cover pointer"
+                      />
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
               </div>
-            ))}
-          </div>
-        </div>
-      </Gallery>
+            </div>
+     </div>
     </>
   );
 };

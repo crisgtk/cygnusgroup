@@ -72,7 +72,7 @@ const FilterContent = () => {
             key={tab.id}>
             <div className="advance-content-style3 at-home5">
               <div className="row align-items-center">
-                <div className="col-md-4 col-xl-3 bdrr1 bdrrn-sm">
+                <div className="col-md-4 col-xl-2 bdrr1 bdrrn-sm">
                   <label>Ingresa descripción</label>
                   <div className="advance-search-field position-relative">
                     <form className="form-search position-relative">
@@ -112,7 +112,7 @@ const FilterContent = () => {
                 </div>
                 {/* End col-md-4 */}
 
-                <div className="col-md-4 col-xl-2 bdrr1 bdrrn-sm px20 pl15-sm">
+                <div className="col-md-4 col-xl-3 bdrr1 bdrrn-sm px20 pl15-sm">
                   <div className="mt-3 mt-md-0">
                     <div className="dropdown-lists">
                       <label className="fz14 mb-1">Precio</label>
