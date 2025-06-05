@@ -103,6 +103,7 @@ const PropertyDataTable = ({listings}) => {
           <th scope="col">Fecha de publicación</th>
           <th scope="col">Estado</th>
           <th scope="col">Tipo</th>
+          <th scope="col">Actualizar propiedad</th>
           <th scope="col">Acción</th>
         </tr>
       </thead>
@@ -140,6 +141,11 @@ const PropertyDataTable = ({listings}) => {
               </span>
             </td>
             <td className="vam">{property.forRent === 1 ? "Arriendo" : "Venta"}</td>
+            <td className="vam">
+            <Link href={`/dashboard-update-property/${property.id}`}>
+              Actualizar
+            </Link>
+            </td>
             <td className="vam">
               <div className="d-flex">
                 {/* <button
