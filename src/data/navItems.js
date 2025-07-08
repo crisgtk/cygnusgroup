@@ -1,6 +1,5 @@
 export const homeItems = [
   { href: "/", label: "Principal" },
-  { href: "/grid-full-3-col", label: "Todas las propiedades" },
   { href: "/map-v4", label: "Mapa de propiedades" },
 ];
 

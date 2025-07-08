@@ -1,10 +1,28 @@
 "use client";
 
+import getUFValue from "@/server/ufVaule";
+import { useEffect, useState } from "react";
+
 //import listings from "@/data/listings";
 
 const PropertyHeader = ({ id, listings }) => {
 
   const data = listings.filter((elm) => elm.id == id)[0] || listings[0];
+  const [uf, setUf] = useState(0);
+
+
+  useEffect(() => {
+        const fetchUFValue = async () => {
+          try {
+            const dailyUfValue = await getUFValue();
+            setUf(dailyUfValue);
+            console.log("Valor UF del día:", dailyUfValue);
+          } catch (error) {
+            console.error("Error fetching UF value:", error);
+          }
+        };
+        fetchUFValue();
+      }, []);
 
   if (!data) {
     return <div>Loading...</div>;
@@ -71,7 +89,20 @@ const PropertyHeader = ({ id, listings }) => {
                 <span className="flaticon-printer" />
               </a>
             </div> */}
-            <h3 className="price mb-0">{data.price}</h3>
+            <h3 className="price mb-0">
+              <ul>
+                <li>{data.price}</li>
+                <li>
+                UF&nbsp;
+                {
+                                  (
+                                    parseFloat(data.price.replace(/[^0-9]/g, '')) /
+                                    parseFloat(String(uf ?? '1').replace(/[^0-9.]/g, ''))
+                                  ).toLocaleString('es-CL', { minimumFractionDigits: 0, maximumFractionDigits: 0 })
+                                }
+                </li>
+              </ul>
+            </h3>
           </div>
         </div>
       </div>

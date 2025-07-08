@@ -6,10 +6,12 @@ import "swiper/swiper-bundle.css";
 import Image from "next/image";
 import Link from "next/link";
 import { getSliderItemsTransform } from "@/transform/propertiesTransform";
+import getUFValue from "@/server/ufVaule";
 
 const Hero = () => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const [sliderItems, setSliderItems] = useState([]);
+  const [uf, setUf] = useState(0);
 
   // const sliderItems = [
   //   {
@@ -52,6 +54,19 @@ const Hero = () => {
     loadSliderItems();
   }, []);
 
+    useEffect(() => {
+      const fetchUFValue = async () => {
+        try {
+          const dailyUfValue = await getUFValue();
+          setUf(dailyUfValue);
+          console.log("Valor UF del día:", dailyUfValue);
+        } catch (error) {
+          console.error("Error fetching UF value:", error);
+        }
+      };
+      fetchUFValue();
+    }, []);
+
   return (
     <>
       <div className="hero-large-home5">
@@ -78,7 +93,21 @@ const Hero = () => {
                     <div className="row">
                       <div className="col-lg-12 text-left position-relative">
                         <h4 className="h1 slider-subtitle text-white">
-                          {item.price}
+                        <ul>
+                          <li className="slider-price">
+                            {item.price}
+                            </li>
+                              <li>
+                              UF&nbsp; 
+
+                               {
+                                  (
+                                    parseFloat(item.price.replace(/[^0-9]/g, '')) /
+                                    parseFloat(String(uf ?? '1').replace(/[^0-9.]/g, ''))
+                                  ).toLocaleString('es-CL', { minimumFractionDigits: 0, maximumFractionDigits: 0 })
+                                }
+                            </li>
+                          </ul>
                         </h4>
                         <h3 className="h6 slider-title text-white">
                           {item.title}
