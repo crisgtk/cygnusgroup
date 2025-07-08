@@ -6,11 +6,12 @@ import {
   useLoadScript,
   InfoWindow,
 } from "@react-google-maps/api";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import listings from "@/data/listings";
 import Image from "next/image";
 import Link from "next/link";
+import getUFValue from "@/server/ufVaule";
 
 const option = {
   zoomControl: true,
@@ -27,6 +28,7 @@ const containerStyle = {
 export default function ListingMap1({data}) {
 
   const dataListing = data;
+  const [uf, setUf] = useState(0);
 
   if (!dataListing) {
     return <div>Loading...</div>;
@@ -53,6 +55,19 @@ export default function ListingMap1({data}) {
   const closeCardHandler = () => {
     setLocation(null);
   };
+
+     useEffect(() => {
+        const fetchUFValue = async () => {
+          try {
+            const dailyUfValue = await getUFValue();
+            setUf(dailyUfValue);
+            console.log("Valor UF del día:", dailyUfValue);
+          } catch (error) {
+            console.error("Error fetching UF value:", error);
+          }
+        };
+        fetchUFValue();
+      }, []);
 
   return (
     <>
@@ -108,7 +123,17 @@ export default function ListingMap1({data}) {
                     </div>
 
                     <div className="list-price">
-                      {getLocation.price} / <span>mo</span>
+                    
+                          {getLocation.price} <span>CLP / </span>
+                          UF&nbsp; 
+                          {
+                            (
+                              parseFloat(getLocation.price.replace(/[^0-9]/g, '')) /
+                              parseFloat(String(uf ?? '1').replace(/[^0-9.]/g, ''))
+                            ).toLocaleString('es-CL', { minimumFractionDigits: 0, maximumFractionDigits: 0 })
+                          }
+                       
+                      
                     </div>
                   </div>
                   <div className="list-content">

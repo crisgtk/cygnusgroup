@@ -1,4 +1,5 @@
 "use client";
+import getUFValue from "@/server/ufVaule";
 //import listings from "@/data/listings";
 import { getListings } from "@/transform/propertiesTransform";
 import Image from "next/image";
@@ -10,6 +11,7 @@ import "swiper/swiper-bundle.min.css";
 
 const FeaturedListings = () => {
   const [listings, setListings] = useState([]);
+  const [uf, setUf] = useState(0);
 
 
   useEffect(() => {
@@ -24,6 +26,19 @@ const FeaturedListings = () => {
 
     loadListings();
   }, []);
+
+    useEffect(() => {
+        const fetchUFValue = async () => {
+          try {
+            const dailyUfValue = await getUFValue();
+            setUf(dailyUfValue);
+            console.log("Valor UF del día:", dailyUfValue);
+          } catch (error) {
+            console.error("Error fetching UF value:", error);
+          }
+        };
+        fetchUFValue();
+      }, []);
 
 
   return (
@@ -96,7 +111,28 @@ const FeaturedListings = () => {
                   </h6>
 
                   <div className="d-flex justify-content-between align-items-center">
-                    <div className="list-price">{listing.price}</div>
+                    <div className="list-price">
+                      {listing.price} <span>CLP / </span>
+                      UF&nbsp;
+                      {
+                            (
+                              parseFloat(listing.price.replace(/[^0-9]/g, '')) /
+                              parseFloat(String(uf ?? '1').replace(/[^0-9.]/g, ''))
+                            ).toLocaleString('es-CL', { minimumFractionDigits: 0, maximumFractionDigits: 0 })
+                          } 
+
+                      {/* <ul>
+                        <li>{listing.price} / <span>CLP</span></li>
+                        <li>
+                          {
+                            (
+                              parseFloat(listing.price.replace(/[^0-9]/g, '')) /
+                              parseFloat(String(uf ?? '1').replace(/[^0-9.]/g, ''))
+                            ).toLocaleString('es-CL', { minimumFractionDigits: 0, maximumFractionDigits: 0 })
+                          } UF
+                        </li>
+                      </ul> */}
+                    </div>
                     <div className="list-meta2 d-flex align-items-center">
                       <a href="#" className="mr10">
                         <span className="flaticon-bed mr5" /> {listing.bed}

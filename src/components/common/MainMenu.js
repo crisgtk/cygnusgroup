@@ -97,6 +97,14 @@ useEffect(() => {
           ))}
         </ul>
       </li>
+      <li>
+         <div className="list-item" href="#">
+          <span className={topMenu == "home" ? "title menuActive" : "title"}>
+            <Link href="/grid-full-3-col">Todas las propiedades</Link>
+          </span>
+          <span className="arrow"></span>
+        </div>
+      </li>
       {/* End homeItems */}
 
       {/* <li className="megamenu_style dropitem">

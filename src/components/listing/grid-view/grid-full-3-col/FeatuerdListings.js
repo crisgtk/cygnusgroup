@@ -1,9 +1,27 @@
 "use client";
 
+import getUFValue from "@/server/ufVaule";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 const FeaturedListings = ({ data, colstyle }) => {
+  const [uf, setUf] = useState(0);
+
+   useEffect(() => {
+        const fetchUFValue = async () => {
+          try {
+            const dailyUfValue = await getUFValue();
+            setUf(dailyUfValue);
+            console.log("Valor UF del día:", dailyUfValue);
+          } catch (error) {
+            console.error("Error fetching UF value:", error);
+          }
+        };
+        fetchUFValue();
+      }, []);
+
+
   return (
     <>
       {data.map((listing) => (
@@ -37,7 +55,18 @@ const FeaturedListings = ({ data, colstyle }) => {
               </div>
 
               <div className="list-price">
-                {listing.price} / <span>CLP</span>
+                <lu>
+                  <li>{listing.price} / <span>CLP</span></li>
+                  <li>
+                    UF&nbsp;
+                               {
+                                  (
+                                    parseFloat(listing.price.replace(/[^0-9]/g, '')) /
+                                    parseFloat(String(uf ?? '1').replace(/[^0-9.]/g, ''))
+                                  ).toLocaleString('es-CL', { minimumFractionDigits: 0, maximumFractionDigits: 0 })
+                                }
+                  </li>
+                </lu>
               </div>
             </div>
             <div className="list-content">

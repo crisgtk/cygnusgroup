@@ -1,8 +1,25 @@
-import React from "react";
+import getUFValue from "@/server/ufVaule";
+import React, { useEffect, useState } from "react";
 
 const PropertyDetails = ({ id, listings }) => {
 
   const data = listings.filter((elm) => elm.id == id)[0] || listings[0];
+   const [uf, setUf] = useState(0);
+
+
+
+      useEffect(() => {
+        const fetchUFValue = async () => {
+          try {
+            const dailyUfValue = await getUFValue();
+            setUf(dailyUfValue);
+            console.log("Valor UF del día:", dailyUfValue);
+          } catch (error) {
+            console.error("Error fetching UF value:", error);
+          }
+        };
+        fetchUFValue();
+      }, []);
 
   if (!data) {
     return <div>Loading...</div>;
@@ -38,8 +55,11 @@ const PropertyDetails = ({ id, listings }) => {
         value: data.Garaje,
       },
       {
-        label: "Tamaño Garaje",
-        value: "N/A",
+        label: "UF Precio",
+        value:  "UF " + (
+                                    parseFloat(data.price.replace(/[^0-9]/g, '')) /
+                                    parseFloat(String(uf ?? '1').replace(/[^0-9.]/g, ''))
+                                  ).toLocaleString('es-CL', { minimumFractionDigits: 0, maximumFractionDigits: 0 }),
       },
       {
         label: "Año construcción",
