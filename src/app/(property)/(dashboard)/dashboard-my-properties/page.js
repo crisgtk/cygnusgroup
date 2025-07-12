@@ -28,7 +28,7 @@ const DashboardMyProperties = () => {
     const id= userPreferences.ID;
     const loadListings = async (id) => {
       try {
-        const items = await getListings(id);
+        const items = await getListings();
         setListings(items);
       } catch (error) {
         console.error("Error al cargar los items:", error);
