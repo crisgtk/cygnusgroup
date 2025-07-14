@@ -23,8 +23,8 @@ const Footer = () => {
             <div className="footer-widget mb-4 mb-lg-5">
               <Link className="footer-logo" href="/home-v5">
                 <Image
-                  width={268}
-                  height={70}
+                  width={250}
+                  height={60}
                   className="mb40"
                   src="/images/logo/logo_blanco.png"
                   alt=""
