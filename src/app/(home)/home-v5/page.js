@@ -77,11 +77,7 @@ const Home_V5 = () => {
           {/* End header */}
 
           <div className="row">
-            <div className="col-lg-12" data-aos="fade-up" data-aos-delay="200">
-              <div className="feature-listing-slider">
-                <FeaturedListings />
-              </div>
-            </div>
+              <FeaturedListings />
           </div>
         </div>
       </section>
