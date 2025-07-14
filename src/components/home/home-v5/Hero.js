@@ -13,33 +13,33 @@ const Hero = () => {
   const [sliderItems, setSliderItems] = useState([]);
   const [uf, setUf] = useState(0);
 
-  // const sliderItems = [
-  //   {
-  //     image: "/images/proyect/cerezos.png",
-  //     price: "$25.900.000",
-  //     title: "Colliguay-Región del Ñuble",
-  //     description: "20 minutos de Chillán, 40 minutos de Concepcion",
-  //   },
-  //   {
-  //     image: "/images/proyect/los_nogales.png",
-  //     price: "$28.900.000",
-  //     title: "Quillón-Región del Ñuble",
-  //     description: "30 minutos de Chillán, 40 minutos de Concepcion",
-  //   },
-  //   {
-  //     image: "/images/proyect/florida.png",
-  //     price: "$27.900.000",
-  //     title: "Florida-Región del Bio Bio",
-  //     description:
-  //       "2 minutos del Hospital de Florida, 40 minutos de Concepcion",
-  //   },
-  //   {
-  //     image: "/images/proyect/cerezos_quinchimali.png",
-  //     price: "$19.900.000",
-  //     title: "20 minutos de Chillán",
-  //     description: "40 minutos de Concepcion",
-  //   },
-  // ];
+  const sliderItemsTwo = [
+    {
+      image: "/images/slider/banner.png",
+      price: "",
+      title: "",
+      description: "",
+    },
+    {
+      image: "/images/slider/banner_3.png",
+      price: "",
+      title: "",
+      description: "",
+    },
+    {
+      image: "/images/slider/banner_4.png",
+      price: "",
+      title: "",
+      description:
+        "",
+    },
+    // {
+    //   image: "/images/proyect/cerezos_quinchimali.png",
+    //   price: "$19.900.000",
+    //   title: "20 minutos de Chillán",
+    //   description: "40 minutos de Concepcion",
+    // },
+  ];
 
   useEffect(() => {
     const loadSliderItems = async () => {
@@ -75,14 +75,14 @@ const Hero = () => {
           spaceBetween={0}
           slidesPerView={1}
           speed={1400} // Set the slide transition speed in milliseconds
-          autoplay={{ delay: 3000, disableOnInteraction: false }}
+          autoplay={{ delay: 6000, disableOnInteraction: false }}
           modules={[Thumbs, Autoplay]}
           thumbs={{
             swiper:
               thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null,
           }}
-          style={{ height: "750px" }}>
-          {sliderItems.map((item, index) => (
+          style={{ height: "600px" }}>
+          {sliderItemsTwo.map((item, index) => (
             <SwiperSlide key={index}>
               <div className="item">
                 <div
@@ -93,7 +93,7 @@ const Hero = () => {
                     <div className="row">
                       <div className="col-lg-12 text-left position-relative">
                         <h4 className="h1 slider-subtitle text-white">
-                        <ul>
+                        {/* <ul>
                           <li className="slider-price">
                             {item.price}
                             </li>
@@ -107,7 +107,7 @@ const Hero = () => {
                                   ).toLocaleString('es-CL', { minimumFractionDigits: 0, maximumFractionDigits: 0 })
                                 }
                             </li>
-                          </ul>
+                          </ul> */}
                         </h4>
                         <h3 className="h6 slider-title text-white">
                           {item.title}
@@ -115,14 +115,14 @@ const Hero = () => {
                         <p className="mb30 slider-text text-white">
                           {item.description}
                         </p>
-                        <div className="slider-btn-block">
+                        {/* <div className="slider-btn-block">
                           <Link
                             href={`/single-v1/${item.id}`}
                             className="ud-btn btn-white slider-btn">
                             Ir a ver detalles
                             <i className="fal fa-arrow-right-long" />
                           </Link>
-                        </div>
+                        </div> */}
                       </div>
                     </div>
                   </div>
@@ -139,11 +139,11 @@ const Hero = () => {
           modules={[Thumbs]}
           watchSlidesProgress
           onSwiper={setThumbsSwiper}
-          slidesPerView={sliderItems.length} // Display all thumbs at once
+          slidesPerView={sliderItemsTwo.length} // Display all thumbs at once
           spaceBetween={0} // Adjust the space between thumbs
           style={{ height: "268px" }} // Set a fixed height for the thumbs gallery
         >
-          {sliderItems.map((item, index) => (
+          {sliderItemsTwo.map((item, index) => (
             <SwiperSlide key={index}>
               <Image
                 width={50}
