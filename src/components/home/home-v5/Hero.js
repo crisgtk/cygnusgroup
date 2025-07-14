@@ -27,7 +27,7 @@ const Hero = () => {
       description: "",
     },
     {
-      image: "/images/slider/Banner_4.png",
+      image: "/images/slider/banner_5.png",
       price: "",
       title: "",
       description:
